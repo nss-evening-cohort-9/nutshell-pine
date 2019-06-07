@@ -1,4 +1,4 @@
-import '../helpers/styles/main.scss';
+import '../styles/main.scss';
 
 const init = () => {
   console.error('hi');
