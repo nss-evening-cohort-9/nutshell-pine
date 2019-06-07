@@ -8,7 +8,6 @@ const diaryDomStringBuilder = () => {
   domString += '<div><h1 class="h1 text-dark text-center">Diary</h1></div>';
   diaryData.getDiaryPostByUid().then((diaryPosts) => {
     diaryPosts.forEach((post) => {
-      console.error(post.title);
       domString += `
       <div class="col-6 p-5 m-auto">
         <div class="card text-center bg-light">
