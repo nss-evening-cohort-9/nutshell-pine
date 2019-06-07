@@ -1,5 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+// components
+import diary from '../../components/Diary/diary';
 
 const authDiv = document.getElementById('auth');
 const nutshellDiv = document.getElementById('nutshell');
@@ -15,6 +17,7 @@ const checkLoginStatus = () => {
       nutshellNavbar.classList.remove('hide');
       authNavbar.classList.add('hide');
       logoutNavbar.classList.remove('hide');
+      diary.diaryDomStringBuilder();
     } else {
       authDiv.classList.remove('hide');
       nutshellDiv.classList.add('hide');

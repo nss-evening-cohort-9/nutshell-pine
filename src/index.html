@@ -7,6 +7,20 @@
   <title>Nutshell</title>
 </head>
 <body>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<!-- MODAL -->
+  <div class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div id="modal-content-wrapper">
+            <!-- your domString builder should target 'modal-content-wrapper' modal ID -->
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- MODAL END -->
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  
 <!-- // Start of Navbar -->
   <div id = "navbar">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -28,22 +42,10 @@
           </ul>
         </div>
       </nav>
-</div>
+  </div>
 <!-- End of Navbar  -->
 <div id = "auth"></div>
 <div id = "nutshell" class = "hide"></div>
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <!-- MODAL -->
-  <div class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div id="modal-content-wrapper">
-          <!-- your domString builder should target 'modal-content-wrapper' modal ID -->
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- MODAL END -->
-<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<div id="diaryComponentDiv"></div>
 </body>
 </html>
