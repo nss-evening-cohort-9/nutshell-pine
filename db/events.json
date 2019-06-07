@@ -8,9 +8,30 @@
   },
   "event2": {
     "id": "event1",
-    "eventName": "Why Dogs Have A High Emotional Intelligence",
-    "eventDate": "",
-    "eventLocation": "",
-    "uid": ""
+    "eventName": "John Does' B-day",
+    "eventDate": "08/01/2019",
+    "eventLocation": "Nashville, TN",
+    "uid": "event2"
+  },
+  "event3": {
+    "id": "event1",
+    "eventName": "Pool Party",
+    "eventDate": "06/01/2019",
+    "eventLocation": "SomeCity, TN",
+    "uid": "event3"
+  },
+  "event4": {
+    "id": "event1",
+    "eventName": "Neighborhood Cook-out",
+    "eventDate": "07/04/2019",
+    "eventLocation": "Nashville, TN",
+    "uid": "event4"
+  },
+  "event5": {
+    "id": "event1",
+    "eventName": "New Year Eve's Party",
+    "eventDate": "12/31/2019",
+    "eventLocation": "Nashville, TN",
+    "uid": "event5"
   }
 }
