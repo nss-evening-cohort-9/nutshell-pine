@@ -1,0 +1,16 @@
+{
+  "event1": {
+    "id": "event1",
+    "eventName": "HUGE Neighborhood Sale!",
+    "eventDate": "06/01/19",
+    "eventLocation": "Hendersonville, TN",
+    "uid": "userId1"
+  },
+  "event2": {
+    "id": "event1",
+    "eventName": "Why Dogs Have A High Emotional Intelligence",
+    "eventDate": "",
+    "eventLocation": "",
+    "uid": ""
+  }
+}
