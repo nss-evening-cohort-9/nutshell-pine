@@ -1,0 +1,23 @@
+.each-event-card {
+  width: 100%;
+  min-width: auto;
+  margin: .5rem;
+  padding: .75rem 3rem .75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1.5ch;
+  color: #343a40;
+
+  border-radius: .50rem;
+  box-shadow: -1px 2px 29px -17px rgba(0,0,2,1);
+  background-color: #e1f5fe;
+}
+
+.events-container {
+  width: auto !important;
+  background: none !important;
+  border: none !important;
+}
+
+.deleteIcon {
+  width: 25px;
+}

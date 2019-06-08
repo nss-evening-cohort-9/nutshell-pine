@@ -1,11 +1,15 @@
 import eventsData from '../../helpers/data/eventsData';
 import util from '../../helpers/util';
+import './events.scss';
 
 const printEventsToDom = (array) => {
-  let itemToPrint = '<div class="card text-center">';
+  let itemToPrint = '<div class="card events-container">';
   itemToPrint += '<h1>Events</h1>';
   array.forEach((event) => {
-    itemToPrint += `<div id="${event.id}" class="card-header each-event-card " >`;
+    itemToPrint += `<div id="${event.id}" class="each-event-card " >`;
+    itemToPrint += '<section>';
+    itemToPrint += '<img class="deleteIcon" src="https://image.flaticon.com/icons/png/512/61/61795.png" />';
+    itemToPrint += '</section>';
     itemToPrint += `<p>${event.eventName} </p>`;
     itemToPrint += '<div class="showMoreDetails d-none">';
     itemToPrint += `<p>${event.eventDate}..${event.eventLocation}</p>`;
