@@ -1,41 +1,38 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+
 // components
+import dashboard from '../../components/Dashboard/dashboard';
 import diary from '../../components/Diary/diary';
 import messages from '../../components/Messages/messages';
 
 const authDiv = document.getElementById('auth');
-const nutshellDiv = document.getElementById('nutshell');
+const layoutDiv = document.getElementById('layout');
 const nutshellNavbar = document.getElementById('navbar-button-nutshell');
 const authNavbar = document.getElementById('navbar-button-auth');
 const logoutNavbar = document.getElementById('navbar-button-logout');
-const allEvents = document.getElementById('eventsComponentDiv');
+const footer = document.getElementById('footer');
 
-const diaryDiv = document.getElementById('diaryComponentDiv');
-const messagesDiv = document.getElementById('messagesComponentDiv');
 
 const checkLoginStatus = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+      dashboard.dashboardLayoutStringBuilder();
       authDiv.classList.add('hide');
-      nutshellDiv.classList.remove('hide');
+      layoutDiv.classList.add('show');
       nutshellNavbar.classList.remove('hide');
       authNavbar.classList.add('hide');
       logoutNavbar.classList.remove('hide');
-      allEvents.classList.remove('hide');
-      diaryDiv.classList.remove('hide');
-      messagesDiv.classList.remove('hide');
+      footer.classList.remove('hide');
       diary.diaryDomStringBuilder();
       messages.messagesStringBuilder();
     } else {
       authDiv.classList.remove('hide');
-      nutshellDiv.classList.add('hide');
+      layoutDiv.classList.remove('show');
       nutshellNavbar.classList.add('hide');
       authNavbar.classList.remove('hide');
       logoutNavbar.classList.add('hide');
-      allEvents.classList.add('hide');
-      diaryDiv.classList.add('hide');
-      messagesDiv.classList.add('hide');
+      footer.classList.add('hide');
     }
   });
 };
