@@ -3,7 +3,7 @@ head, body{
   height:100vh;
 }
 body {
-  background-color: slategrey;
+  background-color: white;
 }
 
 .hide {
@@ -62,8 +62,16 @@ body {
     }
   }
 
-
 footer{
   background-color:yellowgreen;
   justify-content: flex-end;
+}
+.card {
+    flex-direction: column;
+    height: auto;
+    justify-content: space-evenly;
+    margin-top: auto;
+    padding: 5px;
+    align-items: center;
+    width: 400px;
 }
