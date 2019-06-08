@@ -2,14 +2,19 @@ import eventsData from '../../helpers/data/eventsData';
 import util from '../../helpers/util';
 
 const printEventsToDom = (array) => {
-  let itemToPrint = '<div>';
+  let itemToPrint = '<div class="card text-center">';
+  itemToPrint += '<h1>Events</h1>';
   array.forEach((event) => {
-    itemToPrint += `<p>${event.id}</p>`;
-    itemToPrint += `<p>${event.eventName}</p>`;
-    itemToPrint += `<p>${event.eventDate}</p>`;
-    itemToPrint += `<p>${event.eventLocation}</p>`;
+    itemToPrint += '<div class="card-header">';
+    itemToPrint += `<h3>${event.eventName}</h3>`;
+    itemToPrint += '</div>';
+    itemToPrint += '<div class="card-body">';
+    itemToPrint += '<div class="toast-header">';
+    itemToPrint += '</div>';
+    itemToPrint += '</div>';
   });
-  util.printToDom('all-events', itemToPrint);
+  itemToPrint += '</div>';
+  util.printToDom('eventsComponentDiv', itemToPrint);
 };
 
 

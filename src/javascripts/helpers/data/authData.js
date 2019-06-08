@@ -8,7 +8,7 @@ const nutshellDiv = document.getElementById('nutshell');
 const nutshellNavbar = document.getElementById('navbar-button-nutshell');
 const authNavbar = document.getElementById('navbar-button-auth');
 const logoutNavbar = document.getElementById('navbar-button-logout');
-const allEvents = document.getElementById('all-events');
+const allEvents = document.getElementById('eventsComponentDiv');
 
 const diaryDiv = document.getElementById('diaryComponentDiv');
 
