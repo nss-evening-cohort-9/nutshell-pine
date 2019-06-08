@@ -1,3 +1,43 @@
 .diaryCardsDiv {
   // background-color: transparent;
 }
+
+.btnPostion {
+  margin: auto;
+}
+.coolBtn{
+  background:rgb(3, 58, 109);
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+.coolBtn:hover{
+  background:#fff;
+  color:rgb(3, 58, 109);
+}
+.coolBtn:before,.coolBtn:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: rgb(3, 58, 109);
+  transition:400ms ease all;
+}
+.coolBtn:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.coolBtn:hover:before,.coolBtn:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
