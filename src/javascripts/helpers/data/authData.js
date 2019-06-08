@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 // components
 import diary from '../../components/Diary/diary';
+import Messages from '../../components/Messages/messages';
 
 const authDiv = document.getElementById('auth');
 const nutshellDiv = document.getElementById('nutshell');
@@ -19,7 +20,8 @@ const checkLoginStatus = () => {
       authNavbar.classList.add('hide');
       logoutNavbar.classList.remove('hide');
       diaryDiv.classList.remove('hide');
-      diary.diaryDomStringBuilder();
+      diary.diaryDomStringBuilder(user.uid);
+      Messages.messagesStringBuilder();
     } else {
       authDiv.classList.remove('hide');
       nutshellDiv.classList.add('hide');

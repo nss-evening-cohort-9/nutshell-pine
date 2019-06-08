@@ -3,40 +3,56 @@ import diaryData from '../../helpers/data/diaryData';
 // scss
 import './diary.scss';
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// this function takes the input data from the form and axios posts to firebase
 const newDiaryPost = (e) => {
   e.preventDefault();
-  const newDiaryPostTitle = document.getElementById('diaryPostTitleInput').value;
-  const newDiaryPostImg = document.getElementById('imageUrlInput').value;
-  const newDiaryPostRating = document.getElementsByClassName('diaryPostRatingCheckBox').checked;
-  const replaceDiaryPostObj = {
+  const newDiaryPostTitle = document.getElementById('diaryTitleInput').value;
+  const newDiaryPostDate = document.getElementById('diaryDateInput').value;
+  const newDiaryPostEntry = document.getElementById('diaryEntryInput').value;
+  const addDiaryPostObj = {
     title: newDiaryPostTitle,
-    imageUrl: newDiaryPostImg,
-    diaryPostRating: newDiaryPostRating,
-    stars: 0,
+    date: newDiaryPostDate,
+    entry: newDiaryPostEntry,
   };
-  const radioBtns = document.getElementsByName('rating');
-  radioBtns.forEach((radio) => {
-    if (radio.checked) {
-      replaceDiaryPostObj.diaryPostRating = radio.value;
-    }
-  });
-  diaryData.makeNewDiaryPost(replaceDiaryPostObj)
+  // this loop is from an old function, but i shouldn't need to loop over data since data pushes on submit
+  // const inputEntriesForDiary = document.getElementsByName('rating');
+  // inputEntriesForDiary.forEach((radio) => {
+  //   if (radio.checked) {
+  //     addDiaryPostObj.diaryPostRating = radio.value;
+  //   }
+  // });
+  diaryData.makeNewDiaryPost(addDiaryPostObj)
     .then(() => {
       diaryDomStringBuilder() // eslint-disable-line no-use-before-define
-        .then()
         .catch(err => console.error('no diaryPosts called', err));
     }).catch(err => console.error(err));
 };
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// this function is called by an event listener at end of diaryDomString and builds the form into the modal
 const diaryFormInputBuilder = () => {
-  console.error(Date.now());
+  // console.error(Date.now());
+  const domString = `
+  <div>
+    <form class="form-group">
+      <input id="diaryTitleInput" type="text"></input><label for="diaryTitleInput">Title</label>
+      <input id="diaryDateInput" type="date"></input><label for="diaryDateInput">Date</label>
+      <input id="diaryEntryInput" type="text"></input><label for="diaryEntryInput">Entry</label>
+      <button id="submitBtnForNewDiaryPost" type="submit" class="btn btn-primary">Post</button>
+    </form>
+  </div>`;
+  util.printToDom('addNewDiaryPostFormDiv', domString);
+  document.getElementById('submitBtnForNewDiaryPost').addEventListener('click', newDiaryPost);
 };
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// this function is called to build the cards that contain the data of diary posts
 const diaryDomStringBuilder = () => {
   let domString = '<div class="col diaryCardsDiv">';
   domString += `
   <div><h1 class="h1 text-dark text-center">Diary</h1></div>
-  <div class="btnPosition"><button class="coolBtn">Add Post</button></div>`;
+  <div class="btnPosition"><button id="addNewDiaryPostBtn" class="coolBtn">Add Post</button></div>`;
   diaryData.getDiaryPostByUid().then((diaryPosts) => {
     diaryPosts.forEach((post) => {
       domString += `
@@ -50,8 +66,9 @@ const diaryDomStringBuilder = () => {
     });
     domString += '</div>';
     util.printToDom('diaryComponentDiv', domString);
+    document.getElementById('addNewDiaryPostBtn').addEventListener('click', diaryFormInputBuilder);
   }).catch(err => console.error('could not get diary post', err));
-  // diaryFormInputBuilder();
 };
 
-export default { diaryDomStringBuilder, diaryFormInputBuilder, newDiaryPost };
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+export default { diaryDomStringBuilder, newDiaryPost };

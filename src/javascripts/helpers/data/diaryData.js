@@ -3,7 +3,7 @@ import apiKeys from '../apiKeys.json';
 
 const firebaseUrl = apiKeys.firebaseKeys.databaseURL;
 
-const makeNewDiaryPost = diaryPostObject => axios.post(`${firebaseUrl}/diaryPosts.json`, diaryPostObject);
+const makeNewDiaryPost = diaryPostObject => axios.post(`${firebaseUrl}/diary.json`, diaryPostObject);
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const getDiaryPostByUid = () => new Promise((resolve, reject) => {
