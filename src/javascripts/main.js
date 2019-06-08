@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import '../styles/main.scss';
-// load in Bootsrap JS
+// load in Bootstrap JS
 import 'bootstrap';
 // import 'jquery';
 
