@@ -41,3 +41,26 @@
   width:100%;
   transition:800ms ease all;
 }
+
+// MODAL FORM SCSS
+#diaryFormCreation {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+#diaryTitleInput {
+  margin: 5px
+}
+
+#diaryDateInput {
+  margin: 5px
+}
+
+#diaryEntryInput {
+  margin: 5px
+}
+
+#submitBtnForNewDiaryPost {
+  margin-top: 40px;
+}

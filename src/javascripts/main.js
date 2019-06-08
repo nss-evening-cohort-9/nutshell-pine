@@ -1,5 +1,8 @@
 import firebase from 'firebase/app';
 import '../styles/main.scss';
+// load in Bootsrap JS
+import 'bootstrap';
+// import 'jquery';
 
 import authData from './helpers/data/authData';
 import MyNavbar from './components/MyNavbar/myNavbar';

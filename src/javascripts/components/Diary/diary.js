@@ -2,6 +2,8 @@ import util from '../../helpers/util';
 import diaryData from '../../helpers/data/diaryData';
 // scss
 import './diary.scss';
+// for bootstrap modal functionality...
+import $ from '../../../../node_modules/jquery';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // this function takes the input data from the form and axios posts to firebase
@@ -15,13 +17,6 @@ const newDiaryPost = (e) => {
     date: newDiaryPostDate,
     entry: newDiaryPostEntry,
   };
-  // this loop is from an old function, but i shouldn't need to loop over data since data pushes on submit
-  // const inputEntriesForDiary = document.getElementsByName('rating');
-  // inputEntriesForDiary.forEach((radio) => {
-  //   if (radio.checked) {
-  //     addDiaryPostObj.diaryPostRating = radio.value;
-  //   }
-  // });
   diaryData.makeNewDiaryPost(addDiaryPostObj)
     .then(() => {
       diaryDomStringBuilder() // eslint-disable-line no-use-before-define
@@ -35,10 +30,10 @@ const diaryFormInputBuilder = () => {
   // console.error(Date.now());
   const domString = `
   <div>
-    <form class="form-group">
-      <input id="diaryTitleInput" type="text"></input><label for="diaryTitleInput">Title</label>
-      <input id="diaryDateInput" type="date"></input><label for="diaryDateInput">Date</label>
-      <input id="diaryEntryInput" type="text"></input><label for="diaryEntryInput">Entry</label>
+    <form id="diaryFormCreation" class="form-group">
+      <label for="diaryTitleInput">Title</label><input id="diaryTitleInput" type="text"></input>
+      <label for="diaryDateInput">Date</label><input id="diaryDateInput" type="date"></input>
+      <label for="diaryEntryInput">Entry</label><input id="diaryEntryInput" type="text"></input>
       <button id="submitBtnForNewDiaryPost" type="submit" class="btn btn-primary">Post</button>
     </form>
   </div>`;
@@ -66,7 +61,11 @@ const diaryDomStringBuilder = () => {
     });
     domString += '</div>';
     util.printToDom('diaryComponentDiv', domString);
-    document.getElementById('addNewDiaryPostBtn').addEventListener('click', diaryFormInputBuilder);
+    document.getElementById('addNewDiaryPostBtn').addEventListener('click', (e) => {
+      // const modalLaunch = document.getElementsByClassName('modal');
+      $('#pineModal').modal().show();
+      diaryFormInputBuilder(e);
+    });
   }).catch(err => console.error('could not get diary post', err));
 };
 
