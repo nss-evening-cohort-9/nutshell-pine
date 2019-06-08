@@ -21,6 +21,7 @@ const newDiaryPost = (e) => {
   diaryData.makeNewDiaryPost(addDiaryPostObj)
     .then(() => {
       diaryDomStringBuilder(); // eslint-disable-line no-use-before-define
+      $('#pineModal').modal('toggle');
     }).catch(err => console.error(err));
 };
 
