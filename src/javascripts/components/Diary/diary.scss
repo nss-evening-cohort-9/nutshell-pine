@@ -33,11 +33,16 @@
 //   top: 40px;
 //   background-color: blue;
 // }
-#addNewDiaryPostBtn {
+.addNewDiaryPostBtn {
   position: relative;
   top: -30px;
-  left: 30%;
-  transform: scale(2.0);
+  left: 62%;
+  // background-color: $bannerColor;
+  
+}
+
+.actualSVG {
+  fill: green;
 }
 
 // .circle4Btn {

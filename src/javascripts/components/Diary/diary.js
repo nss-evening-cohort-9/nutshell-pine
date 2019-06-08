@@ -5,7 +5,6 @@ import './diary.scss';
 // for bootstrap modal functionality...
 import $ from '../../../../node_modules/jquery';
 // add button img
-import plusButton from './plusBtn.svg';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // this function takes the input data from the form and axios posts to firebase
@@ -49,7 +48,9 @@ const diaryDomStringBuilder = () => {
   let domString = `
   <div class="col diaryCardsDiv">
   <div><h1 class="h1 text-center diaryHeadline">Diary</h1></div>
-  <img id="addNewDiaryPostBtn" src="${plusButton}" class="btnPosition">`;
+  <div class="addNewDiaryPostBtn"><svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" class="actualSVG" viewBox="0 0 24 
+  24"><path d="M0 0h24v24H0V0z"/><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 
+  10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg></div>`;
   diaryData.getDiaryPostByUid().then((diaryPosts) => {
     diaryPosts.forEach((post) => {
       domString += `
