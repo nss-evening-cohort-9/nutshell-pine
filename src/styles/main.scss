@@ -1,4 +1,5 @@
 @import "~bootstrap/scss/bootstrap";
+@import './colors-fonts.scss';
 
 body {
   background-color: white;
@@ -10,4 +11,10 @@ body {
 
 #pineModal {
   padding: 100px;
+}
+
+#navBarNav {
+  font-family: $font1!important;
+  background-color: $bannerColor!important;
+  color: white!important;
 }

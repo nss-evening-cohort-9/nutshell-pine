@@ -1,46 +1,113 @@
+@import '../../../styles/colors-fonts.scss';
+
 .diaryCardsDiv {
   // background-color: transparent;
 }
-
-.btnPostion {
+.diaryHeadline {
+  font-family: $font1;
+  font-weight: 900;
+  color: $diaryHeaderColor!important;
+  background-color: #eee;
+  width: 20%;
   margin: auto;
+  padding: 10px;
+  border-radius: 10px 0px 0px 10px;
+  border: 1px solid $bannerColor;
+  margin-top: 20px;
 }
-.coolBtn{
-  background:rgb(3, 58, 109);
-  color:#fff;
-  border:none;
-  position:relative;
-  height:60px;
-  font-size:1.6em;
-  padding:0 2em;
-  cursor:pointer;
-  transition:800ms ease all;
-  outline:none;
+.diaryHeadline:hover {
+  background-color: white;
+  color: $bannerColor;
+  transition: .6s;
+  box-shadow: inset 1px -2px $bannerColor;
 }
-.coolBtn:hover{
-  background:#fff;
-  color:rgb(3, 58, 109);
+// .btnPostion {
+//   max-width: 100px;
+//   max-height: 40px;
+//   margin: auto;
+//   position: relative;
+//   left: 800px;
+// }
+// .btnSpanPosition {
+//   position: relative;
+//   top: 40px;
+//   background-color: blue;
+// }
+#addNewDiaryPostBtn {
+  position: relative;
+  top: -30px;
+  left: 30%;
+  transform: scale(2.0);
 }
-.coolBtn:before,.coolBtn:after{
-  content:'';
-  position:absolute;
-  top:0;
-  right:0;
-  height:2px;
-  width:0;
-  background: rgb(3, 58, 109);
-  transition:400ms ease all;
-}
-.coolBtn:after{
-  right:inherit;
-  top:inherit;
-  left:0;
-  bottom:0;
-}
-.coolBtn:hover:before,.coolBtn:hover:after{
-  width:100%;
-  transition:800ms ease all;
-}
+
+// .circle4Btn {
+//   width: 50px;
+//   height: 50px;
+//   border-radius: 50px;
+//   background-color: $bannerColor;
+// }
+
+// .hr1 {
+//   color: white;
+//   background-color: white;
+//   width: 3px;
+//   height: 45px;
+//   position: relative;
+//   top: 2.5px;
+//   left: 0px;
+//   border-radius: 7px 7px 7px 7px;
+// }
+
+// .hr2 {
+//   color: white;
+//   background-color: white;
+//   width: 45px;
+//   height: 3px;
+//   position: relative;
+//   top: -40px;
+//   border-radius: 7px 7px 7px 7px;
+// }
+
+Cool BTN effect for ADD BTN
+
+  // .coolBtn{
+  //   background:rgb(3, 58, 109);
+  //   color:#fff;
+  //   border:none;
+  //   position:relative;
+  //   left: 40.5%;
+  //   top: 20px;
+  //   height:60px;
+  //   font-size:1.6em;
+  //   padding:0 2em;
+  //   cursor:pointer;
+  //   transition:800ms ease all;
+  //   outline:none;
+  // }
+  // .coolBtn:hover{
+  //   background:#fff;
+  //   color:rgb(3, 58, 109);
+  // }
+  // .coolBtn:before,.coolBtn:after{
+  //   content:'';
+  //   position:absolute;
+  //   top:0;
+  //   right:0;
+  //   height:2px;
+  //   width:0;
+  //   background: rgb(3, 58, 109);
+  //   transition:400ms ease all;
+  // }
+  // .coolBtn:after{
+  //   right:inherit;
+  //   top:inherit;
+  //   left:0;
+  //   bottom:0;
+  // }
+  // .coolBtn:hover:before,.coolBtn:hover:after{
+  //   width:100%;
+  //   transition:800ms ease all;
+  // }
 
 // MODAL FORM SCSS
 #diaryFormCreation {

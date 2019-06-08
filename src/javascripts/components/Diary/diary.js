@@ -4,6 +4,8 @@ import diaryData from '../../helpers/data/diaryData';
 import './diary.scss';
 // for bootstrap modal functionality...
 import $ from '../../../../node_modules/jquery';
+// add button img
+import plusButton from './plusBtn.svg';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // this function takes the input data from the form and axios posts to firebase
@@ -31,7 +33,7 @@ const diaryFormInputBuilder = () => {
   const domString = `
   <div>
     <form id="diaryFormCreation" class="form-group">
-      <label for="diaryTitleInput">Title</label><input id="diaryTitleInput" type="text"></input>
+      <label for="diaryTitleInput">Post Title</label><input id="diaryTitleInput" type="text"></input>
       <label for="diaryDateInput">Date</label><input id="diaryDateInput" type="date"></input>
       <label for="diaryEntryInput">Entry</label><input id="diaryEntryInput" type="text"></input>
       <button id="submitBtnForNewDiaryPost" type="submit" class="btn btn-primary">Post</button>
@@ -44,10 +46,10 @@ const diaryFormInputBuilder = () => {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // this function is called to build the cards that contain the data of diary posts
 const diaryDomStringBuilder = () => {
-  let domString = '<div class="col diaryCardsDiv">';
-  domString += `
-  <div><h1 class="h1 text-dark text-center">Diary</h1></div>
-  <div class="btnPosition"><button id="addNewDiaryPostBtn" class="coolBtn">Add Post</button></div>`;
+  let domString = `
+  <div class="col diaryCardsDiv">
+  <div><h1 class="h1 text-center diaryHeadline">Diary</h1></div>
+  <img id="addNewDiaryPostBtn" src="${plusButton}" class="btnPosition">`;
   diaryData.getDiaryPostByUid().then((diaryPosts) => {
     diaryPosts.forEach((post) => {
       domString += `

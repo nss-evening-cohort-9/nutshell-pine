@@ -8,7 +8,7 @@ const messagesStringBuilder = () => {
   messsagesData.getMessagesByUid()
     .then((messages) => {
       messages.forEach((message) => {
-        domString += '<div class="card">';
+        domString += '<div class="card messageCard">';
         domString += `<h2 id="username">${message.uid}</h2>`;
         domString += '<div class="input-group">';
         domString += `<textarea class="form-control editBox  hide" id=${message.id} aria-label="With textarea">${message.messageText}</textarea>`;
