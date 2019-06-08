@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 // components
 import diary from '../../components/Diary/diary';
+import messages from '../../components/Messages/messages';
 
 const authDiv = document.getElementById('auth');
 const nutshellDiv = document.getElementById('nutshell');
@@ -11,6 +12,7 @@ const logoutNavbar = document.getElementById('navbar-button-logout');
 const allEvents = document.getElementById('eventsComponentDiv');
 
 const diaryDiv = document.getElementById('diaryComponentDiv');
+const messagesDiv = document.getElementById('messagesComponentDiv');
 
 const checkLoginStatus = () => {
   firebase.auth().onAuthStateChanged((user) => {
@@ -22,7 +24,9 @@ const checkLoginStatus = () => {
       logoutNavbar.classList.remove('hide');
       allEvents.classList.remove('hide');
       diaryDiv.classList.remove('hide');
+      messagesDiv.classList.remove('hide');
       diary.diaryDomStringBuilder();
+      messages.messagesStringBuilder();
     } else {
       authDiv.classList.remove('hide');
       nutshellDiv.classList.add('hide');
@@ -31,6 +35,7 @@ const checkLoginStatus = () => {
       logoutNavbar.classList.add('hide');
       allEvents.classList.add('hide');
       diaryDiv.classList.add('hide');
+      messagesDiv.classList.add('hide');
     }
   });
 };
