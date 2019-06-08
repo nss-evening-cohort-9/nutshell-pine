@@ -1,10 +1,38 @@
+import firebase from 'firebase/app';
+import 'firebase/auth';
+
 import messsagesData from '../../helpers/data/messagesData';
 import util from '../../helpers/util';
 import './messages.scss';
 
+
+// const createNewMessage = () => {
+//   const newMessage = {
+//     message: document.getElementById('message').value,
+//     timestamp: document.getElementById('timeStamp').value,
+//     uid: firebase.auth().currentUser.uid,
+//   };
+//   messsagesData.addNewMessage(newMessage)
+//     .then(() => {
+//       document.getElementById('message').value = '';
+//       document.getElementById('timeStamp').value = '';
+//     })
+//     .catch(error => console.error('no new messages', error));
+// };
+
+// const newMessageButton = () => {
+//   document.getElementById('saveNewFriend').addEventListener('click', createNewMessage);
+// };
+
+// const showMessages = () => {
+//   const domstring = '<button  id = "add-message-button" class = "btn btn-danger">Add Message</button>';
+//   util.printToDom('newMessage', domstring);
+//   document.getElementById('add-friend-button').addEventListener('click', newMessageButton);
+// };
+
 const messagesStringBuilder = () => {
   let domString = '<div class="col messageCardsDiv">';
-  messsagesData.getMessagesByUid()
+  messsagesData.getMessages()
     .then((messages) => {
       messages.forEach((message) => {
         domString += '<div class="card messageCard">';
@@ -24,6 +52,18 @@ const messagesStringBuilder = () => {
       util.printToDom('messagesComponentDiv', domString);
     })
     .catch(error => console.error('could not get messages', error));
+};
+
+const messageInput = () => {
+  const newMsgInput = `
+  <div class="type-msg">
+    <div class="input-msg-write">
+      <input id="new-msg-input" class="write-msg" type="text" placeholder="Type a message">
+      <button id="new-msg-button" class="msg-send-btn" type="button"><i class="fas fa-upload" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  `;
+  util.printToDom('messages', newMsgInput);
 };
 
 

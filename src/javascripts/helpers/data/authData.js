@@ -24,6 +24,7 @@ const checkLoginStatus = () => {
       messagesDiv.classList.remove('hide');
       diary.diaryDomStringBuilder();
       messages.messagesStringBuilder();
+      messages.showMessages();
     } else {
       authDiv.classList.remove('hide');
       nutshellDiv.classList.add('hide');
