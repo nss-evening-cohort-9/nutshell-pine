@@ -13,7 +13,6 @@ const authNavbar = document.getElementById('navbar-button-auth');
 const logoutNavbar = document.getElementById('navbar-button-logout');
 const footer = document.getElementById('footer');
 
-
 const checkLoginStatus = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -26,7 +25,8 @@ const checkLoginStatus = () => {
       footer.classList.remove('hide');
       diary.diaryDomStringBuilder();
       messages.messagesStringBuilder();
-      messages.showMessages();
+      messages.displayMsgInput();
+      messages.initMessages();
     } else {
       authDiv.classList.remove('hide');
       layoutDiv.classList.remove('show');

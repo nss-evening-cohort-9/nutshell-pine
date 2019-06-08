@@ -4,21 +4,21 @@ import apiKeys from '../apiKeys.json';
 
 const firebaseUrl = apiKeys.firebaseKeys.databaseURL;
 
-// const getMessagesById = msgId => new Promise((resolve, reject) => {
-//   const saveMsgId = msgId;
-//   axios
-//     .get(`${fireBaseUrl}/messages/${msgId}.json`)
-//     .then((result) => {
-//       const msgObj = result.data;
-//       if (msgObj !== null) {
-//         msgObj.id = saveMsgId;
-//       }
-//       resolve(msgObj);
-//     })
-//     .catch((error) => {
-//       reject(error);
-//     });
-// });
+const getMessagesByUid = uid => new Promise((resolve, reject) => {
+  axios.get(`${firebaseUrl}/messages.json?orderBy="userUid"&equalTo="${uid}"`)
+    .then((result) => {
+      const messagesObject = result.data;
+      const messagesArray = [];
+      if (messagesArray !== null) {
+        Object.keys(messagesObject).forEach((messageId) => {
+          messagesObject[messageId].id = messageId;
+          messagesArray.push(messagesObject[messageId]);
+        });
+      }
+      resolve(messagesArray);
+    })
+    .catch(error => reject(error));
+});
 
 const getMessages = () => new Promise((resolve, reject) => {
   axios.get(`${firebaseUrl}/messages.json`)
@@ -36,4 +36,4 @@ const getMessages = () => new Promise((resolve, reject) => {
 
 const addNewMessage = messageObject => axios.post(`${firebaseUrl}/messages.json`, messageObject);
 
-export default { getMessages, addNewMessage };
+export default { getMessages, addNewMessage, getMessagesByUid };
