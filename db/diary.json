@@ -1,8 +1,20 @@
 {
     "diaryEntry1": {
-      "title": "Why Dogs Have A High Emotional Intelligence",
-      "entry": "",
-      "date": "",
+      "title": "The Girl Scout Are My Kryptonite",
+      "entry": "Shamed. I am ashamed at myself. I've now had two entire boxes of thin mints, and just getting started on the Samoa's. My self-esteem has gone to crap, and I'm watching Family Feud on the game show network. It's 11:45 in the morning. This may be my last transmission.",
+      "date": "4/1/2019",
       "id": "diaryEntry1"
+    },
+    "diaryEntry3": {
+      "title": "My Neighbor's Dog Has A Low Emotional Intelligence",
+      "entry": "Sure - Lola is sweet, amiable, and even charming at times. Its endearing how she'll try and shove her nose under the fence whenever you walk by. BUT, can we just be real about something? Lola has, what I and other experts would call, a low emotional intelligence. She makes up for it by always seeming concerned and affectionate, but deep deep down I know she has no idea what is going on.",
+      "date": "11/24/2017",
+      "id": "diaryEntry3"
+    },
+    "diaryEntry4": {
+      "title": "Dogs Walking Dogs Is Not Ok",
+      "entry": "Ummm… who has the golden doodle that holds the leash of Jack Russell and walks around the neighborhood?? In fairness, it was about 100 + yards away, and could've been a small child with curly hair. I know no one is reading this, but it feels so so good to get this off my chest.…",
+      "date": "5/12/2017",
+      "id": "diaryEntry4"
     }
 }

@@ -13,7 +13,7 @@ const init = () => {
   MyNavbar.navbarEvents();
   Auth.authPrint();
   authData.checkLoginStatus();
-  Messages.messagesStringBuilder();
+  Messages.messagesStringBuilder(); // should call in authData checkLoginStatus
   eventsSection.initEventsForPageLoad();
 };
 
