@@ -17,3 +17,13 @@ body {
     align-items: center;
     width: 400px;
 }
+
+.each-event-card {
+  width: 100%;
+  min-width: auto;
+  margin: .5rem;
+  padding: .75rem 3rem .75rem 1.5rem;
+  font-weight: 300;
+
+  border-radius: .50rem;
+}

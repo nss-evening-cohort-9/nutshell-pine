@@ -5,11 +5,10 @@ const printEventsToDom = (array) => {
   let itemToPrint = '<div class="card text-center">';
   itemToPrint += '<h1>Events</h1>';
   array.forEach((event) => {
-    itemToPrint += '<div class="card-header">';
-    itemToPrint += `<h3>${event.eventName}</h3>`;
-    itemToPrint += '</div>';
-    itemToPrint += '<div class="card-body">';
-    itemToPrint += '<div class="toast-header">';
+    itemToPrint += `<div id="${event.id}" class="card-header each-event-card " >`;
+    itemToPrint += `<p>${event.eventName} </p>`;
+    itemToPrint += '<div class="showMoreDetails d-none">';
+    itemToPrint += `<p>${event.eventDate}..${event.eventLocation}</p>`;
     itemToPrint += '</div>';
     itemToPrint += '</div>';
   });

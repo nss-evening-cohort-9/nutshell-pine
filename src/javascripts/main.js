@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import '../styles/main.scss';
+import 'bootstrap';
 
 import authData from './helpers/data/authData';
 import eventsSection from './components/Events/events';
