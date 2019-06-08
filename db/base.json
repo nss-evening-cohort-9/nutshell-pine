@@ -2,5 +2,6 @@
   "events": "w",
   "diary": "x",
   "messages": "y",
-  "news": "z"
+  "news": "z",
+  "users":"m"
 }
