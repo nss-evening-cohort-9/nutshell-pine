@@ -6,6 +6,8 @@ const nutshellDiv = document.getElementById('nutshell');
 const nutshellNavbar = document.getElementById('navbar-button-nutshell');
 const authNavbar = document.getElementById('navbar-button-auth');
 const logoutNavbar = document.getElementById('navbar-button-logout');
+const allEvents = document.getElementById('all-events');
+
 
 const checkLoginStatus = () => {
   firebase.auth().onAuthStateChanged((user) => {
@@ -15,12 +17,14 @@ const checkLoginStatus = () => {
       nutshellNavbar.classList.remove('hide');
       authNavbar.classList.add('hide');
       logoutNavbar.classList.remove('hide');
+      allEvents.classList.remove('hide');
     } else {
       authDiv.classList.remove('hide');
       nutshellDiv.classList.add('hide');
       nutshellNavbar.classList.add('hide');
       authNavbar.classList.remove('hide');
       logoutNavbar.classList.add('hide');
+      allEvents.classList.add('hide');
     }
   });
 };

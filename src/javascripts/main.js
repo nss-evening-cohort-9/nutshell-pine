@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import '../styles/main.scss';
 
 import authData from './helpers/data/authData';
+import eventsSection from './components/Events/events';
 import MyNavbar from './components/MyNavbar/myNavbar';
 import Messages from './components/Messages/messages';
 import Auth from './components/Auth/auth';
@@ -13,6 +14,7 @@ const init = () => {
   Auth.authPrint();
   authData.checkLoginStatus();
   Messages.messagesStringBuilder();
+  eventsSection.initEventsForPageLoad();
 };
 
 init();
