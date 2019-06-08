@@ -28,11 +28,19 @@ const messagesStringBuilder = () => {
         domString += `<textarea class="form-control editBox  hide" id=${message.id} aria-label="With textarea">${message.messageText}</textarea>`;
         domString += `<div id="message"><p>${message.message}</p></div>`;
         domString += '</div>';
-        domString += `<button type="button" id="${message.id}" class="btn btn-danger edit">Edit</button>`;
-        domString += `<button type="button" id="${message.id}" class="btn btn-danger save  hide">Save</button>`;
-        // domString += `<p id="id">Message ID: ${message.message} </p>`;
-        // domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
-        domString += `<button type="button" id="${message.id}" class="btn btn-danger delete">Delete</button>`;
+        if (message.uid === firebase.auth().currentUser.uid) {
+          domString += `
+            <button class="editMessageButton pt-1 ml-2" data-edit-id=${message.id}>Edit</button>
+            <button class="deleteMessageButton pt-1" data-delete-id=${message.id}>Delete</button>
+          </div>`;
+        } else {
+          domString += '</p></div>';
+        }
+        // domString += `<button type="button" id="${message.id}" class="btn btn-danger edit">Edit</button>`;
+        // domString += `<button type="button" id="${message.id}" class="btn btn-danger save  hide">Save</button>`;
+        // // domString += `<p id="id">Message ID: ${message.message} </p>`;
+        // // domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
+        // domString += `<button type="button" id="${message.id}" class="btn btn-danger delete">Delete</button>`;
         domString += '</div>';
         domString += '</div>';
       });
