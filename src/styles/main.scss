@@ -1,9 +1,77 @@
 @import "~bootstrap/scss/bootstrap";
-
+head, body{
+  height:100vh;
+}
 body {
   background-color: white;
 }
 
 .hide {
   display: none;
+}
+
+.show {
+  display:flex;
+}
+
+%single-section{
+  height:100%;
+}
+
+.container-wrapper{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  .layout-wrapper{
+    display:flex;
+    align-items:stretch;
+  }
+
+}
+#layout{
+  height:100%;
+    #messagesComponentDiv{
+      @extend %single-section;
+      background-color:red;
+      width:20vw;
+
+    }
+    #diaryComponentDiv{
+      @extend %single-section;
+      background-color:blue;
+      width:35vw;
+
+    }
+    #newsComponentDiv{
+      @extend %single-section;
+      background-color:green;
+      width:20vw;
+
+    }
+    #eventsComponentDiv{
+      @extend %single-section;
+      background-color:orange;
+      width:20vw;
+
+    }
+    #appNav{
+      @extend %single-section;
+      background-color:violet;
+      width:5vw;
+
+    }
+  }
+
+footer{
+  background-color:yellowgreen;
+  justify-content: flex-end;
+}
+.card {
+    flex-direction: column;
+    height: auto;
+    justify-content: space-evenly;
+    margin-top: auto;
+    padding: 5px;
+    align-items: center;
+    width: 400px;
 }

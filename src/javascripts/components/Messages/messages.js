@@ -1,4 +1,4 @@
-import firebase from 'firebase/app';
+// import firebase from 'firebase/app';
 import 'firebase/auth';
 
 import messsagesData from '../../helpers/data/messagesData';
@@ -54,17 +54,5 @@ const messagesStringBuilder = () => {
     .catch(error => console.error('could not get messages', error));
 };
 
-const messageInput = () => {
-  const newMsgInput = `
-  <div class="type-msg">
-    <div class="input-msg-write">
-      <input id="new-msg-input" class="write-msg" type="text" placeholder="Type a message">
-      <button id="new-msg-button" class="msg-send-btn" type="button"><i class="fas fa-upload" aria-hidden="true"></i></button>
-    </div>
-  </div>
-  `;
-  util.printToDom('messages', newMsgInput);
-};
-
-
+// s
 export default { messagesStringBuilder };
