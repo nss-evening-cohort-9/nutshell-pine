@@ -27,7 +27,7 @@ const checkLoginStatus = () => {
       footer.classList.remove('hide');
       diary.diaryDomStringBuilder();
       messages.messagesStringBuilder();
-      events.initEventsForPageLoad();
+      events.initEventsForPageLoad(user.uid);
     } else {
       authDiv.classList.remove('hide');
       layoutDiv.classList.remove('show');
