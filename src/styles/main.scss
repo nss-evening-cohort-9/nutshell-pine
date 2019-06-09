@@ -1,7 +1,10 @@
 @import "~bootstrap/scss/bootstrap";
+@import './colors-fonts.scss';
+
 head, body{
   height:100vh;
 }
+
 body {
   background-color: white;
 }
@@ -48,6 +51,16 @@ body {
   display: none;
 }
 
+#pineModal {
+  padding: 100px;
+}
+
+#navBarNav {
+  font-family: $font1!important;
+  background-color: $bannerColor!important;
+  color: white!important;
+}
+
 .show {
   display:flex;
 }
@@ -76,7 +89,7 @@ body {
     }
     #diaryComponentDiv{
       @extend %single-section;
-      background-color:blue;
+      background-color:lightblue;
       width:35vw;
 
     }
@@ -111,5 +124,5 @@ footer{
     margin-top: auto;
     padding: 5px;
     align-items: center;
-    width: 400px;
+    width: auto;
 }

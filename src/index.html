@@ -5,15 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Nutshell</title>
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+
 </head>
 <body>
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 <!-- MODAL -->
-  <div class="modal" tabindex="-1" role="dialog">
+  <div id="pineModal" class="modal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div id="modal-content-wrapper">
             <!-- your domString builder should target 'modal-content-wrapper' modal ID -->
+            <div id="addNewDiaryPostFormDiv"></div>`
           </div>
         </div>
       </div>
@@ -24,7 +28,7 @@
 <!-- // Start of Navbar -->
 <div class="container-wrapper">
   <div id = "navbar">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav id="navBarNav" class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Nutshell</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -66,4 +70,5 @@
 <div id="diaryComponentDiv" class="container hide">mary</div> -->
 </div>
 </body>
+<script src="https://kit.fontawesome.com/182b3d5883.js"></script>
 </html>

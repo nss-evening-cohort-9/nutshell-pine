@@ -4,6 +4,7 @@ import 'firebase/auth';
 import messagesData from '../../helpers/data/messagesData';
 // import userData from '../../helpers/data/usersData';
 import util from '../../helpers/util';
+<<<<<<< HEAD
 import './messages.scss';
 
 
@@ -16,6 +17,10 @@ const createNewMessage = () => {
   };
   return newMessage;
 };
+=======
+// scss
+import './messages.scss';
+>>>>>>> master
 
 const messagesStringBuilder = () => {
   let domString = '<div class="messageCardsDiv">';
