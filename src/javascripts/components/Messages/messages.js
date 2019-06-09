@@ -17,6 +17,16 @@ const createNewMessage = () => {
   return newMessage;
 };
 
+const deleteMessage = (e) => {
+  console.error(e.target.closest('button').id);
+  const messageId = e.target.closest('button').id;
+  messagesData.deleteMessage(messageId)
+    .then(() => {
+      messagesStringBuilder(); // eslint-disable-line no-use-before-define
+    })
+    .catch(error => console.error('delete does not work', error));
+};
+
 const messagesStringBuilder = () => {
   let domString = '<div class="messageCardsDiv">';
   messagesData.getMessages()
@@ -25,13 +35,12 @@ const messagesStringBuilder = () => {
         domString += '<div class="card messageCard">';
         domString += `<h2 id="username">${message.uid}</h2>`;
         domString += '<div class="input-group">';
-        domString += `<textarea class="form-control editBox  hide" id=${message.id} aria-label="With textarea">${message.messageText}</textarea>`;
         domString += `<div id="message"><p>${message.message}</p></div>`;
         domString += '</div>';
         if (message.uid === firebase.auth().currentUser.uid) {
           domString += `
             <button class="editMessage pt-1 ml-2" data-edit-id=${message.id}>Edit</button>
-            <button class="deleteMessage pt-1" data-delete-id=${message.id}>Delete</button>
+            <button class="deleteMessage pt-1" id=${message.id}>Delete</button>
           </div>`;
         } else {
           domString += '</p></div>';
@@ -40,6 +49,13 @@ const messagesStringBuilder = () => {
         domString += '</div>';
       });
       util.printToDom('chatBox', domString);
+      // called this function after we are printing because the delete button needs to be on page
+      // in order for us to add an event listener to it
+      // this defines the delete button and the loops through and adds an event listener on button click
+      const deleteButtons = document.getElementsByClassName('deleteMessage');
+      for (let i = 0; i < deleteButtons.length; i += 1) {
+        deleteButtons[i].addEventListener('click', deleteMessage);
+      }
     })
     .catch(error => console.error('could not get messages', error));
 };
@@ -71,31 +87,6 @@ const addNewMessage = (e) => {
         console.error(error);
       });
   }
-};
-
-const messagesPage = () => {
-  const getCurrentUid = () => firebase.auth().currentUser.uid;
-  const uid = getCurrentUid();
-  messagesData.getMessages(uid)
-    .then(() => {
-      messagesStringBuilder();
-    })
-    .catch((error) => {
-      console.error('error in getting friends', error);
-    });
-};
-
-const deleteMessage = (e) => {
-  console.error(e.target);
-  const idToDelete = e.target.dataset.deleteId;
-  messagesData.deleteMessage(idToDelete)
-    .then(() => {
-      messagesPage();
-      $('#chatbox').html('');
-    })
-    .catch((error) => {
-      console.error('error in deleting message', error);
-    });
 };
 
 const messageEvents = () => {
