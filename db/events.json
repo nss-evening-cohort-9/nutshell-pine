@@ -1,0 +1,58 @@
+{
+  "event1": {
+    "id": "event1",
+    "eventName": "HUGE Neighborhood Sale!",
+    "eventDate": "06/01/19",
+    "eventLocation": "Hendersonville, TN",
+    "uid": "failcheckUid"
+  },
+  "event2": {
+    "id": "event1",
+    "eventName": "John Does' B-day",
+    "eventDate": "08/01/2019",
+    "eventLocation": "Nashville, TN",
+    "uid": "JBCKap18E4WlYu2JIm7V6yjAWDy2"
+  },
+  "event3": {
+    "id": "event1",
+    "eventName": "Pool Party",
+    "eventDate": "06/01/2019",
+    "eventLocation": "SomeCity, TN",
+    "uid": "aaru8aI271QyeYNYqUiBRssmWTY2"
+  },
+  "event4": {
+    "id": "event1",
+    "eventName": "Neighborhood Cook-out",
+    "eventDate": "07/04/2019",
+    "eventLocation": "Nashville, TN",
+    "uid": "xyGtPnCzXuMmgnjob5VjZtMIQjq1"
+  },
+  "event5": {
+    "id": "event1",
+    "eventName": "New Year Eve's Party",
+    "eventDate": "12/31/2019",
+    "eventLocation": "Nashville, TN",
+    "uid": "9io0uzHElXPrjYR7F6VysZGYHF43"
+  },  
+  "event6": {
+    "id": "event6",
+    "eventName": "Test For Saul",
+    "eventDate": "12/31/2019",
+    "eventLocation": "Nashville, TN",
+    "uid": "9io0uzHElXPrjYR7F6VysZGYHF43"
+  },
+  "event7": {
+    "id": "event7",
+    "eventName": "Test 3 for Saul",
+    "eventDate": "12/31/2019",
+    "eventLocation": "Nashville, TN",
+    "uid": "9io0uzHElXPrjYR7F6VysZGYHF43"
+  },
+  "event8": {
+    "id": "event8",
+    "eventName": "my test",
+    "eventDate": "12/31/2019",
+    "eventLocation": "Nashville, TN",
+    "uid": "JBCKap18E4WlYu2JIm7V6yjAWDy2"
+  }
+}

@@ -5,6 +5,7 @@ import 'firebase/auth';
 import dashboard from '../../components/Dashboard/dashboard';
 import diary from '../../components/Diary/diary';
 import messages from '../../components/Messages/messages';
+import events from '../../components/Events/events';
 
 const authDiv = document.getElementById('auth');
 const layoutDiv = document.getElementById('layout');
@@ -27,6 +28,7 @@ const checkLoginStatus = () => {
       messages.messagesStringBuilder();
       messages.displayMsgInput();
       messages.initMessages();
+      events.initEventsForPageLoad(user.uid);
     } else {
       authDiv.classList.remove('hide');
       layoutDiv.classList.remove('show');
