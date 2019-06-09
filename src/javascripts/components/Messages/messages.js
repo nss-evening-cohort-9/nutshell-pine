@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
-import messsagesData from '../../helpers/data/messagesData';
+import messagesData from '../../helpers/data/messagesData';
 // import userData from '../../helpers/data/usersData';
 import util from '../../helpers/util';
 import './messages.scss';
@@ -19,7 +19,7 @@ const createNewMessage = () => {
 
 const messagesStringBuilder = () => {
   let domString = '<div class="messageCardsDiv">';
-  messsagesData.getMessages()
+  messagesData.getMessages()
     .then((messages) => {
       messages.forEach((message) => {
         domString += '<div class="card messageCard">';
@@ -30,17 +30,12 @@ const messagesStringBuilder = () => {
         domString += '</div>';
         if (message.uid === firebase.auth().currentUser.uid) {
           domString += `
-            <button class="editMessageButton pt-1 ml-2" data-edit-id=${message.id}>Edit</button>
-            <button class="deleteMessageButton pt-1" data-delete-id=${message.id}>Delete</button>
+            <button class="editMessage pt-1 ml-2" data-edit-id=${message.id}>Edit</button>
+            <button class="deleteMessage pt-1" data-delete-id=${message.id}>Delete</button>
           </div>`;
         } else {
           domString += '</p></div>';
         }
-        // domString += `<button type="button" id="${message.id}" class="btn btn-danger edit">Edit</button>`;
-        // domString += `<button type="button" id="${message.id}" class="btn btn-danger save  hide">Save</button>`;
-        // // domString += `<p id="id">Message ID: ${message.message} </p>`;
-        // // domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
-        // domString += `<button type="button" id="${message.id}" class="btn btn-danger delete">Delete</button>`;
         domString += '</div>';
         domString += '</div>';
       });
@@ -67,7 +62,7 @@ const addNewMessage = (e) => {
   //   messageHelpers.messageInputError();
   // if message is not an empty string
   if ((e.keyCode === 13 || e.target.id === 'msg-input-btn') && (messageInput !== '')) {
-    messsagesData.addNewMessage(newMessageObject)
+    messagesData.addNewMessage(newMessageObject)
       .then(() => {
         messagesStringBuilder();
         // messageHelpers.resetMessageInput();
@@ -78,8 +73,37 @@ const addNewMessage = (e) => {
   }
 };
 
+const messagesPage = () => {
+  const getCurrentUid = () => firebase.auth().currentUser.uid;
+  const uid = getCurrentUid();
+  messagesData.getMessages(uid)
+    .then(() => {
+      messagesStringBuilder();
+    })
+    .catch((error) => {
+      console.error('error in getting friends', error);
+    });
+};
+
+const deleteMessage = (e) => {
+  console.error(e.target);
+  const idToDelete = e.target.dataset.deleteId;
+  messagesData.deleteMessage(idToDelete)
+    .then(() => {
+      messagesPage();
+      $('#chatbox').html('');
+    })
+    .catch((error) => {
+      console.error('error in deleting message', error);
+    });
+};
+
 const messageEvents = () => {
   document.getElementById('msg-input-btn').addEventListener('click', addNewMessage);
+  const deleteButtons = document.getElementsByClassName('deleteMessage');
+  for (let i = 0; i < deleteButtons.length; i += 1) {
+    deleteButtons[i].addEventListener('click', deleteMessage);
+  }
 };
 
 const initMessages = () => {
