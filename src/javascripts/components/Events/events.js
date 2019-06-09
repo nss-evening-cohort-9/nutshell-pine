@@ -26,8 +26,8 @@ const printEventsToDom = (array) => {
 };
 
 
-const initEventsForPageLoad = () => {
-  eventsData.iniEventsDataFromFirebase()
+const initEventsForPageLoad = (uid) => {
+  eventsData.iniEventsDataFromFirebaseByUid(uid)
     .then((allResults) => {
       printEventsToDom(allResults);
     })
