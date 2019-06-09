@@ -7,9 +7,9 @@ import './events.scss';
 const printEventsToDom = (array) => {
   let itemToPrint = '<div class="card events-container">';
   itemToPrint += '    <h1>Events</h1>';
-  itemToPrint += '    <img class="add-new-event-Button" src="../../../../assets/newEventIcon.png" />';
+  itemToPrint += '    <img id="addNewEvent" class="add-new-event-Button" src="../../../../assets/newEventIcon.png" />';
   array.forEach((event) => {
-    itemToPrint += `  <div id=${event.id} class="action-icons-div">`;
+    itemToPrint += `  <div id="${event.id}" class="action-icons-div">`;
     console.error(`${event.id}`);
     itemToPrint += '    <img class="editIcon" src="../../../../assets/editBtn.svg" />';
     itemToPrint += '    <img class="deleteIcon" src="../../../../assets/deleteBtn.png" />';
