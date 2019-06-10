@@ -16,7 +16,6 @@ const newDiaryPost = (e) => {
     title: newDiaryPostTitle,
     date: newDiaryPostDate,
     entry: newDiaryPostEntry,
-    // id: // need to find a way to pass on the existing id
   };
   diaryData.makeNewDiaryPost(addDiaryPostObj)
     .then(() => {
@@ -27,15 +26,7 @@ const newDiaryPost = (e) => {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // this function is called by an event listener at end of diaryDomString and builds the form into the modal
-const diaryFormInputBuilder = (e, post) => { // e is only passed for sake of editObj
-  // diaryPosts.forEach((post) => {
-  console.error(e);
-  if (e) { // this is a WIP point
-    console.error('something', post);
-  } else {
-    console.error('not something');
-  }
-  // });
+const diaryFormInputBuilder = () => { // e is only passed for sake of editObj
   const domString = `
   <div>
     <form id="diaryFormCreation" class="form-group">
@@ -49,24 +40,37 @@ const diaryFormInputBuilder = (e, post) => { // e is only passed for sake of edi
   document.getElementById('submitBtnForNewDiaryPost').addEventListener('click', newDiaryPost);
 };
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// this function rebuilds the form into the modal with the values of the post that matches the event
 const editDiaryPost = (e, ellipsis, post) => {
   if (post.id === ellipsis) {
-    const existingDiaryPostTitle = post.title;
-    const existingDiaryPostDate = post.date;
-    const existingDiaryPostEntry = post.entry;
-    const editDiaryObj = {
-      title: existingDiaryPostTitle,
-      entry: existingDiaryPostEntry,
-      date: existingDiaryPostDate,
-    };
-    // console.error(editDiaryObj.title);
-    diaryFormInputBuilder(editDiaryObj, post);
-    // diaryData.editDiaryPost(ellipsis).then(() => {
-    //   diaryDomStringBuilder(); // eslint-disable-line no-use-before-define
-    //   $('#pineModal').modal('toggle');
-    // }).catch(err => console.error('nothing was edited from diary', err));
+    const domString = `
+    <div>
+      <form id="diaryFormCreation" class="form-group">
+        <label for="diaryTitleInput">Post Title</label><input id="editDiaryTitleInput" type="text" value="${post.title}"></input>
+        <label for="diaryDateInput">Date</label><input id="editDiaryDateInput" type="date" value="${post.date}"></input>
+        <label for="diaryEntryInput">Entry</label><input id="editDiaryEntryInput" type="text" value="${post.entry}"></input>
+        <button id="submitBtnForEditDiaryPost" type="submit" class="btn btn-primary">Post</button>
+      </form>
+    </div>`;
+    util.printToDom('addNewDiaryPostFormDiv', domString);
+    document.getElementById('submitBtnForEditDiaryPost').addEventListener('click', (evt) => {
+      evt.preventDefault();
+      const editedDiaryPostTitle = document.getElementById('editDiaryTitleInput').value;
+      const editedDiaryPostDate = document.getElementById('editDiaryDateInput').value;
+      const editedDiaryPostEntry = document.getElementById('editDiaryEntryInput').value;
+      const editId = post.id;
+      const editedDiaryPostObj = {
+        title: editedDiaryPostTitle,
+        date: editedDiaryPostDate,
+        entry: editedDiaryPostEntry,
+      };
+      diaryData.editDiaryPost(editedDiaryPostObj, editId).then(() => {
+        diaryDomStringBuilder(); // eslint-disable-line no-use-before-define
+        $('#pineModal').modal('toggle');
+      }).catch(err => console.error('nothing was edited from diary', err));
+    });
   }
-  // I need to gather the old info and populate the input with said data, and then pass it back
 };
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -86,8 +90,8 @@ const diaryEllipsisDomForModal = (e, posts) => {
   const ellipsisId = e.target.id.split('.')[0];
   const domString = `
     <div class="card">
-      <button id="${ellipsisId}.edit" class="btn"><i class="p-2 fas fa-trash-alt"></i>Edit Post</button>
-      <button id="${ellipsisId}.delete" class="btn"><i class="p-2 fas fa-pen"></i>Delete</button>
+      <button id="${ellipsisId}.edit" class="btn"><i class="p-2 fas fa-edit"></i>Edit Post</button>
+      <button id="${ellipsisId}.delete" class="btn"><i class="p-2 fas fa-trash-alt"></i>Delete</button>
     </div>`;
   util.printToDom('addNewDiaryPostFormDiv', domString);
   posts.forEach((post) => {
