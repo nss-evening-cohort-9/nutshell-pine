@@ -85,11 +85,13 @@ const messagesStringBuilder = () => {
     .then((messages) => {
       messages.forEach((message) => {
         domString += '<div class="card messageCard">';
+        domString += '<div class = "col">';
         domString += `<h2 id="username">${message.uid}</h2>`;
+        domString += '</div>';
+        domString += '<div class = "col">';
         domString += '<div class="input-group">';
         domString += `<div id="message"><p>${message.message}</p></div>`;
         domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
-        // domString += `<div id = "timeStamp">${timestampMessage()}</div>`;
         domString += '</div>';
         // this logic says that if the user is signed in, the edit and delete button will show up on their message and they
         // can edit or delete
