@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,48 +10,101 @@
   <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
-<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-<!-- MODAL -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!-- MODAL -->
   <div id="pineModal" class="modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div id="modal-content-wrapper">
-            <!-- your domString builder should target 'modal-content-wrapper' modal ID -->
-            <div id="addNewDiaryPostFormDiv"></div>`
-          </div>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div id="modal-content-wrapper">
+          <!-- your domString builder should target 'modal-content-wrapper' modal ID -->
+          <div id="addNewDiaryPostFormDiv"></div>`
         </div>
       </div>
     </div>
+  </div>
+  <!-- MODAL END -->
 
-<!-- ############## THIS MODAL IS FOR NEW EVENTS ###########Can Delete#########-->
+  <!-- Event modal-->
+  <div id="newEventModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Event</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="eventDateInput">Date</label>
+              <input id="eventDateInput" type="date"></input></br>
+              <label for="eventNameInput">Event Name</label>
+              <input id="eventNameInput" type="text"></input></br>
+              <label for="eventAddressInput">Address</label>
+              <input id="eventAddressInput" type="text"></input></br>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Create Event</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <div id="pineModalEvents" class="modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div id="modal-content-wrapper">
-            <!-- your domString builder should target 'modal-content-wrapper' modal ID -->
-            <h1>Enter New Event</h1>
-            <div id="new-event-body" class="modal-body">
-              <input type="date" name="Event-date">
-              <br>
-              <input type="text" name="Event-name" placeholder="Event Name"> 
-              <br>
-              <input type="text" name="Event-address" placeholder="Address">
+  <!-- <div id="newEventModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">New Event</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="modal-content">
+          <div id="modal-body">
+            <div>
+              <form id="eventFormCreation" class="form-group">
+                <label for="eventDateInput">Date</label>
+                <input id="eventDateInput" type="date"></input>
+                <label for="eventNameInput">Event Name</label>
+                <input id="eventNameInput" type="text"></input>
+                <label for="eventAddressInput">Address</label>
+                <input id="eventAddressInput" type="text"></input>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Create Event</button>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
-<!-- MODAL END -->
-<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  </div> -->
 
-<!-- // Start of Navbar -->
-<div class="container-wrapper">
-  <div id = "navbar">
-    <nav id="navBarNav" class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <!-- <div>
+    <form id="diaryFormCreation" class="form-group">
+      <label for="diaryTitleInput">Post Title</label><input id="diaryTitleInput" type="text"></input>
+      <label for="diaryDateInput">Date</label><input id="diaryDateInput" type="date"></input>
+      <label for="diaryEntryInput">Entry</label><input id="diaryEntryInput" type="text"></input>
+      <button id="submitBtnForNewDiaryPost" type="submit" class="btn btn-primary">Post</button>
+    </form>
+  </div>`; -->
+
+  <!-- End event modal-->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <!-- // Start of Navbar -->
+  <div class="container-wrapper">
+    <div id="navbar">
+      <nav id="navBarNav" class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Nutshell</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -67,14 +121,15 @@
           </ul>
         </div>
       </nav>
-  </div>
-<!-- End of Navbar  -->
-<div id="auth"></div>
-<div id="layout" class="hide"></div>
-<footer id='footer'>&copy; 2019</footer>
-<!-- <div id = "messagesComponentDiv" class ="hide">saul</div>
+    </div>
+    <!-- End of Navbar  -->
+    <div id="auth"></div>
+    <div id="layout" class="hide"></div>
+    <footer id='footer'>&copy; 2019</footer>
+    <!-- <div id = "messagesComponentDiv" class ="hide">saul</div>
 <div id="diaryComponentDiv" class="container hide">mary</div> -->
-</div>
+  </div>
 </body>
 <script src="https://kit.fontawesome.com/182b3d5883.js"></script>
+
 </html>
