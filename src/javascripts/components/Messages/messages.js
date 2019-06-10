@@ -11,7 +11,7 @@ const createNewMessage = () => {
   const newMessage = {
     userName: document.getElementById('username').value,
     message: document.getElementById('msg-input').value,
-    // timestamp: document.getElementById('timeStamp').value,
+    timestamp: document.getElementById('timeStamp').value,
     uid: firebase.auth().currentUser.uid,
   };
   return newMessage;
@@ -32,15 +32,7 @@ const deleteMessage = (e) => {
     .catch(error => console.error('delete does not work', error));
 };
 
-// const editMessage = (e) => {
-//   console.error(e.target.closest('button').id);
-//   const messageId = e.target.closest('button').id;
-//   messagesData.editMessage(messageId)
-//     .then(() => {
-//       messagesStringBuilder(); // eslint-disable-line no-use-before-define
-//     })
-//     .catch(error => console.error('edit does not work', error));
-// };
+// placeholder to fill in later for each unique message id when clicked
 let messageEditId = 'id';
 
 // this is the function where we select the message we want to edit and place it in the input box to change
@@ -71,7 +63,7 @@ const updateMessage = (e) => {
   console.error(messageEditId);
   messagesData.editMessage(messageObject, messageId)
     .then(() => {
-      // console.error(e.target.parentNode.nextSibling.previousElementSibling.childNodes);
+      // traversed the dom to find out where the sumbit and save button were on the tree
       console.error(e.target.parentNode.childNodes[3]); // submit button
       console.error(e.target.parentNode.childNodes[5]); // save button
       e.target.parentNode.childNodes[3].classList.toggle('hideStuff');
@@ -95,13 +87,14 @@ const messagesStringBuilder = () => {
         domString += `<h2 id="username">${message.uid}</h2>`;
         domString += '<div class="input-group">';
         domString += `<div id="message"><p>${message.message}</p></div>`;
+        domString += `<div id = "timeStamp">${message.timestamp}</div>`;
         domString += '</div>';
         // this logic says that if the user is signed in, the edit and delete button will show up on their message and they
         // can edit or delete
         if (message.uid === firebase.auth().currentUser.uid) {
           domString += `
-            <button class="editMessage pt-1 ml-2" id=${message.id}>Edit</button>
-            <button class="deleteMessage pt-1" id=${message.id}>Delete</button>
+            <button class="editMessage pt-1 ml-2" id=${message.id}><i class="fas fa-edit"></i></button>
+            <button class="deleteMessage pt-1 ml-2" id=${message.id}><i class="fas fa-trash-alt"></i></button>
           </div>`;
           // if they are not signed in, the edit and delete buttons will not show up and
           // they are unable to edit or delete
@@ -143,15 +136,10 @@ const displayMsgInput = () => {
 const addNewMessage = (e) => {
   const newMessageObject = createNewMessage();
   const messageInput = newMessageObject.message;
-  // if message is an empty string
-  // if ((e.keyCode === 13 || e.target.id === 'msg-input-btn') && (messageInput === '')) {
-  //   messageHelpers.messageInputError();
-  // if message is not an empty string
   if ((e.keyCode === 13 || e.target.id === 'msg-input-btn') && (messageInput !== '')) {
     messagesData.addNewMessage(newMessageObject)
       .then(() => {
         messagesStringBuilder();
-        // messageHelpers.resetMessageInput();
       })
       .catch((error) => {
         console.error(error);

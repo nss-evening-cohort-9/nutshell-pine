@@ -2,31 +2,26 @@
   "user1": {
     "uid": "9io0uzHElXPrjYR7F6VysZGYHF43",
     "userName": "Saul",
-    "name":"Saul",
     "email": "saul3d@yahoo.com"
   },
   "user2": {
     "uid": "aaru8aI271QyeYNYqUiBRssmWTY2",
     "userName": "Josh Pantana",
-    "name":"Josh",
     "email": "josh.pantana@gmail.com"
   },
   "user3": {
     "uid": "xyGtPnCzXuMmgnjob5VjZtMIQjq1",
     "userName": "Mary West",
-    "name":"Mary",
     "email": "westmarye1219@gmail.com"
   },
   "user4": {
     "uid": "JBCKap18E4WlYu2JIm7V6yjAWDy2",
     "userName": "Silvestre Luna",
-    "name":"Silverstre",
     "email": "slvtrluna@gmail.com"
   },
   "user5": {
     "uid": "1111",
     "userMessage": "Zoe Ames",
-    "name":"Zoe",
     "email": "zoeAmes@gmail.com"
   }
 }
