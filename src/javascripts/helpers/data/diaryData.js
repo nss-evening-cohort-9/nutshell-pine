@@ -22,6 +22,6 @@ const getDiaryPostByUid = () => new Promise((resolve, reject) => {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // deletes user cards
-const deleteDiaryPost = diaryPostId => axios.delete(`${firebaseUrl}/user_diaryPost/${diaryPostId}.json`);
+const deleteDiaryPost = diaryPostId => axios.delete(`${firebaseUrl}/diary/${diaryPostId}.json`);
 
 export default { getDiaryPostByUid, makeNewDiaryPost, deleteDiaryPost };
