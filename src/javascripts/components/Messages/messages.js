@@ -18,7 +18,7 @@ const createNewMessage = () => {
 };
 
 // delete message function where we target the button id of the message we are wanting to delete
-// once the correct message is selected, we delete the message from the page and then it is deleted in firebas
+// once the correct message is selected, we delete the message from the page and then it is deleted in firebase
 const deleteMessage = (e) => {
   console.error(e.target.closest('button').id);
   // targets correct message to delete //
@@ -32,16 +32,60 @@ const deleteMessage = (e) => {
     .catch(error => console.error('delete does not work', error));
 };
 
-const editMessage = (e) => {
-  console.error(e.target.closest('button').id);
-  const messageId = e.target.closest('button').id;
-  messagesData.editMessage(messageId)
-    .then(() => {
-      messagesStringBuilder(); // eslint-disable-line no-use-before-define
+// const editMessage = (e) => {
+//   console.error(e.target.closest('button').id);
+//   const messageId = e.target.closest('button').id;
+//   messagesData.editMessage(messageId)
+//     .then(() => {
+//       messagesStringBuilder(); // eslint-disable-line no-use-before-define
+//     })
+//     .catch(error => console.error('edit does not work', error));
+// };
+let messageEditId = 'id';
+
+// this is the function where we select the message we want to edit and place it in the input box to change
+const selectEditMessage = (e) => {
+  const editButtonId = e.target.closest('button').id;
+  // console.error(editButton);
+  messagesData.getOneMessage(editButtonId)
+    .then((oneMessage) => {
+      // this is where we set the value of the input area to equal the closest message //
+      // from the edit button we clicked //
+      document.getElementById('msg-input').value = (oneMessage.message);
+      // toggling the save message button and the submit button when we hit edit
+      document.getElementById('save-msg').classList.toggle('hideStuff');
+      document.getElementById('msg-input-btn').classList.toggle('hideStuff');
+      messageEditId = editButtonId;
+      console.error(editButtonId);
     })
-    .catch(error => console.error('edit does not work', error));
+    .catch((error) => {
+      console.error('error in getting message to edit', error);
+    });
 };
 
+
+// this is the function that updates the message and then saves the updated message back to the page and firebase
+const updateMessage = (e) => {
+  const messageObject = createNewMessage();
+  const messageId = messageEditId;
+  console.error(messageEditId);
+  messagesData.editMessage(messageObject, messageId)
+    .then(() => {
+      // console.error(e.target.parentNode.nextSibling.previousElementSibling.childNodes);
+      console.error(e.target.parentNode.childNodes[3]); // submit button
+      console.error(e.target.parentNode.childNodes[5]); // save button
+      e.target.parentNode.childNodes[3].classList.toggle('hideStuff');
+      e.target.parentNode.childNodes[5].classList.toggle('hideStuff');
+      messagesData.updateIsEdited(messageId, true)
+        .then();
+      messagesStringBuilder(); // eslint-disable-line no-use-before-define
+    })
+    .catch((error) => {
+      console.error('error in editing message', error);
+    });
+};
+
+// domString where we get our messages from firebase - this includes all the messages
 const messagesStringBuilder = () => {
   let domString = '<div class="messageCardsDiv">';
   messagesData.getMessages()
@@ -52,11 +96,15 @@ const messagesStringBuilder = () => {
         domString += '<div class="input-group">';
         domString += `<div id="message"><p>${message.message}</p></div>`;
         domString += '</div>';
+        // this logic says that if the user is signed in, the edit and delete button will show up on their message and they
+        // can edit or delete
         if (message.uid === firebase.auth().currentUser.uid) {
           domString += `
             <button class="editMessage pt-1 ml-2" id=${message.id}>Edit</button>
             <button class="deleteMessage pt-1" id=${message.id}>Delete</button>
           </div>`;
+          // if they are not signed in, the edit and delete buttons will not show up and
+          // they are unable to edit or delete
         } else {
           domString += '</p></div>';
         }
@@ -73,7 +121,7 @@ const messagesStringBuilder = () => {
       }
       const editButtons = document.getElementsByClassName('editMessage');
       for (let i = 0; i < editButtons.length; i += 1) {
-        editButtons[i].addEventListener('click', editMessage);
+        editButtons[i].addEventListener('click', selectEditMessage);
       }
     })
     .catch(error => console.error('could not get messages', error));
@@ -84,6 +132,7 @@ const displayMsgInput = () => {
   const domString = `
     <input type="text" class="form-control mr-1 msg-input" id="msg-input" placeholder="Enter new message">
     <button type="button" class="btn btn-secondary msg-input mr-1" id="msg-input-btn">Submit</button>
+    <button class = "saveButton hideStuff" id="save-msg">Save</button>
     <button type="button" class="btn btn-danger msg-input msg-refresh-btn">
       <i class="fas fa-redo msg-refresh-btn"></i>
     </button>`;
@@ -113,6 +162,7 @@ const addNewMessage = (e) => {
 // event listener for add message
 const messageEvents = () => {
   document.getElementById('msg-input-btn').addEventListener('click', addNewMessage);
+  document.getElementById('save-msg').addEventListener('click', updateMessage);
 };
 
 // init function that holds events

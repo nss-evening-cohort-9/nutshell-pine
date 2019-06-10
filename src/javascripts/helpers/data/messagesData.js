@@ -20,6 +20,17 @@ const getMessagesByUid = uid => new Promise((resolve, reject) => {
     .catch(error => reject(error));
 });
 
+const getOneMessage = messageId => new Promise((resolve, reject) => {
+  axios.get(`${firebaseUrl}/messages/${messageId}.json`)
+    .then((result) => {
+      const oneMessage = result.data;
+      console.error(oneMessage);
+      // const oneMessage.id = messageId;
+      resolve(oneMessage);
+    })
+    .catch(error => reject(error));
+});
+
 const getMessages = () => new Promise((resolve, reject) => {
   axios.get(`${firebaseUrl}/messages.json`)
     .then((results) => {
@@ -49,4 +60,5 @@ export default {
   deleteMessage,
   editMessage,
   updateIsEdited,
+  getOneMessage,
 };
