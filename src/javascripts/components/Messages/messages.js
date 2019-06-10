@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import moment from 'moment';
 
 import messagesData from '../../helpers/data/messagesData';
 // import userData from '../../helpers/data/usersData';
@@ -77,17 +78,22 @@ const updateMessage = (e) => {
     });
 };
 
+// moment definitions
+
+
 // domString where we get our messages from firebase - this includes all the messages
 const messagesStringBuilder = () => {
   let domString = '<div class="messageCardsDiv">';
   messagesData.getMessages()
     .then((messages) => {
       messages.forEach((message) => {
+        const msgtimeStamp = moment(message.timestamp).format('LTS');
+        const msgDate = moment(message.timestamp).format('MMM D');
         domString += '<div class="card messageCard">';
         domString += `<h2 id="username">${message.uid}</h2>`;
         domString += '<div class="input-group">';
         domString += `<div id="message"><p>${message.message}</p></div>`;
-        domString += `<div id = "timeStamp">${message.timestamp}</div>`;
+        domString += `<div id = "timeStamp">${msgtimeStamp} | ${msgDate}</div>`;
         domString += '</div>';
         // this logic says that if the user is signed in, the edit and delete button will show up on their message and they
         // can edit or delete
