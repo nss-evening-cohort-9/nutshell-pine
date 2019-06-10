@@ -21,7 +21,16 @@ const getDiaryPostByUid = () => new Promise((resolve, reject) => {
 });
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// deletes user cards
+// deletes diary cards
 const deleteDiaryPost = diaryPostId => axios.delete(`${firebaseUrl}/diary/${diaryPostId}.json`);
 
-export default { getDiaryPostByUid, makeNewDiaryPost, deleteDiaryPost };
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// edit diary cards
+const editDiaryPost = diaryPostId => axios.patch(`${firebaseUrl}/diary/${diaryPostId}.json`);
+
+export default {
+  getDiaryPostByUid,
+  makeNewDiaryPost,
+  deleteDiaryPost,
+  editDiaryPost,
+};

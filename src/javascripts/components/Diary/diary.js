@@ -16,6 +16,7 @@ const newDiaryPost = (e) => {
     title: newDiaryPostTitle,
     date: newDiaryPostDate,
     entry: newDiaryPostEntry,
+    // id: // need to find a way to pass on the existing id
   };
   diaryData.makeNewDiaryPost(addDiaryPostObj)
     .then(() => {
@@ -26,7 +27,15 @@ const newDiaryPost = (e) => {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // this function is called by an event listener at end of diaryDomString and builds the form into the modal
-const diaryFormInputBuilder = () => {
+const diaryFormInputBuilder = (e, post) => { // e is only passed for sake of editObj
+  // diaryPosts.forEach((post) => {
+  console.error(e);
+  if (e) { // this is a WIP point
+    console.error('something', post);
+  } else {
+    console.error('not something');
+  }
+  // });
   const domString = `
   <div>
     <form id="diaryFormCreation" class="form-group">
@@ -38,6 +47,26 @@ const diaryFormInputBuilder = () => {
   </div>`;
   util.printToDom('addNewDiaryPostFormDiv', domString);
   document.getElementById('submitBtnForNewDiaryPost').addEventListener('click', newDiaryPost);
+};
+
+const editDiaryPost = (e, ellipsis, post) => {
+  if (post.id === ellipsis) {
+    const existingDiaryPostTitle = post.title;
+    const existingDiaryPostDate = post.date;
+    const existingDiaryPostEntry = post.entry;
+    const editDiaryObj = {
+      title: existingDiaryPostTitle,
+      entry: existingDiaryPostEntry,
+      date: existingDiaryPostDate,
+    };
+    // console.error(editDiaryObj.title);
+    diaryFormInputBuilder(editDiaryObj, post);
+    // diaryData.editDiaryPost(ellipsis).then(() => {
+    //   diaryDomStringBuilder(); // eslint-disable-line no-use-before-define
+    //   $('#pineModal').modal('toggle');
+    // }).catch(err => console.error('nothing was edited from diary', err));
+  }
+  // I need to gather the old info and populate the input with said data, and then pass it back
 };
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -63,8 +92,12 @@ const diaryEllipsisDomForModal = (e, posts) => {
   util.printToDom('addNewDiaryPostFormDiv', domString);
   posts.forEach((post) => {
     const deleteBtnTargetId = document.getElementById(`${ellipsisId}.delete`);
+    const editBtnTargetId = document.getElementById(`${ellipsisId}.edit`);
     deleteBtnTargetId.addEventListener('click', (event) => {
       deleteDiaryPost(event, ellipsisId, post.id);
+    });
+    editBtnTargetId.addEventListener('click', (x) => {
+      editDiaryPost(x, ellipsisId, post);
     });
   });
 };
