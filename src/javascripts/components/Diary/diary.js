@@ -60,7 +60,7 @@ const diaryEllipsisDomForModal = (e, posts) => {
       <button id="${ellipsisId}.edit" class="btn"><i class="p-2 fas fa-trash-alt"></i>Edit Post</button>
       <button id="${ellipsisId}.delete" class="btn"><i class="p-2 fas fa-pen"></i>Delete</button>
     </div>`;
-  util.printToDom('editDiaryCards', domString);
+  util.printToDom('addNewDiaryPostFormDiv', domString);
   posts.forEach((post) => {
     const deleteBtnTargetId = document.getElementById(`${ellipsisId}.delete`);
     deleteBtnTargetId.addEventListener('click', (event) => {
