@@ -27,6 +27,7 @@ const newDiaryPost = (e) => {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // this function is called by an event listener at end of diaryDomString and builds the form into the modal
 const diaryFormInputBuilder = (e, post) => { // e is only passed for sake of editObj
+  const eventsFormDiv = '';
   const editedPostTitle = post ? post.title : '';
   const editedPostDate = post ? post.date : '';
   const editedPostEntry = post ? post.entry : '';
@@ -40,6 +41,8 @@ const diaryFormInputBuilder = (e, post) => { // e is only passed for sake of edi
       <button id="${editPostEvent}" type="submit" class="btn btn-primary">Post</button>
     </form>
   </div>`;
+  util.printToDom('addNewCalendarEvent', eventsFormDiv);
+  // also will need to do this for Saul
   util.printToDom('addNewDiaryPostFormDiv', domString);
   if (editPostEvent === 'submitBtnForNewDiaryPost') {
     document.getElementById('submitBtnForNewDiaryPost').addEventListener('click', newDiaryPost);
