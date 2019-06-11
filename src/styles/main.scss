@@ -9,6 +9,30 @@ body {
   background-color: white;
 }
 
+.hide {
+  display: none;
+}
+
+#pineModal {
+  padding: 100px;
+}
+
+footer{
+  background-color:yellowgreen;
+  justify-content: flex-end;
+}
+.card {
+    flex-direction: column;
+    height: auto;
+    justify-content: space-evenly;
+    margin-top: auto;
+    padding: 5px;
+    align-items: center;
+    width: auto;
+}
+
+// everything under this comment should be on a module
+
 /* Add User Module */
 #add-user-module {
   width:30px;
@@ -46,14 +70,6 @@ body {
  }
 
  // End of Add User
-
-.hide {
-  display: none;
-}
-
-#pineModal {
-  padding: 100px;
-}
 
 #navBarNav {
   font-family: $font1!important;
@@ -113,16 +129,4 @@ body {
     }
   }
 
-footer{
-  background-color:yellowgreen;
-  justify-content: flex-end;
-}
-.card {
-    flex-direction: column;
-    height: auto;
-    justify-content: space-evenly;
-    margin-top: auto;
-    padding: 5px;
-    align-items: center;
-    width: auto;
-}
+

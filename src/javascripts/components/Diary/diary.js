@@ -82,9 +82,9 @@ const deleteDiaryPost = (e, ellipsis, post) => {
 const diaryEllipsisDomForModal = (e, posts) => {
   const ellipsisId = e.target.id.split('.')[0];
   const domString = `
-    <div class="card">
-      <button id="${ellipsisId}.edit" class="btn ellipsisBtn"><i class="p-2 fas fa-edit"></i>Edit Post</button>
-      <button id="${ellipsisId}.delete" class="btn ellipsisBtn"><i class="p-2 fas fa-trash-alt"></i>Delete</button>
+    <div class="ellipsisBtnDiv">
+      <button id="${ellipsisId}.edit" class="btn ellipsisBtnModal"><i class="p-2 fas fa-edit"></i>Edit Post</button>
+      <button id="${ellipsisId}.delete" class="btn ellipsisBtnModal"><i class="p-2 fas fa-trash-alt"></i>Delete</button>
     </div>`;
   util.printToDom('addNewDiaryPostFormDiv', domString);
   posts.forEach((post) => {
@@ -117,6 +117,7 @@ const showEditDeleteModal4Diary = (posts) => {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // this function is called to build the cards that contain the data of diary posts
 const diaryDomStringBuilder = () => {
+  // const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   let domString = `
   <div class="col diaryCardsDiv">
   <div class="divForHeaderDiary">
@@ -131,9 +132,9 @@ const diaryDomStringBuilder = () => {
       <div class="m-auto">
         <div class="card diaryCards text-center bg-light mt-4">
           <h2 class="postTitle p-2">${post.title}</h2>
-          <i id="${post.id}.${i}" class="fas fa-ellipsis-h"></i>
-          <h5 class="postDate">${post.date}</h5>
           <p class="body p-2">${post.entry}</p>
+          <h5 class="postDate">${post.date}</h5>
+          <i id="${post.id}.${i}" class="fas fa-ellipsis-h ellipsisBtn"></i>
         </div>
       </div>`;
     });
