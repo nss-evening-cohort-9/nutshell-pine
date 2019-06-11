@@ -83,8 +83,8 @@ const diaryEllipsisDomForModal = (e, posts) => {
   const ellipsisId = e.target.id.split('.')[0];
   const domString = `
     <div class="card">
-      <button id="${ellipsisId}.edit" class="btn"><i class="p-2 fas fa-edit"></i>Edit Post</button>
-      <button id="${ellipsisId}.delete" class="btn"><i class="p-2 fas fa-trash-alt"></i>Delete</button>
+      <button id="${ellipsisId}.edit" class="btn ellipsisBtn"><i class="p-2 fas fa-edit"></i>Edit Post</button>
+      <button id="${ellipsisId}.delete" class="btn ellipsisBtn"><i class="p-2 fas fa-trash-alt"></i>Delete</button>
     </div>`;
   util.printToDom('addNewDiaryPostFormDiv', domString);
   posts.forEach((post) => {
