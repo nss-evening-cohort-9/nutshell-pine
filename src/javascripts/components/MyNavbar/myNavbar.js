@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import authData from '../../helpers/data/authData';
+// import authData from '../../helpers/data/authData';
 
 const navbarEvents = () => {
   const navLinks = document.getElementsByClassName('nav-link');
@@ -10,7 +10,7 @@ const navbarEvents = () => {
         firebase.auth().signOut();
       }
     });
-    authData.checkLoginStatus();
+    // authData.checkLoginStatus();
   }
 };
 
