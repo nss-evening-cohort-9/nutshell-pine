@@ -20,7 +20,6 @@ const checkLoginStatus = () => {
       dashboard.dashboardLayoutStringBuilder();
       authDiv.classList.add('hide');
       layoutDiv.classList.add('show');
-
       nutshellNavbar.classList.remove('hide');
       authNavbar.classList.add('hide');
       logoutNavbar.classList.remove('hide');
