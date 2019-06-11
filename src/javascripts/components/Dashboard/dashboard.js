@@ -2,8 +2,11 @@ import util from '../../helpers/util';
 
 const dashboardLayoutStringBuilder = () => {
   const domString = `
-  <div class="layout-wrapper">  
-      <div id="messagesComponentDiv" class=""></div>
+  <div class="layout-wrapper">
+      <div id="messagesComponentDiv" class="">
+      <div id= "chatBox"></div>
+      <div id = "messageInput"></div>
+      </div>
       <div id="diaryComponentDiv" class=""></div>
       <div id="newsComponentDiv" class=""></div>
       <div id="eventsComponentDiv" class=""></div>
