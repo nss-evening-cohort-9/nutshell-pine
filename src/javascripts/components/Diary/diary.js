@@ -26,39 +26,29 @@ const newDiaryPost = (e) => {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // this function is called by an event listener at end of diaryDomString and builds the form into the modal
-const diaryFormInputBuilder = () => { // e is only passed for sake of editObj
+const diaryFormInputBuilder = (e, post) => { // e is only passed for sake of editObj
+  const editedPostTitle = post ? post.title : '';
+  const editedPostDate = post ? post.date : '';
+  const editedPostEntry = post ? post.entry : '';
+  const editPostEvent = post ? 'submitBtnForEditDiaryPost' : 'submitBtnForNewDiaryPost';
   const domString = `
   <div>
     <form id="diaryFormCreation" class="form-group">
-      <label for="diaryTitleInput">Post Title</label><input id="diaryTitleInput" type="text"></input>
-      <label for="diaryDateInput">Date</label><input id="diaryDateInput" type="date"></input>
-      <label for="diaryEntryInput">Entry</label><input id="diaryEntryInput" type="text"></input>
-      <button id="submitBtnForNewDiaryPost" type="submit" class="btn btn-primary">Post</button>
+      <label for="diaryTitleInput">Post Title</label><input id="diaryTitleInput" type="text" value="${editedPostTitle}"></input>
+      <label for="diaryDateInput">Date</label><input id="diaryDateInput" type="date" value="${editedPostDate}"></input>
+      <label for="diaryEntryInput">Entry</label><input id="diaryEntryInput" type="text" value="${editedPostEntry}"></input>
+      <button id="${editPostEvent}" type="submit" class="btn btn-primary">Post</button>
     </form>
   </div>`;
   util.printToDom('addNewDiaryPostFormDiv', domString);
-  document.getElementById('submitBtnForNewDiaryPost').addEventListener('click', newDiaryPost);
-};
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// this function rebuilds the form into the modal with the values of the post that matches the event
-const editDiaryPost = (e, ellipsis, post) => {
-  if (post.id === ellipsis) {
-    const domString = `
-    <div>
-      <form id="diaryFormCreation" class="form-group">
-        <label for="diaryTitleInput">Post Title</label><input id="editDiaryTitleInput" type="text" value="${post.title}"></input>
-        <label for="diaryDateInput">Date</label><input id="editDiaryDateInput" type="date" value="${post.date}"></input>
-        <label for="diaryEntryInput">Entry</label><input id="editDiaryEntryInput" type="text" value="${post.entry}"></input>
-        <button id="submitBtnForEditDiaryPost" type="submit" class="btn btn-primary">Post</button>
-      </form>
-    </div>`;
-    util.printToDom('addNewDiaryPostFormDiv', domString);
+  if (editPostEvent === 'submitBtnForNewDiaryPost') {
+    document.getElementById('submitBtnForNewDiaryPost').addEventListener('click', newDiaryPost);
+  } else if (editPostEvent === 'submitBtnForEditDiaryPost') {
     document.getElementById('submitBtnForEditDiaryPost').addEventListener('click', (evt) => {
       evt.preventDefault();
-      const editedDiaryPostTitle = document.getElementById('editDiaryTitleInput').value;
-      const editedDiaryPostDate = document.getElementById('editDiaryDateInput').value;
-      const editedDiaryPostEntry = document.getElementById('editDiaryEntryInput').value;
+      const editedDiaryPostTitle = document.getElementById('diaryTitleInput').value;
+      const editedDiaryPostDate = document.getElementById('diaryDateInput').value;
+      const editedDiaryPostEntry = document.getElementById('diaryEntryInput').value;
       const editId = post.id;
       const editedDiaryPostObj = {
         title: editedDiaryPostTitle,
@@ -101,7 +91,10 @@ const diaryEllipsisDomForModal = (e, posts) => {
       deleteDiaryPost(event, ellipsisId, post.id);
     });
     editBtnTargetId.addEventListener('click', (x) => {
-      editDiaryPost(x, ellipsisId, post);
+      // editDiaryPost(x, ellipsisId, post);
+      if (post.id === ellipsisId) {
+        diaryFormInputBuilder(x, post);
+      }
     });
   });
 };
