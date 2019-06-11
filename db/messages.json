@@ -1,74 +1,32 @@
 {
   "message1": {
-    "uid": "xyGtPnCzXuMmgnjob5VjZtMIQjq1",
+    "uid": "user1",
     "message": "Hey?",
     "timestamp": "2019-06-08T18:35:39-07:00",
     "isEdited": false
   },
   "message2": {
-    "uid": "xyGtPnCzXuMmgnjob5VjZtMIQjq1",
+    "uid": "user2",
     "message": "Have you seen my cat",
     "timestamp": "2019-06-08T18:35:39-07:00",
     "isEdited": true
   },
   "message3": {
-    "uid": "xyGtPnCzXuMmgnjob5VjZtMIQjq1",
+    "uid": "user3",
     "message": "Im looking for a babysitter for Friday Night?",
     "timestamp": "2019-06-08T18:35:39-07:00",
     "isEdited": false
   },
   "message4": {
-    "uid": "aaru8aI271QyeYNYqUiBRssmWTY2",
+    "uid": "user4",
     "message": "Please pick up your dog crap",
     "timestamp": "2019-06-08T18:35:39-07:00",
     "isEdited": true
   },
   "message5": {
-    "uid": "aaru8aI271QyeYNYqUiBRssmWTY2",
+    "uid": "user5",
     "message": "Looking for a piano teacher to teach me for free",
     "timestamp": "2019-06-08T18:35:39-07:00",
     "isEdited": false
-  },
-  "message6": {
-    "uid": "aaru8aI271QyeYNYqUiBRssmWTY2",
-    "message": "Neighborhood Pool Party Potluck list is posted hanging on the community center front door. Please sign up by 4/23",
-    "timestamp": "2019-06-08T18:35:39-07:00",
-    "isEdited": true
-  },
-  "message7": {
-    "uid": "JBCKap18E4WlYu2JIm7V6yjAWDy2",
-    "message": "There is an Amber Alert",
-    "timestamp": "2019-06-08T18:35:39-07:00",
-    "isEdited": false
-  },
-  "message8": {
-    "uid": "JBCKap18E4WlYu2JIm7V6yjAWDy2",
-    "message": "Anyone able to provide recommendations for a reasonably priced window cleaner?  I have 18 windows",
-    "timestamp": "2019-06-08T18:35:39-07:00",
-    "isEdited": true
-  },
-  "message9": {
-    "uid": "JBCKap18E4WlYu2JIm7V6yjAWDy2",
-    "message": "I need an iPhone 6 or above please. If anyone has one they can sell me, please let me know.",
-    "timestamp": "2019-06-08T18:35:39-07:00",
-    "isEdited": false
-  },
-  "message10": {
-    "uid": "9io0uzHElXPrjYR7F6VysZGYHF43",
-    "message": "I recommend Miraculous Carpet. They are great and get out all your stains.",
-    "timestamp": "2019-06-08T18:35:39-07:00",
-    "isEdited": true
-  },
-  "message11": {
-    "uid": "9io0uzHElXPrjYR7F6VysZGYHF43",
-    "message": "My son is missing his report card. He left it on the bus. If anyone has any word as to where it could be. Please call me.",
-    "timestamp": "2019-06-08T18:35:39-07:00",
-    "isEdited": false
-  },
-  "message12": {
-    "uid": "232323",
-    "message": "I need a guy with a truck",
-    "timestamp": "2019-06-08T18:35:39-07:00",
-    "isEdited": true
   }
 }
