@@ -21,7 +21,6 @@ const createNewMessage = () => {
 // delete message function where we target the button id of the message we are wanting to delete
 // once the correct message is selected, we delete the message from the page and then it is deleted in firebase
 const deleteMessage = (e) => {
-  console.error(e.target.closest('button').id);
   // targets correct message to delete //
   const messageId = e.target.closest('button').id;
   // deletes message in firebase
@@ -39,7 +38,6 @@ let messageEditId = 'id';
 // this is the function where we select the message we want to edit and place it in the input box to change
 const selectEditMessage = (e) => {
   const editButtonId = e.target.closest('button').id;
-  // console.error(editButton);
   messagesData.getOneMessage(editButtonId)
     .then((oneMessage) => {
       // this is where we set the value of the input area to equal the closest message //
@@ -49,7 +47,6 @@ const selectEditMessage = (e) => {
       document.getElementById('save-msg').classList.toggle('hideStuff');
       document.getElementById('msg-input-btn').classList.toggle('hideStuff');
       messageEditId = editButtonId;
-      console.error(editButtonId);
     })
     .catch((error) => {
       console.error('error in getting message to edit', error);
@@ -61,14 +58,11 @@ const selectEditMessage = (e) => {
 const updateMessage = (e) => {
   const messageObject = createNewMessage();
   const messageId = messageEditId;
-  console.error(messageEditId);
   messagesData.editMessage(messageObject, messageId)
     .then(() => {
       // traversed the dom to find out where the sumbit and save button were on the tree
-      console.error(e.target.parentNode.childNodes[3]); // submit button
-      console.error(e.target.parentNode.childNodes[5]); // save button
-      e.target.parentNode.childNodes[3].classList.toggle('hideStuff');
-      e.target.parentNode.childNodes[5].classList.toggle('hideStuff');
+      e.target.parentNode.childNodes[3].classList.toggle('hideStuff'); // submit button
+      e.target.parentNode.childNodes[5].classList.toggle('hideStuff'); // save button
       messagesData.updateIsEdited(messageId, true)
         .then();
       messagesStringBuilder(); // eslint-disable-line no-use-before-define
@@ -89,6 +83,7 @@ const messagesStringBuilder = () => {
         domString += '<div class="input-group">';
         domString += `<div id="message"><p>${message.message}</p></div>`;
         domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
+        // domString += `<div id = "timeStamp">${timestampMessage()}</div>`;
         domString += '</div>';
         // this logic says that if the user is signed in, the edit and delete button will show up on their message and they
         // can edit or delete
