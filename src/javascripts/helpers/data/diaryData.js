@@ -3,8 +3,6 @@ import apiKeys from '../apiKeys.json';
 
 const firebaseUrl = apiKeys.firebaseKeys.databaseURL;
 
-const makeNewDiaryPost = diaryPostObject => axios.post(`${firebaseUrl}/diary.json`, diaryPostObject);
-
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const getDiaryPostByUid = () => new Promise((resolve, reject) => {
   axios.get(`${firebaseUrl}/diary.json`)
@@ -21,7 +19,20 @@ const getDiaryPostByUid = () => new Promise((resolve, reject) => {
 });
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// deletes user cards
+// posts new diary cards
+const makeNewDiaryPost = diaryPostObject => axios.post(`${firebaseUrl}/diary.json`, diaryPostObject);
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// deletes diary cards
 const deleteDiaryPost = diaryPostId => axios.delete(`${firebaseUrl}/diary/${diaryPostId}.json`);
 
-export default { getDiaryPostByUid, makeNewDiaryPost, deleteDiaryPost };
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// edit diary cards
+const editDiaryPost = (editedDiaryObject, editId) => axios.patch(`${firebaseUrl}/diary/${editId}.json`, editedDiaryObject);
+
+export default {
+  getDiaryPostByUid,
+  makeNewDiaryPost,
+  deleteDiaryPost,
+  editDiaryPost,
+};
