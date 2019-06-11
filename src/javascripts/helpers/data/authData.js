@@ -6,7 +6,7 @@ import dashboard from '../../components/Dashboard/dashboard';
 import diary from '../../components/Diary/diary';
 import messages from '../../components/Messages/messages';
 import events from '../../components/Events/events';
-import usersData from './usersData';
+import users from '../../components/Users/users';
 
 const authDiv = document.getElementById('auth');
 const layoutDiv = document.getElementById('layout');
@@ -18,7 +18,7 @@ const footer = document.getElementById('footer');
 const checkLoginStatus = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      usersData.getAllUsers();
+      users.newUserLogin();
       dashboard.dashboardLayoutStringBuilder();
       authDiv.classList.add('hide');
       layoutDiv.classList.add('show');
