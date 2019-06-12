@@ -1,5 +1,6 @@
+
 import eventsData from '../../helpers/data/eventsData';
-import actionEvents from './addNewEvents';
+// import actionEvents from './addNewEvents';
 import util from '../../helpers/util';
 
 import './events.scss';
@@ -10,7 +11,6 @@ const printEventsToDom = (array) => {
   itemToPrint += '    <img id="addNewEvent" class="add-new-event-Button" src="../../../../assets/newEventIcon.png" />';
   array.forEach((event) => {
     itemToPrint += `  <div id="${event.id}" class="action-icons-div">`;
-    console.error(`${event.id}`);
     itemToPrint += '    <img class="editIcon" src="../../../../assets/editBtn.svg" />';
     itemToPrint += '    <img class="deleteIcon" src="../../../../assets/deleteBtn.png" />';
     itemToPrint += '  </div>';
@@ -22,11 +22,11 @@ const printEventsToDom = (array) => {
   });
   itemToPrint += '   </div>';
   util.printToDom('eventsComponentDiv', itemToPrint);
-  actionEvents.eventListenerForPageLoad();
+  // actionEvents.eventListenerForPageLoad();
 };
 
 
-const initEventsForPageLoad = (uid) => {
+const initEventsItemForDom = (uid) => {
   eventsData.iniEventsDataFromFirebaseByUid(uid)
     .then((allResults) => {
       printEventsToDom(allResults);
@@ -34,4 +34,4 @@ const initEventsForPageLoad = (uid) => {
     .catch(err => console.error('No data Came back', err));
 };
 
-export default { initEventsForPageLoad };
+export default { initEventsItemForDom };
