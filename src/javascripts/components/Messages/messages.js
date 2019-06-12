@@ -153,6 +153,14 @@ const addNewMessage = (e) => {
   }
 };
 
+const buildMsgBase = () => {
+  const domString = `<div id="chat-container"><div id="chatbox"></div></div>
+    <div id="messageInput">
+    </div>
+  </div>`;
+  document.getElementById('messageContainerDiv', domString);
+};
+
 // event listener for add message
 const messageEvents = () => {
   document.getElementById('msg-input-btn').addEventListener('click', addNewMessage);
@@ -162,6 +170,7 @@ const messageEvents = () => {
 // init function that holds events
 const initMessages = () => {
   messageEvents();
+  buildMsgBase();
 };
 
 export default { messagesStringBuilder, displayMsgInput, initMessages };
