@@ -6,7 +6,8 @@ import dashboard from '../../components/Dashboard/dashboard';
 import diary from '../../components/Diary/diary';
 import messages from '../../components/Messages/messages';
 import events from '../../components/Events/events';
-import users from '../../components/Users/users';
+// import usersData from './usersData';
+// import users from '../../components/Users/users';
 
 const authDiv = document.getElementById('auth');
 const layoutDiv = document.getElementById('layout');
@@ -15,10 +16,22 @@ const authNavbar = document.getElementById('navbar-button-auth');
 const logoutNavbar = document.getElementById('navbar-button-logout');
 const footer = document.getElementById('footer');
 
+// const userNameExists = (userId) => {
+//   usersData.hasUserName(userId)
+//     .then((result) => {
+//       if (result === false) {
+//         users.userNameModal(userId);
+//         $('#users-modal').modal('show');
+//       }
+//     })
+//     .catch((error) => {
+//       console.error('An error occured checking for existing user name', error);
+//     });
+// };
+
 const checkLoginStatus = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      users.newUserLogin();
       dashboard.dashboardLayoutStringBuilder();
       authDiv.classList.add('hide');
       layoutDiv.classList.add('show');

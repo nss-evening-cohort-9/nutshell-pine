@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import timeStamp from './messageHelpers';
@@ -116,6 +117,14 @@ const messagesStringBuilder = () => {
     .catch(error => console.error('could not get messages', error));
 };
 
+const enterSubmit = () => {
+  $('#msg-input').on('keyup', (e) => {
+    if (e.keyCode === 13) {
+      $('#msg-input-btn').trigger('click');
+    }
+  });
+};
+
 // this is where the textbox is to type your message, located directly below the chatbox container //
 const displayMsgInput = () => {
   const domString = `
@@ -126,6 +135,7 @@ const displayMsgInput = () => {
       <i class="fas fa-redo msg-refresh-btn"></i>
     </button>`;
   util.printToDom('messageInput', domString);
+  enterSubmit();
 };
 
 // this function adds a new message
