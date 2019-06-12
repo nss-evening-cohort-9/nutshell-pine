@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import util from '../../helpers/util';
 import diaryData from '../../helpers/data/diaryData';
 // scss
@@ -10,7 +12,8 @@ import $ from '../../../../node_modules/jquery';
 const newDiaryPost = (e) => {
   e.preventDefault();
   const newDiaryPostTitle = document.getElementById('diaryTitleInput').value;
-  const newDiaryPostDate = document.getElementById('diaryDateInput').value;
+  // const newDiaryPostDate = document.getElementById('diaryDateInput').value;
+  const newDiaryPostDate = moment().format('LLLL'); // L LTS
   const newDiaryPostEntry = document.getElementById('diaryEntryInput').value;
   const addDiaryPostObj = {
     title: newDiaryPostTitle,
@@ -29,21 +32,30 @@ const newDiaryPost = (e) => {
 const diaryFormInputBuilder = (e, post) => { // e is only passed for sake of editObj
   const eventsFormDiv = '';
   const editedPostTitle = post ? post.title : '';
-  const editedPostDate = post ? post.date : '';
+  const editedPostDate = post ? moment().format('LLLL') : moment().format('LLLL');
   const editedPostEntry = post ? post.entry : '';
   const editPostEvent = post ? 'submitBtnForEditDiaryPost' : 'submitBtnForNewDiaryPost';
   const domString = `
   <div>
-    <form id="diaryFormCreation" class="form-group">
-      <label for="diaryTitleInput">Post Title</label><input id="diaryTitleInput" type="text" value="${editedPostTitle}"></input>
-      <label for="diaryDateInput">Date</label><input id="diaryDateInput" type="date" value="${editedPostDate}"></input>
-      <label for="diaryEntryInput">Entry</label><input id="diaryEntryInput" type="text" value="${editedPostEntry}"></input>
+    <div class="modalFormHeader">
+      <span id="closeModalX">X</span>
+    </div>
+    <form id="diaryFormCreation" class="form-group diaryFormInputs">
+      <label for="diaryTitleInput">Post Title</label>
+      <input id="diaryTitleInput" class="inputField" type="text" value="${editedPostTitle}"></input>
+      <label class="hide" for="diaryDateInput">Date</label>
+      <input id="diaryDateInput" class="hide inputField" type="text" value="${editedPostDate}"></input>
+      <label for="diaryEntryInput">Entry</label>
+      <input id="diaryEntryInput" class="inputField" type="text" value="${editedPostEntry}"></input>
       <button id="${editPostEvent}" type="submit" class="btn btn-primary">Post</button>
     </form>
   </div>`;
-  util.printToDom('addNewCalendarEvent', eventsFormDiv);
+  util.printToDom('addNewCalendarEvent', eventsFormDiv); // clears out EVENTS from modal
   // also will need to do this for Saul
   util.printToDom('addNewDiaryPostFormDiv', domString);
+  document.getElementById('closeModalX').addEventListener('click', () => {
+    $('#pineModal').modal('toggle');
+  });
   if (editPostEvent === 'submitBtnForNewDiaryPost') {
     document.getElementById('submitBtnForNewDiaryPost').addEventListener('click', newDiaryPost);
   } else if (editPostEvent === 'submitBtnForEditDiaryPost') {
@@ -117,13 +129,15 @@ const showEditDeleteModal4Diary = (posts) => {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // this function is called to build the cards that contain the data of diary posts
 const diaryDomStringBuilder = () => {
-  // const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   let domString = `
   <div class="col diaryCardsDiv">
-  <div class="divForHeaderDiary">
-      <h1 class="diaryHeadline">Diary</h1>
+  <div id="addNewDiaryPostBtn" class="divForHeaderDiary">
+      <span class="userIconSpan">
+        <i class="far fa-user userIcon"></i>
+      </span>
+      <p class="diaryHeadline">Deep thoughts, off-color remarks, etc.</p>
     <span class="addNewDiaryPostBtn">
-      <i id="addNewDiaryPostBtn" class="fas fa-plus-circle diaryFaBtn"></i>
+      <i class="fas fa-plus-circle diaryFaBtn"></i>
     </span>
   </div>`;
   diaryData.getDiaryPostByUid().then((diaryPosts) => {
@@ -131,9 +145,12 @@ const diaryDomStringBuilder = () => {
       domString += `
       <div class="m-auto">
         <div class="card diaryCards text-center bg-light mt-4">
+          <div class="user_date">
+            <span class="diaryUserName"><em>UserName</em></span>
+            <span class="postDate">${post.date}</span>
+          </div>
           <h2 class="postTitle p-2">${post.title}</h2>
-          <p class="body p-2">${post.entry}</p>
-          <h5 class="postDate">${post.date}</h5>
+          <p class="body p-2 diaryEntry">${post.entry}</p>
           <i id="${post.id}.${i}" class="fas fa-ellipsis-h ellipsisBtn"></i>
         </div>
       </div>`;

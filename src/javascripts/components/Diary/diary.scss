@@ -1,26 +1,42 @@
 @import '../../../styles/colors-fonts.scss';
 
-.diaryCardsDiv {
-  
-}
 // Diary header and add button
+.userIconSpan {
+  width: 3em;
+  height: 3em;
+  border: 3px solid $diaryHeaderColor;
+  border-radius: 10px;
+  margin: 2% 0 0 1%;
+  &:hover {
+    border: 3px solid $bannerColor;
+    transition: .4s;
+  }
+}
+
+.userIcon {
+  position: relative;
+  top: .15em;
+  left: .2em;
+  font-size: 2em;
+  color: $diaryHeaderColor;
+  margin: auto;
+  text-align: center;
+  &:hover {
+    color: $bannerColor;
+    transition: .4s;
+  }
+}
+
 .divForHeaderDiary {
   display: flex;
-  justify-content: center;
-  margin: 20px 0px 10px 0px;
-}
-.diaryHeadline {
-  display: inline-block;
-  font-family: $font1;
-  font-weight: 900;
-  color: $diaryHeaderColor!important;
+  width: 100%;
   background-color: #eee;
-  width: 30%;
-  border-radius: 10px 0px 0px 10px;
   border: 1px solid $bannerColor;
-  min-height: 60px;
-  max-height: 60px;
-  text-align: center;
+  border-radius: 8px;
+  align-items: left;
+  margin: auto;
+  margin-top: 1.5em;
+  box-shadow: -2px 2px 3px  $bannerColor;
   &:hover {
     background-color: white;
     color: $bannerColor;
@@ -28,23 +44,30 @@
     box-shadow: inset 1px -2px $bannerColor;
   }
 }
+.diaryHeadline {
+  display: inline-block;
+  font-family: $font1;
+  font-size: .9em;
+  font-weight: 400;
+  font-style: italic; 
+  color: rgb(104, 110, 121);
+  margin: auto;
+  margin-left: 2%;
+}
 
 // here is where + button starts
 .addNewDiaryPostBtn {
   max-width: 100px;
   max-height: 40px;
-  background-color: #eee;
+  background-color: transparent;
   min-height: 70px;
-  border-radius: 0px 10px 10px 00px;
-  border: 1px solid $bannerColor;
   min-height: 60px;
   max-height: 60px;
   min-width: 60px;
+  margin: 1% 0% 0% 10%;
   &:hover {
-    background-color: white;
     color: $bannerColor;
     transition: .6s;
-    box-shadow: inset 1px -2px $bannerColor;
   }
 }
 
@@ -70,31 +93,71 @@
   font-family: $font1;
 }
 
-.postTitle {
-  font-family: $font1;
-  font-size: 24px;
-  font-weight: bold;
-  color: white;
-  background-color: $diaryHeaderColor;
+.user_date {
+  background-color: transparent;
   width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.diaryUserName {
+  align-content: left!important;
+  margin-top: -8px;
+  float: left;
+  color: $softGrey;
 }
 
 .postDate {
+  float: right;
+  margin-top: -2px;
   font-family: $font1;
   font-size: 12px;
-  text-align: center;
-  color: rgb(187, 186, 186);
-  border: 1px solid rgb(187, 186, 186);
-  border-radius: 7px;
-  width: 23%;
-  padding: 2px;
+  color: $softerGrey;
 }
 
+.postTitle {
+  font-family: $font1;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: black;
+  width: 100%;
+  text-align: center;
+  border-bottom: .5px solid $softerGreyLowO;
+  border-top: .5px solid $softerGreyLowO;
+}
+
+.diaryEntry {
+  text-align: left;
+  text-indent: 1.4em;
+}
 
 // MODAL FORM SCSS
+.modalFormHeader {
+  background-color: #eee;
+  border-radius: 4px 4px 0 0;
+  height: 4em;
+}
+
+#closeModalX {
+  float: right;
+  padding: 3px;
+  margin: 3px;
+  font-size: 2em;
+  font-family: inherit;
+  color: $softGrey;
+  cursor: pointer;
+}
+
+.inputField {
+  border-radius: 5px;
+  line-height: 34px;
+  border: 1px solid $softerGrey;
+}
+
 label {
   font-family: $font1;
 }
+
 #diaryFormCreation {
   padding: 40px;
   display: flex;
@@ -115,6 +178,13 @@ label {
 
 #submitBtnForNewDiaryPost {
   margin-top: 40px;
+  background-color: #00B246;
+}
+
+.ellipsisBtnDiv {
+  padding: 2em 0 2em 0;
+  width: 50%;
+  margin: 0;
 }
 
 // ELLIPSIS SECTION
@@ -128,7 +198,6 @@ label {
     color: $bannerColor;
   }
 }
-  
 
 .ellipsisBtnModal {
   width: 100%;

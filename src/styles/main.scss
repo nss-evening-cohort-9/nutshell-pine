@@ -6,7 +6,7 @@ head, body{
 }
 
 body {
-  background-color: white;
+  background-color: $bodyBackground;
 }
 
 .hide {
@@ -15,6 +15,13 @@ body {
 
 #pineModal {
   padding: 100px;
+  border-radius: 10px;
+}
+
+.modal-content {
+  position: relative;
+  overflow-x: hidden!important;
+  overflow-y: hidden!important;
 }
 
 footer{
@@ -29,9 +36,8 @@ footer{
     padding: 5px;
     align-items: center;
     width: auto;
+    background-color: $cardBackground;
 }
-
-// everything under this comment should be on a module
 
 /* Add User Module */
 #add-user-module {
