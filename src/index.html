@@ -15,12 +15,13 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <!-- MODAL -->
   <div id="pineModal" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div id="modal-content-wrapper">
-          <!-- your domString builder should target 'modal-content-wrapper' modal ID -->
-          <div id="addNewDiaryPostFormDiv"></div>
-          <div id="addNewCalendarEvent"></div>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div id="modal-content-wrapper">
+            <!-- your domString builder should target 'modal-content-wrapper' modal ID -->
+            <div id="addNewDiaryPostFormDiv"></div>
+            <div id="addNewCalendarEvent"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -51,12 +52,24 @@
           </ul>
         </div>
       </nav>
-    </div>
-    <!-- End of Navbar  -->
-    <div id="auth"></div>
-    <div id="layout" class="hide"></div>
-    <footer id='footer'>&copy; 2019</footer>
-    <!-- <div id = "messagesComponentDiv" class ="hide">saul</div>
+  </div>
+<!-- End of Navbar  -->
+<div id="auth"></div>
+<!-- add user module -->
+<section id="add-user-module" >
+    <button id="open-add-user-form-btn">+</button>
+    <form>
+      <h2>Add User</h2>
+      username:<br>
+      <input type='text' data-key='age' id = "userName" class='user-input'><br>
+      email:<br>
+      <input type='text' data-key='email' id = "email"class='user-input'><br>
+      <button type='button' id="add-user-btn">add user</button>
+   </form>
+  </section>
+<div id="layout" class="hide"></div>
+<footer id='footer'>&copy; 2019</footer>
+<!-- <div id = "messagesComponentDiv" class ="hide">saul</div>
 <div id="diaryComponentDiv" class="container hide">mary</div> -->
   </div>
 </body>
