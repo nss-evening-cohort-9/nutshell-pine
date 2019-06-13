@@ -21,8 +21,9 @@ const getUsers = () => new Promise((resolve, reject) => {
       reject(err);
     });
 });
+const getSingleUser = uid => axios.get(`${firebaseUrl}/users.json?orderBy="userUid"&equalTo="${uid}"`);
 
 
 const createNewUser = userObject => axios.post(`${firebaseUrl}/users.json`, (userObject));
 
-export default { getUsers, createNewUser };
+export default { getUsers, createNewUser, getSingleUser };

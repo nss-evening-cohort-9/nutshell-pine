@@ -67,6 +67,7 @@ const updateMessage = (e) => {
       messagesData.updateIsEdited(messageId, true)
         .then();
       messagesStringBuilder(); // eslint-disable-line no-use-before-define
+      document.getElementById('msg-input').value = '';
     })
     .catch((error) => {
       console.error('error in editing message', error);
@@ -84,7 +85,6 @@ const messagesStringBuilder = () => {
         domString += '<div class="input-group">';
         domString += `<div id="message"><p>${message.message}</p></div>`;
         domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
-        // domString += `<div id = "timeStamp">${timestampMessage()}</div>`;
         domString += '</div>';
         // this logic says that if the user is signed in, the edit and delete button will show up on their message and they
         // can edit or delete
@@ -113,6 +113,8 @@ const messagesStringBuilder = () => {
       for (let i = 0; i < editButtons.length; i += 1) {
         editButtons[i].addEventListener('click', selectEditMessage);
       }
+      const scrollLength = $('#chat-container').prop('scrollHeight');
+      $('#chat-container').scrollTop(scrollLength);
     })
     .catch(error => console.error('could not get messages', error));
 };
@@ -139,13 +141,14 @@ const displayMsgInput = () => {
 };
 
 // this function adds a new message
-const addNewMessage = (e) => {
+const addNewMessage = () => {
   const newMessageObject = createNewMessage();
   const messageInput = newMessageObject.message;
-  if ((e.keyCode === 13 || e.target.id === 'msg-input-btn') && (messageInput !== '')) {
+  if (messageInput !== '') {
     messagesData.addNewMessage(newMessageObject)
       .then(() => {
         messagesStringBuilder();
+        document.getElementById('msg-input').value = '';
       })
       .catch((error) => {
         console.error(error);
