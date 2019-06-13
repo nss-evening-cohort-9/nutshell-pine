@@ -97,10 +97,8 @@ const diaryEllipsisDomForModal = (e, posts) => {
   const ellipsisId = e.target.id.split('.')[0];
   const domString = `
     <div class="ellipsisBtnDiv">
-    <div class="modalFormHeader">
-      <i id="diaryMessageIconModal" class="fas fa-angle-double-down"></i>
-      <h4 class="diaryH4"></h4>
-      <span id="closeModalX">X</span>
+    <div class="modalFormHeaderEllipsis">
+      <span id="closeModalX" class="closeModal2">X</span>
     </div>
       <button id="${ellipsisId}.edit" class="btn ellipsisBtnModal"><i class="p-2 fas fa-edit"></i>Edit Post</button>
       <button id="${ellipsisId}.delete" class="btn ellipsisBtnModal"><i class="p-2 fas fa-trash-alt"></i>Delete</button>

@@ -139,6 +139,13 @@
   display: flex;
   flex-flow: row;
 }
+.modalFormHeaderEllipsis {
+  background-color: #eee;
+  border-radius: 4px 4px 0 0;
+  height: 2.5em;
+  display: flex;
+  flex-flow: row; 
+}
 
 #diaryMessageIconModal {
   font-size: 3em;
@@ -159,6 +166,7 @@
 }
 
 #closeModalX {
+  // align-content: flex-end;
   align-self: right;
   padding: 3px;
   margin: 3px;
@@ -167,6 +175,11 @@
   font-family: inherit;
   color: $softGrey;
   cursor: pointer;
+}
+
+.closeModal2 {
+  margin-left: 90%!important;
+  margin-top: -5px!important;
 }
 
 .inputField {
