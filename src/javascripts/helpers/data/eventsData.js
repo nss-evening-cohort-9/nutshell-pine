@@ -20,4 +20,6 @@ const iniEventsDataFromFirebaseByUid = uid => new Promise((resolve, reject) => {
 
 const deleteEventFromPageAndFirebase = eventId => axios.delete(`${firebaseUrl}/events/${eventId}.json`);
 
-export default { iniEventsDataFromFirebaseByUid, deleteEventFromPageAndFirebase };
+const pushNewEventToFirebase = newEventOb => axios.post(`${firebaseUrl}/events.json`, newEventOb);
+
+export default { iniEventsDataFromFirebaseByUid, pushNewEventToFirebase, deleteEventFromPageAndFirebase };
