@@ -12,9 +12,9 @@ const printEventsToDom = (array) => {
     itemToPrint += '    <img class="deleteIcon" src="../../../../assets/deleteBtn.png" />';
     itemToPrint += '  </div>';
     itemToPrint += `  <div id="card.${event.id}" class="each-event-card" >`;
-    itemToPrint += `    <p class="event-date"><img class="eventIcon" src="../../../../assets/eventIcon.png" />${event.eventDate}</p>`;
-    itemToPrint += `    <p>${event.eventName} </p>`;
-    itemToPrint += `    <p class="event-location">${event.eventLocation}</p>`;
+    itemToPrint += `    <p id=date.${event.eventDate} class="event-date"><img class="eventIcon" src="../../../../assets/eventIcon.png" />${event.eventDate}</p>`;
+    itemToPrint += `    <p id=name.${event.eventName}>${event.eventName} </p>`;
+    itemToPrint += `    <p id="location.${event.id}" class="event-location">${event.eventLocation}</p>`;
     itemToPrint += '  </div>';
   });
   itemToPrint += '   </div>';
