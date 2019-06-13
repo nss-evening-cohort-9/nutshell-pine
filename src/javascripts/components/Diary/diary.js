@@ -38,6 +38,8 @@ const diaryFormInputBuilder = (e, post) => { // e is only passed for sake of edi
   const domString = `
   <div>
     <div class="modalFormHeader">
+      <i id="diaryMessageIconModal" class="far fa-comment"></i>
+      <h4 class="diaryH4">Diary</h4>
       <span id="closeModalX">X</span>
     </div>
     <form id="diaryFormCreation" class="form-group diaryFormInputs">
@@ -46,7 +48,7 @@ const diaryFormInputBuilder = (e, post) => { // e is only passed for sake of edi
       <label class="hide" for="diaryDateInput">Date</label>
       <input id="diaryDateInput" class="hide inputField" type="text" value="${editedPostDate}"></input>
       <label for="diaryEntryInput">Entry</label>
-      <input id="diaryEntryInput" class="inputField" type="text" value="${editedPostEntry}"></input>
+      <textarea id="diaryEntryInput" rows="5" class="inputField" type="text">${editedPostEntry}</textarea>
       <button id="${editPostEvent}" type="submit" class="btn btn-primary">Post</button>
     </form>
   </div>`;
@@ -95,10 +97,18 @@ const diaryEllipsisDomForModal = (e, posts) => {
   const ellipsisId = e.target.id.split('.')[0];
   const domString = `
     <div class="ellipsisBtnDiv">
+    <div class="modalFormHeader">
+      <i id="diaryMessageIconModal" class="fas fa-angle-double-down"></i>
+      <h4 class="diaryH4"></h4>
+      <span id="closeModalX">X</span>
+    </div>
       <button id="${ellipsisId}.edit" class="btn ellipsisBtnModal"><i class="p-2 fas fa-edit"></i>Edit Post</button>
       <button id="${ellipsisId}.delete" class="btn ellipsisBtnModal"><i class="p-2 fas fa-trash-alt"></i>Delete</button>
     </div>`;
   util.printToDom('addNewDiaryPostFormDiv', domString);
+  document.getElementById('closeModalX').addEventListener('click', () => {
+    $('#pineModal').modal('toggle');
+  });
   posts.forEach((post) => {
     const deleteBtnTargetId = document.getElementById(`${ellipsisId}.delete`);
     const editBtnTargetId = document.getElementById(`${ellipsisId}.edit`);
@@ -120,6 +130,7 @@ const showEditDeleteModal4Diary = (posts) => {
   const diaryModalListeners = document.getElementsByClassName('fa-ellipsis-h');
   for (let i = 0; i < diaryModalListeners.length; i += 1) {
     diaryModalListeners[i].addEventListener('click', (e) => {
+      $('#pineModal').addClass('modalPositionEllipsis'); // adds class then ellipsis is pushed
       $('#pineModal').modal().show();
       diaryEllipsisDomForModal(e, posts);
     });

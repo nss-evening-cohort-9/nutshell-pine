@@ -14,15 +14,27 @@ body {
 }
 
 #pineModal {
-  padding: 100px;
+  // width: auto;
+  // padding: 5% 0 0 20%;
+  padding-top: 150px;
   border-radius: 10px;
 }
+@media screen
+  and (max-device-width: 1280px)
+  and (min-device-width: 1180px)
+  and (min-resolution: 192dpi) {
+    #pineModal {
+      // padding-left: 100px;
+    }
+  }
 
 .modal-content {
   position: relative;
   overflow-x: hidden!important;
   overflow-y: hidden!important;
 }
+
+// end modal section
 
 footer{
   background-color:yellowgreen;

@@ -136,12 +136,33 @@
   background-color: #eee;
   border-radius: 4px 4px 0 0;
   height: 4em;
+  display: flex;
+  flex-flow: row;
+}
+
+#diaryMessageIconModal {
+  font-size: 3em;
+  color: $bannerColor;
+  margin: 1.8% 0 0 2%;
+}
+.modalPositionEllipsis {
+  display: flex;
+  justify-content: center;
+}
+
+
+.diaryH4 {
+  font-size: 20px;
+  align-self: flex-start;
+  margin-left: 3%;
+  margin-top: 4%;
 }
 
 #closeModalX {
-  float: right;
+  align-self: right;
   padding: 3px;
   margin: 3px;
+  margin-left: 70%;
   font-size: 2em;
   font-family: inherit;
   color: $softGrey;
@@ -152,6 +173,7 @@
   border-radius: 5px;
   line-height: 34px;
   border: 1px solid $softerGrey;
+  width: 400px;
 }
 
 label {
@@ -177,14 +199,24 @@ label {
 }
 
 #submitBtnForNewDiaryPost {
+  margin: auto;
   margin-top: 40px;
   background-color: #00B246;
+  border: none;
+  width: 30%;
+  &:hover {
+    background-color: rgb(117, 223, 117);
+    color: white;
+    transition: .4s;
+  }
 }
 
 .ellipsisBtnDiv {
   padding: 2em 0 2em 0;
-  width: 50%;
   margin: 0;
+  margin: auto;
+  width: 18em;
+  // width: 600px;
 }
 
 // ELLIPSIS SECTION
