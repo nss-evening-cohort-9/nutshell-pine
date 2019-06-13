@@ -27,7 +27,6 @@ const printEventsToDom = (array) => {
 const initEventsItemForDom = (uid) => {
   eventsData.iniEventsDataFromFirebaseByUid(uid)
     .then((allResults) => {
-      console.error('........', allResults);
       printEventsToDom(allResults);
     })
     .catch(err => console.error('No data Came back', err));
