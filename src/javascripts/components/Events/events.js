@@ -1,6 +1,5 @@
 
 import eventsData from '../../helpers/data/eventsData';
-// import actionEvents from './addNewEvents';
 import util from '../../helpers/util';
 
 import './events.scss';
@@ -22,13 +21,13 @@ const printEventsToDom = (array) => {
   });
   itemToPrint += '   </div>';
   util.printToDom('eventsComponentDiv', itemToPrint);
-  // actionEvents.eventListenerForPageLoad();
 };
 
 
 const initEventsItemForDom = (uid) => {
   eventsData.iniEventsDataFromFirebaseByUid(uid)
     .then((allResults) => {
+      console.error('........', allResults);
       printEventsToDom(allResults);
     })
     .catch(err => console.error('No data Came back', err));

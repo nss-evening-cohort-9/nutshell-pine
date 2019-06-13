@@ -3,12 +3,13 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import moment from 'moment';
 
-
 import eventsData from '../../helpers/data/eventsData';
+import events from './events';
 import util from '../../helpers/util';
 
 
 const getValueInputForNewEvent = () => {
+  const uidFirebase = firebase.auth().currentUser.uid;
   let valueOfEventDate = moment(document.getElementById('event-date-input').value).format('LL');
   let valueOfEventName = document.getElementById('event-name-input').value;
   let valueOfLocation = document.getElementById('event-location-input').value;
@@ -17,11 +18,12 @@ const getValueInputForNewEvent = () => {
     eventName: valueOfEventName,
     eventDate: valueOfEventDate,
     eventLocation: valueOfLocation,
-    uid: firebase.auth().currentUser.uid,
+    uid: uidFirebase,
   };
 
   eventsData.pushNewEventToFirebase(newEventObj)
     .then(() => {
+      events.initEventsItemForDom(uidFirebase);
       valueOfEventName = '';
       valueOfLocation = '';
       valueOfEventDate = '';
@@ -29,7 +31,9 @@ const getValueInputForNewEvent = () => {
     .catch(err => console.error(err));
 };
 
+
 const modalFormBuilderForNewEvent = () => {
+  $('#pineModal').modal().show();
   const clearDiaryStringForm = '';
   const domString = `
   <div>
@@ -53,26 +57,19 @@ const modalFormBuilderForNewEvent = () => {
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button id="createNewEvent" type="submit" class="btn btn-primary create-event">Create Event</button>
+          <button id="createNewEvent" type="button" class="btn btn-primary create-event" data-dismiss="modal">Create Event</button>
        </div>
     </form>
     </div>
   </div>`;
   util.printToDom('addNewDiaryPostFormDiv', clearDiaryStringForm);
   util.printToDom('addNewCalendarEvent', domString);
-  const postNewEventBtnId = document.getElementById('createNewEvent');
-  postNewEventBtnId.addEventListener('click', getValueInputForNewEvent);
 };
 
 
 const eventListenerForPageLoad = () => {
-  const getBtnId = document.getElementsByClassName('add-new-event-Button');
-  for (let i = 0; i < getBtnId.length; i += 1) {
-    getBtnId[i].addEventListener('click', () => {
-      $('#pineModal').modal().show();
-      modalFormBuilderForNewEvent();
-    });
-  }
+  $(document).on('click', '.add-new-event-Button', modalFormBuilderForNewEvent);
+  $(document).on('click', '#createNewEvent', getValueInputForNewEvent);
 };
 
 
