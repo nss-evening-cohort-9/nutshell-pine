@@ -8,6 +8,8 @@ import messagesData from '../../helpers/data/messagesData';
 import util from '../../helpers/util';
 import './messages.scss';
 
+const getCurrentUsername = () => firebase.auth().currentUser.displayName;
+
 // new object to create a new message
 const createNewMessage = () => {
   const newMessage = {
@@ -15,6 +17,7 @@ const createNewMessage = () => {
     message: document.getElementById('msg-input').value,
     timestamp: timeStamp.getTimeStamp().toString(),
     uid: firebase.auth().currentUser.uid,
+    displayName: getCurrentUsername(),
   };
   return newMessage;
 };
@@ -113,8 +116,6 @@ const messagesStringBuilder = () => {
       for (let i = 0; i < editButtons.length; i += 1) {
         editButtons[i].addEventListener('click', selectEditMessage);
       }
-      const scrollLength = $('#chat-container').prop('scrollHeight');
-      $('#chat-container').scrollTop(scrollLength);
     })
     .catch(error => console.error('could not get messages', error));
 };

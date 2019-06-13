@@ -6,7 +6,7 @@ import dashboard from '../../components/Dashboard/dashboard';
 import diary from '../../components/Diary/diary';
 import messages from '../../components/Messages/messages';
 import events from '../../components/Events/events';
-// import users from '../../components/Users/users';
+import users from '../../components/Users/users';
 
 const authDiv = document.getElementById('auth');
 const layoutDiv = document.getElementById('layout');
@@ -38,7 +38,6 @@ const checkLoginStatus = () => {
       events.initEventsForPageLoad(user.uid);
       // users.getUserName(getCurrentUid);
     } else {
-      // users.events(user.uid);
       authDiv.classList.remove('hide');
       newUserBtn.classList.remove('hide');
       layoutDiv.classList.remove('show');
@@ -46,6 +45,7 @@ const checkLoginStatus = () => {
       authNavbar.classList.remove('hide');
       logoutNavbar.classList.add('hide');
       footer.classList.add('hide');
+      users.events();
     }
   });
 };
