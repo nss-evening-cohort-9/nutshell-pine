@@ -6,11 +6,10 @@ import events from './events';
 
 const deleteSingleEventFromPage = (e) => {
   const getId = e.target.closest('.action-icons-div').id;
-  console.error('...ID', getId);
   eventsData.deleteEventFromPageAndFirebase(getId)
     .then(() => {
       const getCurrentUserUid = firebase.auth().currentUser.uid;
-      events.initEventsForPageLoad(getCurrentUserUid);
+      events.initEventsItemForDom(getCurrentUserUid);
     })
     .catch(err => console.error('No event to delete', err));
 };
