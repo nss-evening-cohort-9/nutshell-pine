@@ -17,6 +17,7 @@ const footer = document.getElementById('footer');
 const checkLoginStatus = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+      console.error(user.uid);
       dashboard.dashboardLayoutStringBuilder();
       authDiv.classList.add('hide');
       layoutDiv.classList.add('show');
