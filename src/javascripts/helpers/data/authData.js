@@ -25,12 +25,11 @@ const checkLoginStatus = () => {
           if (filterUids.length === 0) {
             users.userModal(user.uid);
           }
-          allUsers.forEach((u) => {
-            if (user.uid === u.uid) {
-              diary.diaryDomStringBuilder(u.userName);
-              // userNameForDiary = u.userName; // need to get this info as param in diary call
-            }
-          });
+          // allUsers.forEach((u) => {
+          //   if (user.uid === u.uid) {
+          //     // userNameForDiary = u.userName; // need to get this info as param in diary call
+          //   }
+          // });
         }).catch(err => console.error('getting single user at authData', err));
       authDiv.classList.add('hide');
       layoutDiv.classList.add('show');
@@ -38,6 +37,7 @@ const checkLoginStatus = () => {
       authNavbar.classList.add('hide');
       logoutNavbar.classList.remove('hide');
       footer.classList.remove('hide');
+      diary.diaryDomStringBuilder(user);
       messages.messagesStringBuilder();
       events.initEventsItemForDom(user.uid);
       messages.displayMsgInput();
