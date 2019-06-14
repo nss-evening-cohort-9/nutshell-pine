@@ -7,7 +7,6 @@ import events from '../../components/Events/events';
 import users from '../../components/Users/users';
 import usersData from './usersData';
 import news from '../../components/News/news';
-
 import dashboardEvents from '../../components/Dashboard/dashboard';
 
 const authDiv = document.getElementById('auth');
@@ -27,15 +26,19 @@ const checkLoginStatus = () => {
           if (filterUids.length === 0) {
             users.userModal(user.uid);
           }
-        })
-        .catch(err => console.error('getting single user at authData', err));
+          allUsers.forEach((u) => {
+            if (user.uid === u.uid) {
+              // userNameForDiary = u.userName; // need to get this info as param in diary call
+            }
+          });
+        }).catch(err => console.error('getting single user at authData', err));
       authDiv.classList.add('hide');
       layoutDiv.classList.add('show');
       nutshellNavbar.classList.remove('hide');
       authNavbar.classList.add('hide');
       logoutNavbar.classList.remove('hide');
       footer.classList.remove('hide');
-      diary.diaryDomStringBuilder();
+      diary.diaryDomStringBuilder(user);
       messages.messagesStringBuilder();
       events.initEventsItemForDom(user.uid);
       messages.displayMsgInput();

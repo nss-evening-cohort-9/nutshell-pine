@@ -6,15 +6,72 @@ head, body{
 }
 
 body {
-  background-color: white;
+  background-color: $bodyBackground;
 }
 
+@media screen
+  and (max-device-width: 1280px)
+  and (min-device-width: 1180px)
+  and (min-resolution: 192dpi) {
+    #pineModal {
+      // padding-left: 100px;
+    }
+  }
+
+.modal-content {
+  // overflow-x: hidden!important;
+  // overflow-y: hidden!important;
+}
+// end modal section
+
+/* Add User Module */
+#add-user-module {
+  width:30px;
+  margin-bottom: 1px;
+  margin-left: 10px;
+  margin-top:10px;
+ }
+ #add-user-module #open-add-user-form-btn {
+ background: #54bb7d;
+ font-size: 1.5em;
+ color: white;
+ padding-bottom: 5px;
+ }
+ #add-user-module form {
+  position: absolute;
+  padding: 10px;
+  width: 150px;
+  background-color: #e1e1e1;
+  border: 1px solid #999;
+  display: none;
+ }
+ #add-user-module form input {
+  width: 97%;
+  margin: 2px 0;
+ }
+ #add-user-module form button {
+  background: #54bb7d;
+  font-size: 1em;
+  padding: 0px 10px;
+  color: white;
+  margin-top: 10px;
+ }
+ #add-user-module:hover form {
+  display: block;
+ }
+
+ // End of Add User
+
 .hide {
-  display: none; 
+  display: none;
 }
 
 #pineModal {
-  padding: 100px;
+  // padding: 100px;
+  // width: auto;
+  // padding: 5% 0 0 20%;
+  // padding-top: 150px;
+  // border-radius: 10px;
 }
 
 #navBarNav {
@@ -77,7 +134,7 @@ body {
     #newsComponentDiv{
       @extend %single-section;
       grid-area: news;
-      
+
     }
     #eventsComponentDiv{
       @extend %single-section;
@@ -111,6 +168,7 @@ footer{
     align-items: center;
     width: 400px;
 }
+
 #appNav{
   display:flex;
   flex-direction:column;
