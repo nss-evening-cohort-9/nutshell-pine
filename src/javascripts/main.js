@@ -8,6 +8,7 @@ import 'bootstrap';
 import MyNavbar from './components/MyNavbar/myNavbar';
 import Auth from './components/Auth/auth';
 import apiKeys from './helpers/apiKeys.json';
+import deleteBtnEvents from './components/Events/deleteEvent';
 import actionEvents from './components/Events/addNewEvents';
 
 const init = () => {
@@ -16,6 +17,7 @@ const init = () => {
   Auth.authPrint();
   actionEvents.eventListenerForPageLoad();
   // authData.checkLoginStatus();
+  deleteBtnEvents.eventLstnrForDeleteBtn();
 };
 
 init();
