@@ -1,13 +1,24 @@
 import $ from 'jquery';
+
 import util from '../../helpers/util';
 
 
 const testFun = (e) => {
-  const test = e.target.closest('.action-icons-div').id;
-  const test2 = document.getElementById(`location.${test}`).innerText;
-  $('#pineModal').modal().show();
+  const getCurrentId = e.target.closest('.action-icons-div').id;
+  const dateOfEvent = document.getElementById(`date.${getCurrentId}`).innerText;
+  const nameOfEvent = document.getElementById(`name.${getCurrentId}`).innerText;
+  const locationName = document.getElementById(`location.${getCurrentId}`).innerText;
 
-  console.error(test2);
+  // Reformated date to be accepted for modal input-date field.
+  const formattedDate = new Date(dateOfEvent).toISOString().slice(0, 10);
+
+
+  $('#pineModal').modal().show();
+  console.error(locationName);
+  console.error(nameOfEvent);
+  console.error(dateOfEvent);
+
+
   const clearDiaryStringForm = '';
   const domString = `
   <div>
@@ -21,13 +32,13 @@ const testFun = (e) => {
     <form>
       <div class="form-group">
         <label for="event-date" class="col-form-label">Date: </label>
-        <input id="event-date-input" type="date" class="form-control">
+        <input id="event-date-input" type="date" class="form-control" value=${formattedDate}></input>
 
         <label for="eventNameInput" class="col-form-label">Event Name: </label>
-        <input id="event-name-input" type="text" class="form-control" value=${test2}></input>
+        <input id="event-name-input" type="text" class="form-control" value=${nameOfEvent}></input>
 
         <label for="eventLocationInput">Where: </label>
-        <input id="event-location-input" type="text" class="form-control"></input>
+        <input id="event-location-input" type="text" class="form-control" value=${locationName}></input>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
