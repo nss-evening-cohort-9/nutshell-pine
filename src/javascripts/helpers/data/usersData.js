@@ -22,6 +22,7 @@ const getUsers = () => new Promise((resolve, reject) => {
     });
 });
 
+
 const createNewUser = userObject => axios.post(`${firebaseUrl}/users.json`, (userObject));
 
 export default { getUsers, createNewUser };
