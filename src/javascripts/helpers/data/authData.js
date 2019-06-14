@@ -34,7 +34,7 @@ const checkLoginStatus = () => {
           // console.error(user.uid);
           // console.error(allUsers.length);
           if (filterUids.length === 0) {
-            // console.error(filterUids.length);
+            console.error(user.uid);
             users.userModal(user.uid);
           }
         })

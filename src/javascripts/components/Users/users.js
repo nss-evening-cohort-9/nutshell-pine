@@ -8,8 +8,8 @@ import $ from '../../../../node_modules/jquery';
 
 // modal
 const userModal = (users) => {
-  const divString1 = '';
-  const divString2 = '';
+  // const divString1 = '';
+  // const divString2 = '';
   const domString = `
   <div class="container">
     <form class="col">
@@ -20,8 +20,8 @@ const userModal = (users) => {
       <button id="submit-user-info" type="submit" class="btn btn-success">Sign Up!</button>
     </form>
   </div>`;
-  util.printToDom('addNewCalendarEvent', divString2);
-  util.printToDom('addNewDiaryPostFormDiv', divString1);
+  // util.printToDom('addNewCalendarEvent', divString2);
+  // util.printToDom('addNewDiaryPostFormDiv', divString1);
   util.printToDom('user-modal', domString);
   $('#pineModal').modal('toggle');
   document.getElementById('submit-user-info').addEventListener('click', (e) => {
