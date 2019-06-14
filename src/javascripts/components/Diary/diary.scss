@@ -206,6 +206,17 @@ label {
     background-color: rgb(117, 223, 117);
     color: white;
     transition: .4s;
+    &:active {
+      outline: none;
+    }&:visited {
+      outline: none;
+    }&:hover {
+      outline: none;
+    }&:link {
+      outline: none;
+    }&:focus {
+      box-shadow: none;
+    }
   }
 }
 
@@ -220,11 +231,6 @@ label {
     transition: .4s;
   }
 }
-
-// .closeModal2 {
-//   // margin-left: 90%!important;
-//   // margin-top: -5px!important;
-// }
 
 #editDeleteDivWrapper {
   display: flex;

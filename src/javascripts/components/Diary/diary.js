@@ -136,7 +136,7 @@ const showEditDeleteModal4Diary = (posts) => {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // this function is called to build the cards that contain the data of diary posts
-const diaryDomStringBuilder = () => {
+const diaryDomStringBuilder = (user) => {
   let domString = `
   <div class="col diaryCardsDiv">
   <div id="addNewDiaryPostBtn" class="divForHeaderDiary">
@@ -154,7 +154,7 @@ const diaryDomStringBuilder = () => {
       <div class="m-auto">
         <div class="card diaryCards text-center bg-light mt-4">
           <div class="user_date">
-            <span class="diaryUserName"><em>UserName</em></span>
+            <span class="diaryUserName"><em>${user}</em></span>
             <span class="postDate">${post.date}</span>
           </div>
           <h2 class="postTitle p-2">${post.title}</h2>

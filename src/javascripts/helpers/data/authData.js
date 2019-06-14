@@ -27,6 +27,7 @@ const checkLoginStatus = () => {
           }
           allUsers.forEach((u) => {
             if (user.uid === u.uid) {
+              diary.diaryDomStringBuilder(u.userName);
               // userNameForDiary = u.userName; // need to get this info as param in diary call
             }
           });
@@ -37,7 +38,6 @@ const checkLoginStatus = () => {
       authNavbar.classList.add('hide');
       logoutNavbar.classList.remove('hide');
       footer.classList.remove('hide');
-      diary.diaryDomStringBuilder(user);
       messages.messagesStringBuilder();
       events.initEventsItemForDom(user.uid);
       messages.displayMsgInput();
