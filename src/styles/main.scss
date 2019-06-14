@@ -6,8 +6,23 @@ head, body{
 }
 
 body {
-  background-color: white;
+  background-color: $bodyBackground;
 }
+
+@media screen
+  and (max-device-width: 1280px)
+  and (min-device-width: 1180px)
+  and (min-resolution: 192dpi) {
+    #pineModal {
+      // padding-left: 100px;
+    }
+  }
+
+.modal-content {
+  // overflow-x: hidden!important;
+  // overflow-y: hidden!important;
+}
+// end modal section
 
 /* Add User Module */
 #add-user-module {
@@ -52,7 +67,11 @@ body {
 }
 
 #pineModal {
-  padding: 100px;
+  // padding: 100px;
+  // width: auto;
+  // padding: 5% 0 0 20%;
+  // padding-top: 150px;
+  // border-radius: 10px;
 }
 
 #navBarNav {
@@ -149,6 +168,7 @@ footer{
     align-items: center;
     width: 400px;
 }
+
 #appNav{
   display:flex;
   flex-direction:column;
