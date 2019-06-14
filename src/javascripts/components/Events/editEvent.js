@@ -10,14 +10,14 @@ const testFun = (e) => {
   const locationName = document.getElementById(`location.${getCurrentId}`).innerText;
 
   // Reformated date to be accepted for modal input-date field.
-  const formattedDate = new Date(dateOfEvent).toISOString().slice(0, 10);
-
+  let formattedDate = '';
+  if (dateOfEvent === 'Invalid date') {
+    formattedDate = '2019-01-01';
+  } else {
+    formattedDate = new Date(dateOfEvent).toISOString().slice(0, 10);
+  }
 
   $('#pineModal').modal().show();
-  console.error(locationName);
-  console.error(nameOfEvent);
-  console.error(dateOfEvent);
-
 
   const clearDiaryStringForm = '';
   const domString = `
