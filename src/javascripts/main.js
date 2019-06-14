@@ -4,6 +4,7 @@ import '../styles/main.scss';
 import 'bootstrap';
 // import 'jquery';
 
+// import authData from './helpers/data/authData';
 import MyNavbar from './components/MyNavbar/myNavbar';
 import Auth from './components/Auth/auth';
 import apiKeys from './helpers/apiKeys.json';
@@ -17,6 +18,7 @@ const init = () => {
   Auth.authPrint();
   editActionForEvent.eventLstnerForPageLoad();
   actionEvents.eventListenerForPageLoad();
+  // authData.checkLoginStatus();
   deleteBtnEvents.eventLstnrForDeleteBtn();
 };
 
