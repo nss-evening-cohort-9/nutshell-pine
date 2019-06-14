@@ -10,8 +10,8 @@ const navbarEvents = () => {
         firebase.auth().signOut();
       }
     });
-    authData.checkLoginStatus();
   }
+  authData.checkLoginStatus();
 };
 
 export default { navbarEvents };
