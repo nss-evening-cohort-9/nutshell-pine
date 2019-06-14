@@ -125,7 +125,7 @@ const diaryEllipsisDomForModal = (e, posts) => {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // this function adds event listeners to unique id's on ellipsis' on diary cards and shows modal
 const showEditDeleteModal4Diary = (posts) => {
-  const diaryModalListeners = document.getElementsByClassName('fa-ellipsis-h');
+  const diaryModalListeners = document.getElementsByClassName('ellipsisBtnSpan');
   for (let i = 0; i < diaryModalListeners.length; i += 1) {
     diaryModalListeners[i].addEventListener('click', (e) => {
       $('#pineModal').addClass('modalPositionEllipsis'); // adds class then ellipsis is pushed
@@ -160,7 +160,9 @@ const diaryDomStringBuilder = () => {
           </div>
           <h2 class="postTitle p-2">${post.title}</h2>
           <p class="body p-2 diaryEntry">${post.entry}</p>
-          <i id="${post.id}.${i}" class="fas fa-ellipsis-h ellipsisBtn"></i>
+          <span class="ellipsisBtnSpan" id="${post.id}.${i}">
+            <i class="fas fa-ellipsis-h ellipsisBtn"></i>
+          </span>
         </div>
       </div>`;
     });

@@ -91,6 +91,7 @@
 // CARD STYLES DIARY
 .diaryCards {
   font-family: $font1;
+  box-shadow: 1px 1px 3px $softerGreyLowO;
 }
 
 .user_date {
@@ -156,7 +157,6 @@
   display: flex;
   justify-content: center;
 }
-
 
 .diaryH4 {
   font-size: 20px;

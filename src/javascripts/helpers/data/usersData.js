@@ -4,7 +4,7 @@ import apiKeys from '../apiKeys.json';
 
 const firebaseUrl = apiKeys.firebaseKeys.databaseURL;
 
-const getAllUsers = () => new Promise((resolve, reject) => {
+const getUsers = () => new Promise((resolve, reject) => {
   axios.get(`${firebaseUrl}/users.json`)
     .then((result) => {
       const usersObject = result.data;
@@ -24,4 +24,4 @@ const getAllUsers = () => new Promise((resolve, reject) => {
 
 const createNewUser = userObject => axios.post(`${firebaseUrl}/users.json`, (userObject));
 
-export default { getAllUsers, createNewUser };
+export default { getUsers, createNewUser };
