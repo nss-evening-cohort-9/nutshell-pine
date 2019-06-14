@@ -18,4 +18,7 @@ const iniEventsDataFromFirebaseByUid = uid => new Promise((resolve, reject) => {
     .catch(err => reject(err));
 });
 
-export default { iniEventsDataFromFirebaseByUid };
+const pushNewEventToFirebase = newEventOb => axios.post(`${firebaseUrl}/events.json`, newEventOb);
+
+
+export default { iniEventsDataFromFirebaseByUid, pushNewEventToFirebase };
