@@ -136,10 +136,11 @@ const diaryDomStringBuilder = () => {
     });
     domString += '</div>';
     util.printToDom('diaryComponentDiv', domString);
-    document.getElementById('addNewDiaryPostBtn').addEventListener('click', (e) => {
-      $('#pineModal').modal().show();
-      diaryFormInputBuilder(e);
-    });
+    // const addPostBtnId = document.getElementById('addNewDiaryPostBtn');
+    // addPostBtnId.addEventListener('click', (e) => {
+    //   $('#pineModal').modal().show();
+    //   diaryFormInputBuilder(e);
+    // });
     // calls function that adds events to ellipsis' on cards for edit and delete
     showEditDeleteModal4Diary(diaryPosts);
   }).catch(err => console.error('could not get diary post', err));

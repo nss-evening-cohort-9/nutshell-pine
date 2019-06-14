@@ -1,11 +1,12 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
-// components
-import dashboard from '../../components/Dashboard/dashboard';
 import diary from '../../components/Diary/diary';
 import messages from '../../components/Messages/messages';
 import events from '../../components/Events/events';
+import news from '../../components/News/news';
+
+import dashboardEvents from '../../components/Dashboard/dashboard';
 
 const authDiv = document.getElementById('auth');
 const layoutDiv = document.getElementById('layout');
@@ -17,10 +18,8 @@ const footer = document.getElementById('footer');
 const checkLoginStatus = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      dashboard.dashboardLayoutStringBuilder();
       authDiv.classList.add('hide');
       layoutDiv.classList.add('show');
-
       nutshellNavbar.classList.remove('hide');
       authNavbar.classList.add('hide');
       logoutNavbar.classList.remove('hide');
@@ -30,6 +29,9 @@ const checkLoginStatus = () => {
       events.initEventsItemForDom(user.uid);
       messages.displayMsgInput();
       messages.initMessages();
+      events.initEventsItemForDom(user.uid);
+      news.initNews(user.uid);
+      dashboardEvents.dashboardAddEventListeners();
     } else {
       authDiv.classList.remove('hide');
       layoutDiv.classList.remove('show');
