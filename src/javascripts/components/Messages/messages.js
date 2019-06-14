@@ -7,7 +7,6 @@ import messagesData from '../../helpers/data/messagesData';
 import usersData from '../../helpers/data/usersData';
 import util from '../../helpers/util';
 import './messages.scss';
-// import users from '../Users/users';
 
 const getCurrentUsername = () => firebase.auth().currentUser.displayName;
 
