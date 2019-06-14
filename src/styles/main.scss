@@ -67,6 +67,7 @@ body {
 
 %single-section{
   height:100%;
+  margin-top:20px;
 }
 #navbar{
   grid-area:header;
@@ -89,8 +90,10 @@ body {
     display:grid;
     grid-template-columns: auto auto auto auto 45px;
     grid-template-rows:1fr;
+    grid-column-gap:1.25em;
     grid-template-areas:
-      "messages diary news events nav"
+      "messages diary news events nav";
+
   }
 }
 #layout{
@@ -112,6 +115,7 @@ body {
     #newsComponentDiv{
       @extend %single-section;
       grid-area: news;
+      
     }
     #eventsComponentDiv{
       @extend %single-section;
@@ -122,6 +126,7 @@ body {
       background-color:#c7c4c4;
       text-align:center;
       grid-area: nav;
+      margin-top:0;
     }
   }
 

@@ -5,9 +5,11 @@ import './news.scss';
 const domStringBuilder = (news) => {
   let domString = '';
   news.forEach((newsFeed) => {
-    domString += `<div>${newsFeed.title}</div>`;
-    domString += `<div>${newsFeed.synopsis}</div>`;
-    domString += `<a href="${newsFeed.url}">${newsFeed.url}</a>`;
+    domString += '<div class="container">';
+    domString += `<div class="title">${newsFeed.title}</div>`;
+    domString += `<div class="synopsis">${newsFeed.synopsis}</div>`;
+    domString += `<a href="${newsFeed.url}" class="link">${newsFeed.url}</a>`;
+    domString += '</div>';
   });
   util.printToDom('newsComponentDiv', domString);
 };

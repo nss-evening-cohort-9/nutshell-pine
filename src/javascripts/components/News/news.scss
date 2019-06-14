@@ -1,0 +1,25 @@
+.container{
+  padding:.625em;
+  border:1px solid #707070;
+  border-radius:7px;
+
+  .title{
+    font-family:lato;
+    font-size:1.75em;
+    line-height:1em;
+    font-weight:900;
+    color:#fff;
+    padding:.625em;
+    margin-bottom:.625em;
+    background-color:#707070;
+  }
+  .synopsis{
+    font-weight:200;
+    font-size:.85em;
+    margin-bottom:.625em;
+  }
+  .link{
+    font-size:.75em;
+    line-height:10px;
+  }
+}
