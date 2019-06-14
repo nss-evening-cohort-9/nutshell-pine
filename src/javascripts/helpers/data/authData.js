@@ -28,7 +28,8 @@ const checkLoginStatus = () => {
           }
           allUsers.forEach((u) => {
             if (user.uid === u.uid) {
-              // userNameForDiary = u.userName; // need to get this info as param in diary call
+              diary.diaryDomStringBuilder(u.userName);
+            // userNameForDiary = u.userName; // need to get this info as param in diary call
             }
           });
         }).catch(err => console.error('getting single user at authData', err));
