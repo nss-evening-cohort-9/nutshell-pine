@@ -12,8 +12,7 @@ import $ from '../../../../node_modules/jquery';
 const newDiaryPost = (e) => {
   e.preventDefault();
   const newDiaryPostTitle = document.getElementById('diaryTitleInput').value;
-  // const newDiaryPostDate = document.getElementById('diaryDateInput').value;
-  const newDiaryPostDate = moment().format('LLLL'); // L LTS
+  const newDiaryPostDate = moment().format('LLLL');
   const newDiaryPostEntry = document.getElementById('diaryEntryInput').value;
   const addDiaryPostObj = {
     title: newDiaryPostTitle,
@@ -40,9 +39,9 @@ const diaryFormInputBuilder = (e, post) => { // e is only passed for sake of edi
     <div class="modalFormHeader">
       <i id="diaryMessageIconModal" class="far fa-comment"></i>
       <h4 class="diaryH4">Diary</h4>
-      <span id="closeModalX">X</span>
+      <span id="closeModalX"><i class="far fa-times-circle"></i></span>
     </div>
-    <form id="diaryFormCreation" class="form-group diaryFormInputs">
+    <form id="diaryFormCreation" class="diaryFormInputs">
       <label for="diaryTitleInput">Post Title</label>
       <input id="diaryTitleInput" class="inputField" type="text" value="${editedPostTitle}"></input>
       <label class="hide" for="diaryDateInput">Date</label>
@@ -97,11 +96,11 @@ const diaryEllipsisDomForModal = (e, posts) => {
   const ellipsisId = e.target.id.split('.')[0];
   const domString = `
     <div class="ellipsisBtnDiv">
-    <div class="modalFormHeaderEllipsis">
-      <span id="closeModalX" class="closeModal2">X</span>
+      <span id="closeModalX"><i class="far fa-times-circle"></i></span>
     </div>
-      <button id="${ellipsisId}.edit" class="btn ellipsisBtnModal"><i class="p-2 fas fa-edit"></i>Edit Post</button>
-      <button id="${ellipsisId}.delete" class="btn ellipsisBtnModal"><i class="p-2 fas fa-trash-alt"></i>Delete</button>
+    <div id="editDeleteDivWrapper">
+      <button id="${ellipsisId}.edit" class="btn ellipsisBtnModal"><i class="fontAwesomeIcons fas fa-edit"></i>Edit Post</button>
+      <button id="${ellipsisId}.delete" class="btn ellipsisBtnModal"><i class="fontAwesomeIcons fas fa-trash-alt"></i>Delete</button>
     </div>`;
   util.printToDom('addNewDiaryPostFormDiv', domString);
   document.getElementById('closeModalX').addEventListener('click', () => {
@@ -143,7 +142,7 @@ const diaryDomStringBuilder = () => {
   <div id="addNewDiaryPostBtn" class="divForHeaderDiary">
       <span class="userIconSpan">
         <i class="far fa-user userIcon"></i>
-      </span>
+      </span> 
       <p class="diaryHeadline">Deep thoughts, off-color remarks, etc.</p>
     <span class="addNewDiaryPostBtn">
       <i class="fas fa-plus-circle diaryFaBtn"></i>
@@ -160,15 +159,16 @@ const diaryDomStringBuilder = () => {
           </div>
           <h2 class="postTitle p-2">${post.title}</h2>
           <p class="body p-2 diaryEntry">${post.entry}</p>
-          <span class="ellipsisBtnSpan" id="${post.id}.${i}">
-            <i class="fas fa-ellipsis-h ellipsisBtn"></i>
+          <span class="ellipsisBtnSpan">
+            <i id="${post.id}.${i}" class="fas fa-ellipsis-h ellipsisBtn"></i>
           </span>
         </div>
       </div>`;
     });
     domString += '</div>';
     util.printToDom('diaryComponentDiv', domString);
-    document.getElementById('addNewDiaryPostBtn').addEventListener('click', (e) => {
+    const addPostBtnId = document.getElementById('addNewDiaryPostBtn');
+    addPostBtnId.addEventListener('click', (e) => {
       $('#pineModal').modal().show();
       diaryFormInputBuilder(e);
     });

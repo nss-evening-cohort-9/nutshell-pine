@@ -2,11 +2,14 @@
 
 // Diary header and add button
 .userIconSpan {
-  width: 3em;
-  height: 3em;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2%;
   border: 3px solid $diaryHeaderColor;
   border-radius: 10px;
-  margin: 2% 0 0 1%;
+  margin: 2% 2%;
   &:hover {
     border: 3px solid $bannerColor;
     transition: .4s;
@@ -14,13 +17,8 @@
 }
 
 .userIcon {
-  position: relative;
-  top: .15em;
-  left: .2em;
   font-size: 2em;
   color: $diaryHeaderColor;
-  margin: auto;
-  text-align: center;
   &:hover {
     color: $bannerColor;
     transition: .4s;
@@ -138,21 +136,39 @@
   border-radius: 4px 4px 0 0;
   height: 4em;
   display: flex;
-  flex-flow: row;
+  align-items: center;
+  padding: 10px;
 }
+
+#closeModalX {
+  margin-left: auto;
+  margin-right: 10px;
+  font-size: 1.7em;
+  font-family: inherit;
+  color: $softGrey;
+  cursor: pointer;
+}
+
 .modalFormHeaderEllipsis {
-  background-color: #eee;
-  border-radius: 4px 4px 0 0;
-  height: 2.5em;
-  display: flex;
-  flex-flow: row; 
+  // background-color: #eee;
+  // border-radius: 4px 4px 0 0;
+  // height: 2.5em;
+  // display: flex;
+  // flex-flow: row; 
 }
 
 #diaryMessageIconModal {
   font-size: 3em;
   color: $bannerColor;
-  margin: 1.8% 0 0 2%;
 }
+
+#diaryFormCreation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
 .modalPositionEllipsis {
   display: flex;
   justify-content: center;
@@ -160,60 +176,29 @@
 
 .diaryH4 {
   font-size: 20px;
-  align-self: flex-start;
-  margin-left: 3%;
-  margin-top: 4%;
-}
-
-#closeModalX {
-  // align-content: flex-end;
-  align-self: right;
-  padding: 3px;
-  margin: 3px;
-  margin-left: 70%;
-  font-size: 2em;
-  font-family: inherit;
-  color: $softGrey;
-  cursor: pointer;
-}
-
-.closeModal2 {
-  margin-left: 90%!important;
-  margin-top: -5px!important;
+  margin-left: 10px;
+  margin-top: 8px;
 }
 
 .inputField {
   border-radius: 5px;
   line-height: 34px;
   border: 1px solid $softerGrey;
-  width: 400px;
+  width: 100%;
 }
 
 label {
   font-family: $font1;
+  align-self: flex-start;
 }
 
 #diaryFormCreation {
-  padding: 40px;
   display: flex;
   flex-direction: column;
 }
 
-#diaryTitleInput {
-  margin: 5px
-}
-
-#diaryDateInput {
-  margin: 5px
-}
-
-#diaryEntryInput {
-  margin: 5px
-}
-
 #submitBtnForNewDiaryPost {
-  margin: auto;
-  margin-top: 40px;
+  margin-top: 20px;
   background-color: #00B246;
   border: none;
   width: 30%;
@@ -224,18 +209,57 @@ label {
   }
 }
 
+#submitBtnForEditDiaryPost {
+  margin-top: 20px;
+  background-color: #00B246;
+  border: none;
+  width: 30%;
+  &:hover {
+    background-color: rgb(117, 223, 117);
+    color: white;
+    transition: .4s;
+  }
+}
+
+// .closeModal2 {
+//   // margin-left: 90%!important;
+//   // margin-top: -5px!important;
+// }
+
+#editDeleteDivWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  button {
+    margin: 1px 0!important;
+    border-radius: 3px;
+    outline: none;
+    &:active {
+      outline: none;
+    }&:visited {
+      outline: none;
+    }&:hover {
+      outline: none;
+    }&:link {
+      outline: none;
+    }&:focus {
+      box-shadow: none;
+    }
+  }
+}
+
 .ellipsisBtnDiv {
-  padding: 2em 0 2em 0;
-  margin: 0;
-  margin: auto;
-  width: 18em;
-  // width: 600px;
+  background-color: #eee;
+  border-radius: 4px 4px 0 0;
+  height: 2.5em;
+  display: flex;
+  flex-flow: row; 
 }
 
 // ELLIPSIS SECTION
 .ellipsisBtn {
   color: $ellipsis;
-  font-size: 1.5em;
+  // font-size: 1.5em;
   align-content: left;
   &:hover {
     transform: scale(1.1);
@@ -245,7 +269,7 @@ label {
 }
 
 .ellipsisBtnModal {
-  width: 100%;
+  // width: 100%;
   background-color: $ellipsis;
   color: black;
   margin: 0!important;
@@ -255,4 +279,8 @@ label {
     background-color: $bannerColor;
     transition: .6s;
   }
+}
+
+.fontAwesomeIcons {
+  margin-right: 5px;
 }

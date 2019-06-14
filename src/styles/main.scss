@@ -9,16 +9,6 @@ body {
   background-color: $bodyBackground;
 }
 
-.hide {
-  display: none;
-}
-
-#pineModal {
-  // width: auto;
-  // padding: 5% 0 0 20%;
-  padding-top: 150px;
-  border-radius: 10px;
-}
 @media screen
   and (max-device-width: 1280px)
   and (min-device-width: 1180px)
@@ -29,27 +19,10 @@ body {
   }
 
 .modal-content {
-  position: relative;
-  overflow-x: hidden!important;
-  overflow-y: hidden!important;
+  // overflow-x: hidden!important;
+  // overflow-y: hidden!important;
 }
-
 // end modal section
-
-footer{
-  background-color:yellowgreen;
-  justify-content: flex-end;
-}
-.card {
-    flex-direction: column;
-    height: auto;
-    justify-content: space-evenly;
-    margin-top: auto;
-    padding: 5px;
-    align-items: center;
-    width: auto;
-    background-color: $cardBackground;
-}
 
 /* Add User Module */
 #add-user-module {
@@ -89,6 +62,18 @@ footer{
 
  // End of Add User
 
+.hide {
+  display: none; 
+}
+
+#pineModal {
+  // padding: 100px;
+  // width: auto;
+  // padding: 5% 0 0 20%;
+  // padding-top: 150px;
+  // border-radius: 10px;
+}
+
 #navBarNav {
   font-family: $font1!important;
   background-color: $bannerColor!important;
@@ -96,55 +81,100 @@ footer{
 }
 
 .show {
-  display:flex;
+  display:block;
 }
 
 %single-section{
   height:100%;
+  margin-top:20px;
 }
-
-.container-wrapper{
-  display:flex;
-  flex-direction:column;
-  height:100%;
-  .layout-wrapper{
-    display:flex;
-    align-items:stretch;
+#navbar{
+  grid-area:header;
+  .navbar{
+    height:100%;
   }
+}
+.container-wrapper{
+  height:100%;
+  width:100%;
+  display:grid;
+  grid-template-columns: 1fr ;
+  grid-template-rows:75px 1fr 30px;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  #layout-wrapper{
+    height:100%;
+    display:grid;
+    grid-template-columns: auto auto auto auto 45px;
+    grid-template-rows:1fr;
+    grid-column-gap:1.25em;
+    grid-template-areas:
+      "messages diary news events nav";
 
+  }
 }
 #layout{
   height:100%;
     #messagesComponentDiv, #messageInput{
       @extend %single-section;
-      background-color:red;
-      width:20vw;
-
     }
     #diaryComponentDiv{
       @extend %single-section;
-      background-color:lightblue;
-      width:35vw;
-
+    }
+    #messagesComponentDiv{
+      @extend %single-section;
+      grid-area: messages;
+    }
+    #diaryComponentDiv{
+      @extend %single-section;
+      grid-area: diary;
     }
     #newsComponentDiv{
       @extend %single-section;
-      background-color:green;
-      width:20vw;
-
+      grid-area: news;
+      
     }
     #eventsComponentDiv{
       @extend %single-section;
-      background-color:#81d4fa;
-      width:20vw;
-
+      grid-area:events;
     }
     #appNav{
       @extend %single-section;
-      background-color:violet;
-      width:5vw;
-
+      background-color:#c7c4c4;
+      text-align:center;
+      grid-area: nav;
+      margin-top:0;
     }
   }
 
+footer{
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  background-color:#c7c4c4;
+  grid-area:footer;
+  font-family:inherit;
+  font-size:.725em;
+  color:#707070;
+}
+.card {
+    flex-direction: column;
+    height: auto;
+    justify-content: space-evenly;
+    margin-top: auto;
+    padding: 5px;
+    align-items: center;
+    width: 400px;
+}
 
+#appNav{
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  svg{
+    margin:10px 10px !important;
+    font-size:25px;
+  }
+}
