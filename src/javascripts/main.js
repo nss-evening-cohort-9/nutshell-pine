@@ -3,10 +3,15 @@ import '../styles/main.scss';
 // load in Bootstrap JS
 import 'bootstrap';
 // import 'jquery';
+
 import MyNavbar from './components/MyNavbar/myNavbar';
 import Auth from './components/Auth/auth';
 import apiKeys from './helpers/apiKeys.json';
+<<<<<<< HEAD
 import editActionForEvent from './components/Events/editEvent';
+=======
+import deleteBtnEvents from './components/Events/deleteEvent';
+>>>>>>> master
 import actionEvents from './components/Events/addNewEvents';
 
 const init = () => {
@@ -15,6 +20,7 @@ const init = () => {
   Auth.authPrint();
   editActionForEvent.eventLstnerForPageLoad();
   actionEvents.eventListenerForPageLoad();
+  deleteBtnEvents.eventLstnrForDeleteBtn();
 };
 
 init();

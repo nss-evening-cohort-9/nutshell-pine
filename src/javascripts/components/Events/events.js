@@ -1,17 +1,21 @@
 
 import eventsData from '../../helpers/data/eventsData';
 import util from '../../helpers/util';
+import newEventIcon from '../../../../assets/newEventIcon.png';
+import editIcon from '../../../../assets/editBtn.svg';
+import deleteIcon from '../../../../assets/deleteBtn.png';
+
 
 import './events.scss';
 
 const printEventsToDom = (array) => {
   let itemToPrint = '<div class="card events-container">';
   itemToPrint += '    <h1>Events</h1>';
-  itemToPrint += '    <img id="addNewEvent" class="add-new-event-Button" src="../../../../assets/newEventIcon.png" />';
+  itemToPrint += `    <img id="addNewEvent" class="add-new-event-Button" src="${newEventIcon}" />`;
   array.forEach((event) => {
     itemToPrint += `  <div id="${event.id}" class="action-icons-div">`;
-    itemToPrint += '    <img class="editIcon" src="../../../../assets/editBtn.svg" />';
-    itemToPrint += '    <img class="deleteIcon" src="../../../../assets/deleteBtn.png" />';
+    itemToPrint += `    <img class="editIcon" src="${editIcon}" />`;
+    itemToPrint += `    <img class="deleteIcon" src="${deleteIcon}" />`;
     itemToPrint += '  </div>';
     itemToPrint += `  <div id="card.${event.id}" class="each-event-card" >`;
     itemToPrint += `    <p id=date.${event.id} class="event-date"><img class="eventIcon" src="../../../../assets/eventIcon.png" />${event.eventDate}</p>`;
