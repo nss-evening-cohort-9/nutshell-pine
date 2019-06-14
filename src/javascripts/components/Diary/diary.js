@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import util from '../../helpers/util';
 import diaryData from '../../helpers/data/diaryData';
 // scss
@@ -10,7 +12,7 @@ import $ from '../../../../node_modules/jquery';
 const newDiaryPost = (e) => {
   e.preventDefault();
   const newDiaryPostTitle = document.getElementById('diaryTitleInput').value;
-  const newDiaryPostDate = document.getElementById('diaryDateInput').value;
+  const newDiaryPostDate = moment().format('LLLL');
   const newDiaryPostEntry = document.getElementById('diaryEntryInput').value;
   const addDiaryPostObj = {
     title: newDiaryPostTitle,
@@ -27,20 +29,34 @@ const newDiaryPost = (e) => {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // this function is called by an event listener at end of diaryDomString and builds the form into the modal
 const diaryFormInputBuilder = (e, post) => { // e is only passed for sake of editObj
+  const eventsFormDiv = '';
   const editedPostTitle = post ? post.title : '';
-  const editedPostDate = post ? post.date : '';
+  const editedPostDate = post ? moment().format('LLLL') : moment().format('LLLL');
   const editedPostEntry = post ? post.entry : '';
   const editPostEvent = post ? 'submitBtnForEditDiaryPost' : 'submitBtnForNewDiaryPost';
   const domString = `
   <div>
-    <form id="diaryFormCreation" class="form-group">
-      <label for="diaryTitleInput">Post Title</label><input id="diaryTitleInput" type="text" value="${editedPostTitle}"></input>
-      <label for="diaryDateInput">Date</label><input id="diaryDateInput" type="date" value="${editedPostDate}"></input>
-      <label for="diaryEntryInput">Entry</label><input id="diaryEntryInput" type="text" value="${editedPostEntry}"></input>
+    <div class="modalFormHeader">
+      <i id="diaryMessageIconModal" class="far fa-comment"></i>
+      <h4 class="diaryH4">Diary</h4>
+      <span id="closeModalX"><i class="far fa-times-circle"></i></span>
+    </div>
+    <form id="diaryFormCreation" class="diaryFormInputs">
+      <label for="diaryTitleInput">Post Title</label>
+      <input id="diaryTitleInput" class="inputField" type="text" value="${editedPostTitle}"></input>
+      <label class="hide" for="diaryDateInput">Date</label>
+      <input id="diaryDateInput" class="hide inputField" type="text" value="${editedPostDate}"></input>
+      <label for="diaryEntryInput">Entry</label>
+      <textarea id="diaryEntryInput" rows="5" class="inputField" type="text">${editedPostEntry}</textarea>
       <button id="${editPostEvent}" type="submit" class="btn btn-primary">Post</button>
     </form>
   </div>`;
+  util.printToDom('addNewCalendarEvent', eventsFormDiv); // clears out EVENTS from modal
+  // also will need to do this for Saul
   util.printToDom('addNewDiaryPostFormDiv', domString);
+  document.getElementById('closeModalX').addEventListener('click', () => {
+    $('#pineModal').modal('toggle');
+  });
   if (editPostEvent === 'submitBtnForNewDiaryPost') {
     document.getElementById('submitBtnForNewDiaryPost').addEventListener('click', newDiaryPost);
   } else if (editPostEvent === 'submitBtnForEditDiaryPost') {
@@ -79,11 +95,17 @@ const deleteDiaryPost = (e, ellipsis, post) => {
 const diaryEllipsisDomForModal = (e, posts) => {
   const ellipsisId = e.target.id.split('.')[0];
   const domString = `
-    <div class="card">
-      <button id="${ellipsisId}.edit" class="btn"><i class="p-2 fas fa-edit"></i>Edit Post</button>
-      <button id="${ellipsisId}.delete" class="btn"><i class="p-2 fas fa-trash-alt"></i>Delete</button>
+    <div class="ellipsisBtnDiv">
+      <span id="closeModalX"><i class="far fa-times-circle"></i></span>
+    </div>
+    <div id="editDeleteDivWrapper">
+      <button id="${ellipsisId}.edit" class="btn ellipsisBtnModal"><i class="fontAwesomeIcons fas fa-edit"></i>Edit Post</button>
+      <button id="${ellipsisId}.delete" class="btn ellipsisBtnModal"><i class="fontAwesomeIcons fas fa-trash-alt"></i>Delete</button>
     </div>`;
   util.printToDom('addNewDiaryPostFormDiv', domString);
+  document.getElementById('closeModalX').addEventListener('click', () => {
+    $('#pineModal').modal('toggle');
+  });
   posts.forEach((post) => {
     const deleteBtnTargetId = document.getElementById(`${ellipsisId}.delete`);
     const editBtnTargetId = document.getElementById(`${ellipsisId}.edit`);
@@ -102,9 +124,10 @@ const diaryEllipsisDomForModal = (e, posts) => {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // this function adds event listeners to unique id's on ellipsis' on diary cards and shows modal
 const showEditDeleteModal4Diary = (posts) => {
-  const diaryModalListeners = document.getElementsByClassName('fa-ellipsis-h');
+  const diaryModalListeners = document.getElementsByClassName('ellipsisBtnSpan');
   for (let i = 0; i < diaryModalListeners.length; i += 1) {
     diaryModalListeners[i].addEventListener('click', (e) => {
+      $('#pineModal').addClass('modalPositionEllipsis'); // adds class then ellipsis is pushed
       $('#pineModal').modal().show();
       diaryEllipsisDomForModal(e, posts);
     });
@@ -116,10 +139,13 @@ const showEditDeleteModal4Diary = (posts) => {
 const diaryDomStringBuilder = () => {
   let domString = `
   <div class="col diaryCardsDiv">
-  <div class="divForHeaderDiary">
-      <h1 class="diaryHeadline">Diary</h1>
+  <div id="addNewDiaryPostBtn" class="divForHeaderDiary">
+      <span class="userIconSpan">
+        <i class="far fa-user userIcon"></i>
+      </span> 
+      <p class="diaryHeadline">Deep thoughts, off-color remarks, etc.</p>
     <span class="addNewDiaryPostBtn">
-      <i id="addNewDiaryPostBtn" class="fas fa-plus-circle diaryFaBtn"></i>
+      <i class="fas fa-plus-circle diaryFaBtn"></i>
     </span>
   </div>`;
   diaryData.getDiaryPostByUid().then((diaryPosts) => {
@@ -127,16 +153,22 @@ const diaryDomStringBuilder = () => {
       domString += `
       <div class="m-auto">
         <div class="card diaryCards text-center bg-light mt-4">
+          <div class="user_date">
+            <span class="diaryUserName"><em>UserName</em></span>
+            <span class="postDate">${post.date}</span>
+          </div>
           <h2 class="postTitle p-2">${post.title}</h2>
-          <i id="${post.id}.${i}" class="fas fa-ellipsis-h"></i>
-          <h5 class="postDate">${post.date}</h5>
-          <p class="body p-2">${post.entry}</p>
+          <p class="body p-2 diaryEntry">${post.entry}</p>
+          <span class="ellipsisBtnSpan">
+            <i id="${post.id}.${i}" class="fas fa-ellipsis-h ellipsisBtn"></i>
+          </span>
         </div>
       </div>`;
     });
     domString += '</div>';
     util.printToDom('diaryComponentDiv', domString);
-    document.getElementById('addNewDiaryPostBtn').addEventListener('click', (e) => {
+    const addPostBtnId = document.getElementById('addNewDiaryPostBtn');
+    addPostBtnId.addEventListener('click', (e) => {
       $('#pineModal').modal().show();
       diaryFormInputBuilder(e);
     });

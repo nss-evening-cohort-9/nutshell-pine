@@ -1,6 +1,7 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
+  devtool: "eval-source-map",
   entry: './src/javascripts/main.js',
   devtool: "eval-source-map",
   module: {
@@ -56,7 +57,8 @@ module.exports = {
     })
   ],
   output: {
-		path: __dirname + "/build",
-		filename: "bundle.js"
-	}
+        path: __dirname + "/build",
+        filename: "bundle.js"
+  },
+  devtool: "eval-source-map"
 };
