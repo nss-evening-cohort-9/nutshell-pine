@@ -100,7 +100,7 @@ const messagesStringBuilder = () => {
         domString += '</div>';
         domString += '</div>';
       });
-      util.printToDom('messagesComponentDiv', domString);
+      util.printToDom('chatBox', domString);
       // called this function after we are printing because the delete button needs to be on page
       // in order for us to add an event listener to it
       // this defines the delete button and the loops through and adds an event listener on button click

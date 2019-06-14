@@ -1,3 +1,5 @@
+import diary from '../Diary/diary';
+
 const dashboardAddEventListeners = () => {
   const messagesNavBtn = document.getElementById('messagesNavBtn');
   const newsNavBtn = document.getElementById('newsNavBtn');
@@ -14,6 +16,12 @@ const dashboardAddEventListeners = () => {
   });
   eventsNavBtn.addEventListener('click', () => {
     eventsComponentDiv.classList.toggle('hide');
+  });
+
+  const addPostBtnId = document.getElementById('addNewDiaryPostBtn');
+  addPostBtnId.addEventListener('click', (e) => {
+    $('#pineModal').modal().show();
+    diary.diaryFormInputBuilder(e);
   });
 };
 
