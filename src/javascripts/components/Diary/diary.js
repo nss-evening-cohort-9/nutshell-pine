@@ -163,7 +163,6 @@ const diaryDomStringBuilder = (user) => {
       <div class="m-auto">
         <div class="card diaryCards text-center bg-light mt-4">
           <div class="user_date">
-            <span class="diaryUserName"><em>${user}</em></span>
             <span class="postDate">${post.date}</span>
           </div>
           <h2 class="postTitle p-2">${post.title}</h2>
