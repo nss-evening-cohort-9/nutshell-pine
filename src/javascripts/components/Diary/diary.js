@@ -52,6 +52,7 @@ const diaryFormInputBuilder = (e, post) => { // e is only passed for sake of edi
     </form>
   </div>`;
   util.printToDom('addNewCalendarEvent', eventsFormDiv); // clears out EVENTS from modal
+  util.printToDom('user-modal', eventsFormDiv); // clears out EVENTS from modal
   // also will need to do this for Saul
   util.printToDom('addNewDiaryPostFormDiv', domString);
   document.getElementById('closeModalX').addEventListener('click', () => {
@@ -113,7 +114,6 @@ const diaryEllipsisDomForModal = (e, posts) => {
       deleteDiaryPost(event, ellipsisId, post.id);
     });
     editBtnTargetId.addEventListener('click', (x) => {
-      // editDiaryPost(x, ellipsisId, post);
       if (post.id === ellipsisId) {
         diaryFormInputBuilder(x, post);
       }
@@ -154,7 +154,6 @@ const diaryDomStringBuilder = () => {
       <div class="m-auto">
         <div class="card diaryCards text-center bg-light mt-4">
           <div class="user_date">
-            <span class="diaryUserName"><em>UserName</em></span>
             <span class="postDate">${post.date}</span>
           </div>
           <h2 class="postTitle p-2">${post.title}</h2>

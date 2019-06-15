@@ -71,10 +71,14 @@
 
 .diaryFaBtn {
   font-size: 40px;
+  font-size: 2.5em;
   color: $bannerColor;
-  position: relative;
-  top: 8px;
-  left: 8px;
+  margin-left: auto;
+  margin-bottom: auto;
+  margin-top: 12px;
+  // position: relative;
+  // top: 8px;
+  // left: 8px;
   &:hover {
     color: $diaryHeaderColor;
     transform: scale(1.2);
@@ -97,13 +101,6 @@
   width: 100%;
   margin: 0px;
   padding: 0px;
-}
-
-.diaryUserName {
-  align-content: left!important;
-  margin-top: -8px;
-  float: left;
-  color: $softGrey;
 }
 
 .postDate {
@@ -206,6 +203,17 @@ label {
     background-color: rgb(117, 223, 117);
     color: white;
     transition: .4s;
+    &:active {
+      outline: none;
+    }&:visited {
+      outline: none;
+    }&:hover {
+      outline: none;
+    }&:link {
+      outline: none;
+    }&:focus {
+      box-shadow: none;
+    }
   }
 }
 
@@ -220,11 +228,6 @@ label {
     transition: .4s;
   }
 }
-
-// .closeModal2 {
-//   // margin-left: 90%!important;
-//   // margin-top: -5px!important;
-// }
 
 #editDeleteDivWrapper {
   display: flex;
