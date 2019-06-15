@@ -8,10 +8,12 @@ import users from '../../components/Users/users';
 import usersData from './usersData';
 import news from '../../components/News/news';
 import dashboardEvents from '../../components/Dashboard/dashboard';
+import userNav from '../../components/Diary/userNav';
 
 const authDiv = document.getElementById('auth');
 const layoutDiv = document.getElementById('layout');
 const nutshellNavbar = document.getElementById('navbar-button-nutshell');
+const usernameNavbar = document.getElementById('navbar-button-username');
 const authNavbar = document.getElementById('navbar-button-auth');
 const logoutNavbar = document.getElementById('navbar-button-logout');
 const footer = document.getElementById('footer');
@@ -23,6 +25,12 @@ const checkLoginStatus = () => {
       usersData.getUsers()
         .then((allUsers) => {
           const filterUids = allUsers.filter(id => id.uid === user.uid);
+          allUsers.forEach((u) => {
+            if (u.uid === user.uid) {
+              userNav.showUserNameInNavBar(u.userName);
+              console.error(u.userName);
+            }
+          });
           if (filterUids.length === 0) {
             users.userModal(user.uid);
           }
@@ -30,6 +38,7 @@ const checkLoginStatus = () => {
       authDiv.classList.add('hide');
       layoutDiv.classList.add('show');
       nutshellNavbar.classList.remove('hide');
+      usernameNavbar.classList.remove('hide');
       authNavbar.classList.add('hide');
       logoutNavbar.classList.remove('hide');
       footer.classList.remove('hide');
