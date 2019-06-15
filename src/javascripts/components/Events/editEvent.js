@@ -1,5 +1,10 @@
 import $ from 'jquery';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import moment from 'moment';
 
+import eventsData from '../../helpers/data/eventsData';
+import event from './events';
 import util from '../../helpers/util';
 
 
@@ -26,7 +31,7 @@ const testFun = (e) => {
       <span aria-hidden="true">&times;</span>
     </button>
     <form id="eventFormCreate" class="form-group">
-    <h3 class="text-center">New Event</h3>
+    <h3 class="text-center">Event</h3>
 
     <div class="modal-body">
     <form>
@@ -40,9 +45,9 @@ const testFun = (e) => {
         <label for="eventLocationInput">Where: </label>
         <input id="event-location-input" type="text" class="form-control" value=${locationName}></input>
 
-        <div class="modal-footer">
+        <div class="modal-footer" id=${getCurrentId}>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button id="createNewEvent" type="button" class="btn btn-primary create-event" data-dismiss="modal">Create Event</button>
+          <button id="saveEventChange" type="button" class="btn btn-primary create-event" data-dismiss="modal">Save Changes</button>
        </div>
     </form>
     </div>
@@ -51,8 +56,32 @@ const testFun = (e) => {
   util.printToDom('addNewCalendarEvent', domString);
 };
 
+const updatedValueOfEvent = (e) => {
+  const getCurrentId = e.target.closest('.modal-footer').id;
+  console.error('.....', getCurrentId);
+  const uidFirebase = firebase.auth().currentUser.uid;
+  let valueOfEventDate = moment(document.getElementById('event-date-input').value).format('LL');
+  let valueOfEventName = document.getElementById('event-name-input').value;
+  let valueOfLocation = document.getElementById('event-location-input').value;
+  const eventChangeNewObj = {
+    eventName: valueOfEventName,
+    eventDate: valueOfEventDate,
+    eventLocation: valueOfLocation,
+    uid: uidFirebase,
+  };
+  eventsData.editEventNUpdateFirebase(getCurrentId, eventChangeNewObj)
+    .then(() => {
+      event.initEventsItemForDom(uidFirebase);
+      valueOfEventName = '';
+      valueOfLocation = '';
+      valueOfEventDate = '';
+    })
+    .catch(err => console.error('No Item to update', err));
+};
+
 const eventLstnerForPageLoad = () => {
   $(document).on('click', '.editIcon', testFun);
+  $(document).on('click', '#saveEventChange', updatedValueOfEvent);
 };
 
 export default { eventLstnerForPageLoad };

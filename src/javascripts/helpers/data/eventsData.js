@@ -22,4 +22,13 @@ const pushNewEventToFirebase = newEventOb => axios.post(`${firebaseUrl}/events.j
 
 const deleteEventFromPageAndFirebase = eventId => axios.delete(`${firebaseUrl}/events/${eventId}.json`);
 
-export default { iniEventsDataFromFirebaseByUid, pushNewEventToFirebase, deleteEventFromPageAndFirebase };
+
+const editEventNUpdateFirebase = (editEventId, newUpdatedEvent) => axios.patch(`${firebaseUrl}/events/${editEventId}.json`, newUpdatedEvent);
+
+
+export default {
+  iniEventsDataFromFirebaseByUid,
+  pushNewEventToFirebase,
+  deleteEventFromPageAndFirebase,
+  editEventNUpdateFirebase,
+};

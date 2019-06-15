@@ -41,7 +41,7 @@ const modalFormBuilderForNewEvent = () => {
       <span aria-hidden="true">&times;</span>
     </button>
     <form id="eventFormCreate" class="form-group">
-    <h3 class="text-center">New Event</h3>
+    <h3 class="text-center">Event</h3>
 
     <div class="modal-body">
     <form>
