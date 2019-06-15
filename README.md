@@ -2,7 +2,7 @@
 nutshell-pine created by GitHub Classroom
 
 ## Description
-A website to that allows neighbors to quietly complain about each other, message eachother, get news, and post events. 
+A website to that allows neighbors to quietly complain about each other, message eachother, get news, and post events.
 
 ## Screenshots
 ![Image of the Nutshell Pine website.](https://raw.githubusercontent.com/nss-evening-cohort-9/nutshell-pine/screenshot/assets/imgs/nutshell.png "screenshot of NutShell Pine.")

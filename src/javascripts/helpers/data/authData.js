@@ -28,7 +28,6 @@ const checkLoginStatus = () => {
           allUsers.forEach((u) => {
             if (u.uid === user.uid) {
               userNav.showUserNameInNavBar(u.userName);
-              console.error(u.userName);
             }
           });
           if (filterUids.length === 0) {
@@ -54,6 +53,7 @@ const checkLoginStatus = () => {
       authDiv.classList.remove('hide');
       layoutDiv.classList.remove('show');
       nutshellNavbar.classList.add('hide');
+      usernameNavbar.classList.add('hide');
       authNavbar.classList.remove('hide');
       logoutNavbar.classList.add('hide');
       footer.classList.add('hide');
