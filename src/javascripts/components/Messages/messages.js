@@ -32,12 +32,14 @@ const deleteMessage = (e) => {
     .then(() => {
       // reprints the updated domstring (chatbox) excluding the deleted message
       messagesStringBuilder(); // eslint-disable-line no-use-before-define
-      getAllMessages();// eslint-disable-line no-use-before-define
     })
     .catch(error => console.error('delete does not work', error));
 };
 
 // placeholder to fill in later for each unique message id when clicked
+// we need specific edit id elsewhere outside function because if you call edit //
+// created messageEdit id so that is could equal editButtonId ( which is the closest button) so that
+// we could use this outside the function
 let messageEditId = 'id';
 
 // this is the function where we select the message we want to edit and place it in the input box to change
@@ -71,7 +73,6 @@ const updateMessage = (e) => {
       messagesData.updateIsEdited(messageId, true)
         .then();
       messagesStringBuilder(); // eslint-disable-line no-use-before-define
-      getAllMessages();// eslint-disable-line no-use-before-define
       document.getElementById('msg-input').value = '';
     })
     .catch((error) => {
@@ -98,16 +99,20 @@ const messagesStringBuilder = () => {
           domString += '<div class="card messageCard">';
           domString += `<h2 id="username">${username}</h2>`;
           domString += '<div class="input-group">';
+          domString += '<div class ="col">';
           domString += `<div id="message"><p>${message.message}</p></div>`;
+          domString += '</div>';
           domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
           domString += '</div>';
           // this logic says that if the user is signed in, the edit and delete button will show up on their message and they
           // can edit or delete
           if (message.uid === firebase.auth().currentUser.uid) {
             domString += `
+            <div class="d-flex flex-row">
             <button class="editMessage pt-1 ml-2" id=${message.id}><i class="fas fa-edit"></i></button>
             <button class="deleteMessage pt-1 ml-2" id=${message.id}><i class="fas fa-trash-alt"></i></button>
-          </div>`;
+            </div>
+          </button>`;
             // if they are not signed in, the edit and delete buttons will not show up and
             // they are unable to edit or delete
           } else {
@@ -134,49 +139,6 @@ const messagesStringBuilder = () => {
     .catch(error => console.error('could not get messages', error));
 };
 
-// domString where we get our messages from firebase - this includes all the messages
-// const messagesStringBuilder = () => {
-//   let domString = '<div class="messageCardsDiv">';
-//   // users.getUsers().then()
-//   messagesData.getMessages()
-//     .then((messages) => {
-//       messages.forEach((message) => {
-//         domString += '<div class="card messageCard">';
-//         domString += `<h2 id="username">${message.uid}</h2>`;
-//         domString += '<div class="input-group">';
-//         domString += `<div id="message"><p>${message.message}</p></div>`;
-//         domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
-//         domString += '</div>';
-//         // this logic says that if the user is signed in, the edit and delete button will show up on their message and they
-//         // can edit or delete
-//         if (message.uid === firebase.auth().currentUser.uid) {
-//           domString += `
-//             <button class="editMessage pt-1 ml-2" id=${message.id}><i class="fas fa-edit"></i></button>
-//             <button class="deleteMessage pt-1 ml-2" id=${message.id}><i class="fas fa-trash-alt"></i></button>
-//           </div>`;
-//           // if they are not signed in, the edit and delete buttons will not show up and
-//           // they are unable to edit or delete
-//         } else {
-//           domString += '</p></div>';
-//         }
-//         domString += '</div>';
-//         domString += '</div>';
-//       });
-//       util.printToDom('chatBox', domString);
-//       // called this function after we are printing because the delete button needs to be on page
-//       // in order for us to add an event listener to it
-//       // this defines the delete button and the loops through and adds an event listener on button click
-//       const deleteButtons = document.getElementsByClassName('deleteMessage');
-//       for (let i = 0; i < deleteButtons.length; i += 1) {
-//         deleteButtons[i].addEventListener('click', deleteMessage);
-//       }
-//       const editButtons = document.getElementsByClassName('editMessage');
-//       for (let i = 0; i < editButtons.length; i += 1) {
-//         editButtons[i].addEventListener('click', selectEditMessage);
-//       }
-//     })
-//     .catch(error => console.error('could not get messages', error));
-// };
 
 const enterSubmit = () => {
   $('#msg-input').on('keyup', (e) => {
@@ -191,10 +153,7 @@ const displayMsgInput = () => {
   const domString = `
     <input type="text" class="form-control mr-1 msg-input" id="msg-input" placeholder="Enter new message">
     <button type="button" class="btn btn-secondary msg-input mr-1" id="msg-input-btn">Submit</button>
-    <button class = "saveButton hideStuff" id="save-msg">Save</button>
-    <button type="button" class="btn btn-danger msg-input msg-refresh-btn">
-      <i class="fas fa-redo msg-refresh-btn"></i>
-    </button>`;
+    <button type="button" class = "btn btn-secondary hideStuff" id="save-msg">Save</button>`;
   util.printToDom('messageInput', domString);
   enterSubmit();
 };
@@ -207,25 +166,12 @@ const addNewMessage = () => {
     messagesData.addNewMessage(newMessageObject)
       .then(() => {
         messagesStringBuilder();
-        getAllMessages(); // eslint-disable-line no-use-before-define
         document.getElementById('msg-input').value = '';
       })
       .catch((error) => {
         console.error(error);
       });
   }
-};
-
-const getAllMessages = () => {
-  usersData.getUsers().then((usersArray) => {
-    messagesData.getMessages()
-      .then((messagesArray) => {
-        messagesStringBuilder(messagesArray, usersArray);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  });
 };
 
 // event listener for add message
@@ -236,7 +182,6 @@ const messageEvents = () => {
 
 // init function that holds events
 const initMessages = () => {
-  getAllMessages();
   messageEvents();
 };
 
