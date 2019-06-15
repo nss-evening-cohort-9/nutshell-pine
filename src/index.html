@@ -14,18 +14,19 @@
 <body>
   <!-- MODAL -->
   <div id="pineModal" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div id="modal-content-wrapper">
-          <!-- your domString builder should target 'modal-content-wrapper' modal ID -->
-          <div id="addNewDiaryPostFormDiv"></div>
-          <div id="addNewCalendarEvent"></div>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div id="modal-content-wrapper">
+            <!-- your domString builder should target 'modal-content-wrapper' modal ID -->
+            <div id="addNewDiaryPostFormDiv"></div>
+            <div id="addNewCalendarEvent"></div>
+            <div id="user-modal"></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 <!-- MODAL END -->
-
 
 <!-- // Start of Navbar -->
 <div class="container-wrapper">
@@ -57,7 +58,10 @@
       </nav>
   </div>
 <!-- End of Navbar  -->
+
+<!--  auth -->
 <div id="auth"></div>
+<!-- auth -->
 
 <div id="layout" class="hide">
   <div id="layout-wrapper" class="cssLayout">
@@ -72,10 +76,11 @@
           <i id="messagesNavBtn"class="fas fa-comments"></i>
           <i id="newsNavBtn"class="fas fa-newspaper"></i>
           <i id="eventsNavBtn"class="fas fa-calendar-alt"></i>
-      </nav>  
+      </nav>
   </div>
-</div>  
+</div>
 <footer id='footer'>&copy; 2019</footer>
 </div>
 </body>
+<script src="https://kit.fontawesome.com/182b3d5883.js"></script>
 </html>
