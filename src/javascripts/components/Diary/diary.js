@@ -115,7 +115,6 @@ const diaryEllipsisDomForModal = (e, posts) => {
       deleteDiaryPost(event, ellipsisId, post.id);
     });
     editBtnTargetId.addEventListener('click', (x) => {
-      // editDiaryPost(x, ellipsisId, post);
       if (post.id === ellipsisId) {
         diaryFormInputBuilder(x, post);
       }

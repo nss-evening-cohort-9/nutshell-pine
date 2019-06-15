@@ -16,6 +16,7 @@ const authNavbar = document.getElementById('navbar-button-auth');
 const logoutNavbar = document.getElementById('navbar-button-logout');
 const footer = document.getElementById('footer');
 
+
 const checkLoginStatus = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {

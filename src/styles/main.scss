@@ -63,7 +63,7 @@ body {
  // End of Add User
 
 .hide {
-  display: none; 
+  display: none;
 }
 
 #pineModal {
@@ -134,7 +134,7 @@ body {
     #newsComponentDiv{
       @extend %single-section;
       grid-area: news;
-      
+
     }
     #eventsComponentDiv{
       @extend %single-section;

@@ -1,11 +1,14 @@
+import $ from 'jquery';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import timeStamp from './messageHelpers';
 
 import messagesData from '../../helpers/data/messagesData';
-// import userData from '../../helpers/data/usersData';
+import usersData from '../../helpers/data/usersData';
 import util from '../../helpers/util';
 import './messages.scss';
+
+const getCurrentUsername = () => firebase.auth().currentUser.displayName;
 
 // new object to create a new message
 const createNewMessage = () => {
@@ -14,6 +17,7 @@ const createNewMessage = () => {
     message: document.getElementById('msg-input').value,
     timestamp: timeStamp.getTimeStamp().toString(),
     uid: firebase.auth().currentUser.uid,
+    displayName: getCurrentUsername(),
   };
   return newMessage;
 };
@@ -28,6 +32,7 @@ const deleteMessage = (e) => {
     .then(() => {
       // reprints the updated domstring (chatbox) excluding the deleted message
       messagesStringBuilder(); // eslint-disable-line no-use-before-define
+      getAllMessages();// eslint-disable-line no-use-before-define
     })
     .catch(error => console.error('delete does not work', error));
 };
@@ -66,6 +71,8 @@ const updateMessage = (e) => {
       messagesData.updateIsEdited(messageId, true)
         .then();
       messagesStringBuilder(); // eslint-disable-line no-use-before-define
+      getAllMessages();// eslint-disable-line no-use-before-define
+      document.getElementById('msg-input').value = '';
     })
     .catch((error) => {
       console.error('error in editing message', error);
@@ -75,45 +82,108 @@ const updateMessage = (e) => {
 // domString where we get our messages from firebase - this includes all the messages
 const messagesStringBuilder = () => {
   let domString = '<div class="messageCardsDiv">';
-  messagesData.getMessages()
-    .then((messages) => {
-      messages.forEach((message) => {
-        domString += '<div class="card messageCard">';
-        domString += `<h2 id="username">${message.uid}</h2>`;
-        domString += '<div class="input-group">';
-        domString += `<div id="message"><p>${message.message}</p></div>`;
-        domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
-        // domString += `<div id = "timeStamp">${timestampMessage()}</div>`;
-        domString += '</div>';
-        // this logic says that if the user is signed in, the edit and delete button will show up on their message and they
-        // can edit or delete
-        if (message.uid === firebase.auth().currentUser.uid) {
-          domString += `
+  let username = '';
+  usersData.getUsers().then((usersArray) => {
+    messagesData.getMessages()
+      .then((messagesArray) => {
+        messagesArray.forEach((message) => {
+          for (let i = 0; i < usersArray.length; i += 1) {
+            if (usersArray[i].uid === message.uid) {
+              username = usersArray[i].userName;
+              break;
+            } else if (usersArray[i].uid !== message.uid) {
+              username = message.uid;
+            }
+          }
+          domString += '<div class="card messageCard">';
+          domString += `<h2 id="username">${username}</h2>`;
+          domString += '<div class="input-group">';
+          domString += `<div id="message"><p>${message.message}</p></div>`;
+          domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
+          domString += '</div>';
+          // this logic says that if the user is signed in, the edit and delete button will show up on their message and they
+          // can edit or delete
+          if (message.uid === firebase.auth().currentUser.uid) {
+            domString += `
             <button class="editMessage pt-1 ml-2" id=${message.id}><i class="fas fa-edit"></i></button>
             <button class="deleteMessage pt-1 ml-2" id=${message.id}><i class="fas fa-trash-alt"></i></button>
           </div>`;
-          // if they are not signed in, the edit and delete buttons will not show up and
-          // they are unable to edit or delete
-        } else {
-          domString += '</p></div>';
+            // if they are not signed in, the edit and delete buttons will not show up and
+            // they are unable to edit or delete
+          } else {
+            domString += '</p></div>';
+          }
+          domString += '</div>';
+          domString += '</div>';
+        });
+        util.printToDom('chatBox', domString);
+        // called this function after we are printing because the delete button needs to be on page
+        // in order for us to add an event listener to it
+        // this defines the delete button and the loops through and adds an event listener on button click
+        const deleteButtons = document.getElementsByClassName('deleteMessage');
+        for (let i = 0; i < deleteButtons.length; i += 1) {
+          deleteButtons[i].addEventListener('click', deleteMessage);
         }
-        domString += '</div>';
-        domString += '</div>';
-      });
-      util.printToDom('chatBox', domString);
-      // called this function after we are printing because the delete button needs to be on page
-      // in order for us to add an event listener to it
-      // this defines the delete button and the loops through and adds an event listener on button click
-      const deleteButtons = document.getElementsByClassName('deleteMessage');
-      for (let i = 0; i < deleteButtons.length; i += 1) {
-        deleteButtons[i].addEventListener('click', deleteMessage);
-      }
-      const editButtons = document.getElementsByClassName('editMessage');
-      for (let i = 0; i < editButtons.length; i += 1) {
-        editButtons[i].addEventListener('click', selectEditMessage);
-      }
-    })
+        const editButtons = document.getElementsByClassName('editMessage');
+        for (let i = 0; i < editButtons.length; i += 1) {
+          editButtons[i].addEventListener('click', selectEditMessage);
+        }
+      })
+      .catch(error => console.error('could not get messages', error));
+  })
     .catch(error => console.error('could not get messages', error));
+};
+
+// domString where we get our messages from firebase - this includes all the messages
+// const messagesStringBuilder = () => {
+//   let domString = '<div class="messageCardsDiv">';
+//   // users.getUsers().then()
+//   messagesData.getMessages()
+//     .then((messages) => {
+//       messages.forEach((message) => {
+//         domString += '<div class="card messageCard">';
+//         domString += `<h2 id="username">${message.uid}</h2>`;
+//         domString += '<div class="input-group">';
+//         domString += `<div id="message"><p>${message.message}</p></div>`;
+//         domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
+//         domString += '</div>';
+//         // this logic says that if the user is signed in, the edit and delete button will show up on their message and they
+//         // can edit or delete
+//         if (message.uid === firebase.auth().currentUser.uid) {
+//           domString += `
+//             <button class="editMessage pt-1 ml-2" id=${message.id}><i class="fas fa-edit"></i></button>
+//             <button class="deleteMessage pt-1 ml-2" id=${message.id}><i class="fas fa-trash-alt"></i></button>
+//           </div>`;
+//           // if they are not signed in, the edit and delete buttons will not show up and
+//           // they are unable to edit or delete
+//         } else {
+//           domString += '</p></div>';
+//         }
+//         domString += '</div>';
+//         domString += '</div>';
+//       });
+//       util.printToDom('chatBox', domString);
+//       // called this function after we are printing because the delete button needs to be on page
+//       // in order for us to add an event listener to it
+//       // this defines the delete button and the loops through and adds an event listener on button click
+//       const deleteButtons = document.getElementsByClassName('deleteMessage');
+//       for (let i = 0; i < deleteButtons.length; i += 1) {
+//         deleteButtons[i].addEventListener('click', deleteMessage);
+//       }
+//       const editButtons = document.getElementsByClassName('editMessage');
+//       for (let i = 0; i < editButtons.length; i += 1) {
+//         editButtons[i].addEventListener('click', selectEditMessage);
+//       }
+//     })
+//     .catch(error => console.error('could not get messages', error));
+// };
+
+const enterSubmit = () => {
+  $('#msg-input').on('keyup', (e) => {
+    if (e.keyCode === 13) {
+      $('#msg-input-btn').trigger('click');
+    }
+  });
 };
 
 // this is where the textbox is to type your message, located directly below the chatbox container //
@@ -126,21 +196,36 @@ const displayMsgInput = () => {
       <i class="fas fa-redo msg-refresh-btn"></i>
     </button>`;
   util.printToDom('messageInput', domString);
+  enterSubmit();
 };
 
 // this function adds a new message
-const addNewMessage = (e) => {
+const addNewMessage = () => {
   const newMessageObject = createNewMessage();
   const messageInput = newMessageObject.message;
-  if ((e.keyCode === 13 || e.target.id === 'msg-input-btn') && (messageInput !== '')) {
+  if (messageInput !== '') {
     messagesData.addNewMessage(newMessageObject)
       .then(() => {
         messagesStringBuilder();
+        getAllMessages(); // eslint-disable-line no-use-before-define
+        document.getElementById('msg-input').value = '';
       })
       .catch((error) => {
         console.error(error);
       });
   }
+};
+
+const getAllMessages = () => {
+  usersData.getUsers().then((usersArray) => {
+    messagesData.getMessages()
+      .then((messagesArray) => {
+        messagesStringBuilder(messagesArray, usersArray);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  });
 };
 
 // event listener for add message
@@ -151,6 +236,7 @@ const messageEvents = () => {
 
 // init function that holds events
 const initMessages = () => {
+  getAllMessages();
   messageEvents();
 };
 
