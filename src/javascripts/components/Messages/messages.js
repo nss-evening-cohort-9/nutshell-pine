@@ -32,12 +32,14 @@ const deleteMessage = (e) => {
     .then(() => {
       // reprints the updated domstring (chatbox) excluding the deleted message
       messagesStringBuilder(); // eslint-disable-line no-use-before-define
-      // getAllMessages();// eslint-disable-line no-use-before-define
     })
     .catch(error => console.error('delete does not work', error));
 };
 
 // placeholder to fill in later for each unique message id when clicked
+// we need specific edit id elsewhere outside function because if you call edit //
+// created messageEdit id so that is could equal editButtonId ( which is the closest button) so that
+// we could use this outside the function
 let messageEditId = 'id';
 
 // this is the function where we select the message we want to edit and place it in the input box to change
@@ -71,7 +73,6 @@ const updateMessage = (e) => {
       messagesData.updateIsEdited(messageId, true)
         .then();
       messagesStringBuilder(); // eslint-disable-line no-use-before-define
-      // getAllMessages();// eslint-disable-line no-use-before-define
       document.getElementById('msg-input').value = '';
     })
     .catch((error) => {
@@ -165,7 +166,6 @@ const addNewMessage = () => {
     messagesData.addNewMessage(newMessageObject)
       .then(() => {
         messagesStringBuilder();
-        // getAllMessages(); // eslint-disable-line no-use-before-define
         document.getElementById('msg-input').value = '';
       })
       .catch((error) => {
@@ -173,18 +173,6 @@ const addNewMessage = () => {
       });
   }
 };
-
-// const getAllMessages = () => {
-//   usersData.getUsers().then((usersArray) => {
-//     messagesData.getMessages()
-//       .then((messagesArray) => {
-//         messagesStringBuilder(messagesArray, usersArray);
-//       })
-//       .catch((err) => {
-//         console.error(err);
-//       });
-//   });
-// };
 
 // event listener for add message
 const messageEvents = () => {
@@ -194,7 +182,6 @@ const messageEvents = () => {
 
 // init function that holds events
 const initMessages = () => {
-  // getAllMessages();
   messageEvents();
 };
 
