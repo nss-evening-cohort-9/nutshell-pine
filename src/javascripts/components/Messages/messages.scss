@@ -1,16 +1,24 @@
-.messageCardDiv{
-  width:350px;
-  .messageCard {
-    flex-direction: column;
-    height: auto;
-    justify-content: space-evenly;
-    margin-top: auto;
-    padding: 5px;
-    align-items: center;
-    width: auto;
-  }
+@import '../../../styles/colors-fonts.scss';
+
+.messageCard {
+  flex-direction: column;
+  height: auto;
+  justify-content: space-evenly;
+  margin-top: auto;
+  padding: 5px;
+  align-items: center;
+  width: auto;
+}
+
+.card {
+  width: auto;
 }
 
 .hideStuff {
   display: none;
+}
+
+#username {
+  font-family: $font1;
+  font-size: .8em;
 }

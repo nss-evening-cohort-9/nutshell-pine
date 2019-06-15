@@ -10,10 +10,13 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: red;
+  right:10px;
+  top:75px;
+  background-color: #4fb95d;
+  color:#fff;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  z-index: 100;
 }
 
 .dropdown-content a {
@@ -21,16 +24,24 @@
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  & :hover {
-    background-color: #f1f1f1
+  color:rgba(255, 255, 255, .5);
+  &:hover {
+    background-color: #4da859 !important;
+    color:rgba(255, 255, 255, .90);
   }
 }
-.dropdown:hover .dropdown-content {
-  display: block;
+.dropdown {
+	&:hover {
+		.dropdown-content {
+      display: block;
+      color:red;
+		}
+	}
 }
 
 .dropdown:hover{ 
   .dashboardLink {
-    background-color: #3e8e41;
+    // background-color: #3e8e41;
+    cursor: pointer;
   }
 }

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,16 +14,18 @@
 <body>
   <!-- MODAL -->
   <div id="pineModal" class="modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div id="modal-content-wrapper">
-            <!-- your domString builder should target 'modal-content-wrapper' modal ID -->
-            <div id="addNewDiaryPostFormDiv"></div>
-            <div id="addNewCalendarEvent"></div>
-          </div>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div id="modal-content-wrapper">
+          <!-- your domString builder should target 'modal-content-wrapper' modal ID -->
+          <div id="addNewDiaryPostFormDiv"></div>
+          <div id="addNewCalendarEvent"></div>
         </div>
       </div>
     </div>
+  </div>
+<!-- MODAL END -->
+
 
 <!-- // Start of Navbar -->
 <div class="container-wrapper">
@@ -50,26 +51,13 @@
         </div>
         <div class="dropdown-content">
           <a href="#">Add Diary Entry</a>
-          <a href="#">Add News Entry</a>
+          <a href="#" id="addNewsArticleLink">Add News</a>
           <a href="#">Add Event</a>
           </div>
       </nav>
   </div>
 <!-- End of Navbar  -->
 <div id="auth"></div>
-<!-- add user module -->
-<!-- <section id="add-user-module" >
-    <button id="open-add-user-form-btn">+</button>
-    <form>
-      <h2>Add User</h2>
-      username:<br>
-      <input type='text' data-key='age' id = "userName" class='user-input'><br>
-      email:<br>
-      <input type='text' data-key='email' id = "email"class='user-input'><br>
-      <button type='button' id="add-user-btn">add user</button>
-   </form>
-  </section> -->
-<!-- End user module-->
 
 <div id="layout" class="hide">
   <div id="layout-wrapper" class="cssLayout">
