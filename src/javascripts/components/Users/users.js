@@ -11,7 +11,7 @@ const userModal = (users) => {
   const divString1 = '';
   const domString = `
   <div class="container">
-    <form class="col">
+    <form class="userFormWrapper">
       <label for="username-input">Create Username</label>
       <input id="username-input"></input>
       <label for="defaultForm-email">Add Email</label>
