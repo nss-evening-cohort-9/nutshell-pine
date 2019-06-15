@@ -53,6 +53,7 @@ const checkLoginStatus = () => {
       authDiv.classList.remove('hide');
       layoutDiv.classList.remove('show');
       nutshellNavbar.classList.add('hide');
+      usernameNavbar.classList.add('hide');
       authNavbar.classList.remove('hide');
       logoutNavbar.classList.add('hide');
       footer.classList.add('hide');
