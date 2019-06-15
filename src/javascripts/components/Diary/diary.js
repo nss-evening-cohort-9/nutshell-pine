@@ -52,6 +52,7 @@ const diaryFormInputBuilder = (e, post) => { // e is only passed for sake of edi
     </form>
   </div>`;
   util.printToDom('addNewCalendarEvent', eventsFormDiv); // clears out EVENTS from modal
+  util.printToDom('user-modal', eventsFormDiv); // clears out EVENTS from modal
   // also will need to do this for Saul
   util.printToDom('addNewDiaryPostFormDiv', domString);
   document.getElementById('closeModalX').addEventListener('click', () => {
