@@ -125,6 +125,8 @@ body {
 }
 #layout{
     #messagesComponentDiv, #messageInput{
+      height: auto !important;
+      overflow: scroll;
       @extend %single-section;
     }
     #diaryComponentDiv{
@@ -184,4 +186,5 @@ footer{
     margin:10px 10px !important;
     font-size:25px;
   }
+
 }
