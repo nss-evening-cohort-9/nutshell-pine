@@ -19,6 +19,23 @@
 }
 
 #username {
+  display: flex;
   font-family: $font1;
-  font-size: .8em;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: black;
+  width: 100%;
+  justify-content: center;
+}
+
+#message {
+  text-align: left;
+  font-size: 2.0em;
+}
+
+#timestamp {
+  font-family: $font1;
+  font-size: 14px;
+  color: $softerGrey;
+  margin-left: -10px;
 }

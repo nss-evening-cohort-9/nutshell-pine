@@ -98,16 +98,20 @@ const messagesStringBuilder = () => {
           domString += '<div class="card messageCard">';
           domString += `<h2 id="username">${username}</h2>`;
           domString += '<div class="input-group">';
+          domString += '<div class ="col">';
           domString += `<div id="message"><p>${message.message}</p></div>`;
+          domString += '</div>';
           domString += `<h6 id="timestamp">${message.timestamp} </h6>`;
           domString += '</div>';
           // this logic says that if the user is signed in, the edit and delete button will show up on their message and they
           // can edit or delete
           if (message.uid === firebase.auth().currentUser.uid) {
             domString += `
+            <div class="d-flex flex-row">
             <button class="editMessage pt-1 ml-2" id=${message.id}><i class="fas fa-edit"></i></button>
             <button class="deleteMessage pt-1 ml-2" id=${message.id}><i class="fas fa-trash-alt"></i></button>
-          </div>`;
+            </div>
+          </button>`;
             // if they are not signed in, the edit and delete buttons will not show up and
             // they are unable to edit or delete
           } else {
