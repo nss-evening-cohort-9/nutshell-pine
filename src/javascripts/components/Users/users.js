@@ -42,7 +42,6 @@ const newUserValues = (users) => {
   return newUser;
 };
 
-
 const addNewUser = (users) => {
   const newUserObject = newUserValues(users);
   const userInput = newUserObject.user;
