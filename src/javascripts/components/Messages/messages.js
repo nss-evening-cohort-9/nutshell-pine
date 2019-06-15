@@ -152,7 +152,7 @@ const displayMsgInput = () => {
   const domString = `
     <input type="text" class="form-control mr-1 msg-input" id="msg-input" placeholder="Enter new message">
     <button type="button" class="btn btn-secondary msg-input mr-1" id="msg-input-btn">Submit</button>
-    <button class = "saveButton hideStuff" id="save-msg">Save</button>`;
+    <button type="button" class = "btn btn-secondary hideStuff" id="save-msg">Save</button>`;
   util.printToDom('messageInput', domString);
   enterSubmit();
 };
