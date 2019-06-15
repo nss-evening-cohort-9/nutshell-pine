@@ -58,7 +58,6 @@ const testFun = (e) => {
 
 const updatedValueOfEvent = (e) => {
   const getCurrentId = e.target.closest('.modal-footer').id;
-  console.error('.....', getCurrentId);
   const uidFirebase = firebase.auth().currentUser.uid;
   let valueOfEventDate = moment(document.getElementById('event-date-input').value).format('LL');
   let valueOfEventName = document.getElementById('event-name-input').value;
