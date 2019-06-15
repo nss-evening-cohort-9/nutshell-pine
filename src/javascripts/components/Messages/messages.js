@@ -32,7 +32,7 @@ const deleteMessage = (e) => {
     .then(() => {
       // reprints the updated domstring (chatbox) excluding the deleted message
       messagesStringBuilder(); // eslint-disable-line no-use-before-define
-      getAllMessages();// eslint-disable-line no-use-before-define
+      // getAllMessages();// eslint-disable-line no-use-before-define
     })
     .catch(error => console.error('delete does not work', error));
 };
@@ -71,7 +71,7 @@ const updateMessage = (e) => {
       messagesData.updateIsEdited(messageId, true)
         .then();
       messagesStringBuilder(); // eslint-disable-line no-use-before-define
-      getAllMessages();// eslint-disable-line no-use-before-define
+      // getAllMessages();// eslint-disable-line no-use-before-define
       document.getElementById('msg-input').value = '';
     })
     .catch((error) => {
@@ -165,7 +165,7 @@ const addNewMessage = () => {
     messagesData.addNewMessage(newMessageObject)
       .then(() => {
         messagesStringBuilder();
-        getAllMessages(); // eslint-disable-line no-use-before-define
+        // getAllMessages(); // eslint-disable-line no-use-before-define
         document.getElementById('msg-input').value = '';
       })
       .catch((error) => {
@@ -174,17 +174,17 @@ const addNewMessage = () => {
   }
 };
 
-const getAllMessages = () => {
-  usersData.getUsers().then((usersArray) => {
-    messagesData.getMessages()
-      .then((messagesArray) => {
-        messagesStringBuilder(messagesArray, usersArray);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  });
-};
+// const getAllMessages = () => {
+//   usersData.getUsers().then((usersArray) => {
+//     messagesData.getMessages()
+//       .then((messagesArray) => {
+//         messagesStringBuilder(messagesArray, usersArray);
+//       })
+//       .catch((err) => {
+//         console.error(err);
+//       });
+//   });
+// };
 
 // event listener for add message
 const messageEvents = () => {
@@ -194,7 +194,7 @@ const messageEvents = () => {
 
 // init function that holds events
 const initMessages = () => {
-  getAllMessages();
+  // getAllMessages();
   messageEvents();
 };
 
