@@ -33,7 +33,7 @@ const checkLoginStatus = () => {
       authNavbar.classList.add('hide');
       logoutNavbar.classList.remove('hide');
       footer.classList.remove('hide');
-      diary.diaryDomStringBuilder(user);
+      diary.diaryDomStringBuilder();
       messages.messagesStringBuilder();
       events.initEventsItemForDom(user.uid);
       messages.displayMsgInput();

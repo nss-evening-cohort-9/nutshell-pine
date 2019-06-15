@@ -1,7 +1,5 @@
 import moment from 'moment';
 
-import usersData from '../../helpers/data/usersData';
-
 import util from '../../helpers/util';
 import diaryData from '../../helpers/data/diaryData';
 // scss
@@ -137,15 +135,7 @@ const showEditDeleteModal4Diary = (posts) => {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // this function is called to build the cards that contain the data of diary posts
-const diaryDomStringBuilder = (user) => {
-  usersData.getUsers().then((allUsers) => {
-    allUsers.forEach((u) => {
-      if (user.uid === u.uid) {
-        // diary.diaryDomStringBuilder(u.userName);
-      // userNameForDiary = u.userName; // need to get this info as param in diary call
-      }
-    });
-  }).catch(err => console.error('getting single user at diary.js', err));
+const diaryDomStringBuilder = () => {
   let domString = `
   <div class="col diaryCardsDiv">
   <div id="addNewDiaryPostBtn" class="divForHeaderDiary">
