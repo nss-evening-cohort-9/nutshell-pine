@@ -28,7 +28,6 @@ const checkLoginStatus = () => {
           allUsers.forEach((u) => {
             if (u.uid === user.uid) {
               userNav.showUserNameInNavBar(u.userName);
-              console.error(u.userName);
             }
           });
           if (filterUids.length === 0) {
