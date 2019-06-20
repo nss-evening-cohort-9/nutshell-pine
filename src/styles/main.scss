@@ -19,6 +19,10 @@ body {
     }
   }
 
+.authDiv {
+  margin: auto;
+}
+
 .modal-content {
   // overflow-x: hidden!important;
   // overflow-y: hidden!important;
@@ -189,10 +193,4 @@ footer{
   }
 
 
-}
-.userFormWrapper {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
 }

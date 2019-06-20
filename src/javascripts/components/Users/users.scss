@@ -1,0 +1,28 @@
+@import '../../../styles/colors-fonts.scss';
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+.userFormWrapper {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  padding: 25px;
+  font-family: $font1;
+}
+
+#submit-user-info {
+  margin-top: 2em;
+}
+
+#username-input, #defaultForm-email {
+  // border-radius: 3px;
+  // line-height: 1.5;
+}
+
+label {
+  margin-top: 5px;
+}
+
+.signUp {
+  margin-bottom: .5em;
+}
