@@ -5,6 +5,8 @@ import usersData from '../../helpers/data/usersData';
 import util from '../../helpers/util';
 // jQuery
 import $ from '../../../../node_modules/jquery';
+// scss
+import './users.scss';
 
 // modal
 const userModal = (users) => {
@@ -12,6 +14,7 @@ const userModal = (users) => {
   const domString = `
   <div class="container">
     <form class="userFormWrapper">
+      <h3 class="text-center signUp">Lets get you signed up...</h3>
       <label for="username-input">Create Username</label>
       <input id="username-input"></input>
       <label for="defaultForm-email">Add Email</label>
